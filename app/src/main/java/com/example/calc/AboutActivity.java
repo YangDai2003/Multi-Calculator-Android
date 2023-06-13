@@ -69,7 +69,7 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.about_github).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://github.com/YangDai-Github/Calc-Android");
+            Uri uri = Uri.parse("https://github.com/YangDai-Github/Multi-Calculator-Android");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
