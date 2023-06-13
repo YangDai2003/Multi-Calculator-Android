@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="Very_Severely_underweight">#FF4081</color>
+    <color name="Severely_underweight">#FF5722</color>
+    <color name="Underweight">#FF9800</color>
+    <color name="Healthy">#4CAF50</color>
+    <color name="Overweight">#E91E63</color>
+    <color name="Obese_Class_I">#9C27B0</color>
+    <color name="Obese_Class_ii">#673AB7</color>
+    <color name="Obese_Class_iii">#3F51B5</color>
+
+</resources>

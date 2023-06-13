@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/units"
+        android:title="@string/ChangeActivity" />
+
+    <item
+        android:id="@+id/date"
+        android:title="@string/dateActivity" />
+
+    <item
+        android:id="@+id/compass"
+        android:title="@string/compassActivity" />
+
+    <item
+        android:id="@+id/bmi"
+        android:title="@string/bmiActivity" />
+
+    <item
+        android:id="@+id/exchange"
+        android:title="@string/exchangeActivity" />
+
+    <item
+        android:id="@+id/chineseNumber"
+        android:title="@string/chineseNumberConverter" />
+</menu>

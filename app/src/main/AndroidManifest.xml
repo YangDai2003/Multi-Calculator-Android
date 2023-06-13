@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 地址定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!--适配android 11无法唤起第三方apk-->
+    <queries>
+        <!-- com.blankj.utilcode SDK检测虚拟机 -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+        <!-- 支付宝支付SDK -->
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:resizeableActivity="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="tiramisu">
+        <activity
+            android:name=".ChineseNumberConversionActivity"
+            android:exported="false"
+            android:label="@string/chineseNumberConverter"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ExchangeActivity"
+            android:exported="false"
+            android:label="@string/exchangeActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".BMIActivity"
+            android:exported="false"
+            android:label="@string/bmiActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".time.DateRangeActivity"
+            android:exported="false"
+            android:label="@string/dateActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".compass.Compass"
+            android:exported="false"
+            android:label="@string/compassActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ChangeActivity"
+            android:exported="false"
+            android:label="@string/ChangeActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>

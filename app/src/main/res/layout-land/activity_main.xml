@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".MainActivity">
+
+    <!--    输入文本框-->
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="80sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="top|end"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="0dp"
+        android:text=""
+        android:textAlignment="gravity"
+        android:textColor="?colorOnSurface"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/speak"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@android:color/transparent"
+        android:importantForAccessibility="no"
+        android:src="@drawable/speech_text"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--    结果文本框-->
+    <TextView
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="56sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="bottom|end"
+        android:paddingStart="48dp"
+        android:paddingEnd="8dp"
+        android:text=""
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:ignore="RtlSymmetry" />
+
+    <TableLayout
+        android:id="@+id/gridlayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
+        android:animateLayoutChanges="true"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reciprocal"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:padding="0dp"
+                android:text="¹/𝑥"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/percentage"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:text="%"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/time"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:text="^"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <ImageButton
+                android:id="@+id/SHOW_ALL"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:importantForAccessibility="no"
+                android:padding="0dp"
+                android:src="@drawable/combined_drawable_down" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/hideRow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/e"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:text="e"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pi"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:text="π"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/g"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:text="g"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <ImageButton
+                android:id="@+id/tool"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:importantForAccessibility="no"
+                android:padding="0dp"
+                android:src="@drawable/calculate" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Clean"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="#FB7730"
+                android:maxLines="1"
+                android:padding="0dp"
+                android:text="AC"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/brackets"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:maxLines="1"
+                android:padding="0dp"
+                android:text="( )"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/inverse"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:maxLines="1"
+                android:padding="0dp"
+                android:text="+/-"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="22sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:padding="0dp"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/seven"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="7"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/eight"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="8"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nine"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="9"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/subtract"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:padding="0dp"
+                android:text="-"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/four"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="4"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/five"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/six"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="6"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/multiply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:padding="0dp"
+                android:text="×"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/one"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="1"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/two"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="2"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/three"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="3"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/divide"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:backgroundTint="?colorSecondaryContainer"
+                android:padding="0dp"
+                android:text="÷"
+                android:textAlignment="center"
+                android:textColor="?colorOnSecondaryContainer"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dot"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="."
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/zero"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/delete"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="⌫"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/equal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="6dp"
+                android:padding="0dp"
+                android:text="="
+                android:textAlignment="center"
+                android:textSize="26sp"
+                tools:ignore="HardcodedText" />
+        </TableRow>
+
+    </TableLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.42" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

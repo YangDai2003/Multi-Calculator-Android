@@ -1,0 +1,10 @@
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.DynamicColors.Dark">
+        !-- Status bar color. -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <SeekBarPreference
+            android:defaultValue="10"
+            android:icon="@drawable/scale_123"
+            android:max="10"
+            app:adjustable="true"
+            app:key="scale"
+            app:min="0"
+            app:showSeekBarValue="true"
+            app:title="@string/scale"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/vibration"
+            app:key="vib"
+            app:title="@string/vib"
+            app:widgetLayout="@drawable/material_switch" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/phone_android"
+            app:key="screen"
+            app:summary="@string/wakeSummery"
+            app:title="@string/wake"
+            app:widgetLayout="@drawable/material_switch" />
+
+        <Preference
+            android:icon="@drawable/theme_color"
+            app:key="theme"
+            app:summary="@string/changeTheme"
+            app:title="@string/theme" />
+
+        <Preference
+            android:icon="@drawable/language"
+            app:key="language"
+            app:summary="@string/languageChange"
+            app:title="@string/language" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
