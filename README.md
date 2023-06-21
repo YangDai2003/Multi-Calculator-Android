@@ -1,4 +1,7 @@
 # Calc-Android
+!!! Code may not be used for profitable commercial purposes without the author's permission.
+!!! 未经作者允许不得将代码用于盈利性商业用途。
+
 Welcome to "Multi-Calculator", the ultimate powerhouse of functionality! 
 Our app is not just an ordinary calculator; it provides you with a comprehensive mathematical computing experience.  
 
@@ -16,3 +19,7 @@ Whether it's for studying, working, or daily life, "Multi-Calculator" will becom
 此外，我们还提供了指南功能，能够获取方向角、海拔、速度、位置信息以及磁场强度，帮助你探索世界的各个角落。  
 还有单位换算功能，涵盖长度、面积、体积、进制、质量、温度和存储大小等多个领域，让你轻松进行各种单位转换。  
 不管是学习、工作还是日常生活，我们的"多功能计算器"将成为你最得力的助手！现在就点击链接下载体验吧：https://play.google.com/store/apps/details?id=com.yangdai.calc
+
+![1687359209130_100](https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/a6f9bc85-732f-417d-8085-1973c9a93295)
+![1687359418163_100](https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/92681c9e-9236-4cd0-baa5-2c5d7776a65a)
+![1687359563772_100](https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/cc784b7d-6057-4f8a-bef5-7989e8fd9b1d)
