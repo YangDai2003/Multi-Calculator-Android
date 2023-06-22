@@ -20,7 +20,7 @@
 
 <div align="left">
 
-## 📖 Features
+## 📖 特点 Features
 
 * 轻量化 Lightweight (<3MB),
 * 无不必要的权限 No unnecessary permissions required,
