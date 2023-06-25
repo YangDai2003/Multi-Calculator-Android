@@ -22,7 +22,7 @@
 
 ## 📖 特点 Features
 
-* 轻量化 Lightweight (<3MB),
+* 轻量化 Lightweight (<5MB),
 * 无不必要的权限 No unnecessary permissions required,
 * 材料主题3 Material Design 3,
 * 历史记录 History,
@@ -36,9 +36,9 @@
 
 ## 🌎 语言翻译 Translations
 
-目前仅支持中文和英语
+目前支持中文，英语和德语。
 
-Currently only Chinese and English are supported
+Currently supports Chinese, English and German.
 
 ## 应用介绍 Application introduction
 
