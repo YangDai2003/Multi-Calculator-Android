@@ -14,6 +14,15 @@
             app:title="@string/scale"
             app:useSimpleSummaryProvider="true" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/mode_edit_outline"
+            app:key="mode"
+            app:summaryOff="@string/rad"
+            app:summaryOn="@string/deg"
+            app:title="@string/trigonometric"
+            app:widgetLayout="@drawable/material_switch" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/sync_header">
@@ -23,6 +32,14 @@
             android:icon="@drawable/vibration"
             app:key="vib"
             app:title="@string/vib"
+            app:widgetLayout="@drawable/material_switch" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/speech_text"
+            app:key="voice"
+            app:summary="@string/voiceContent"
+            app:title="@string/voice"
             app:widgetLayout="@drawable/material_switch" />
 
         <SwitchPreferenceCompat
@@ -44,7 +61,6 @@
             app:key="language"
             app:summary="@string/languageChange"
             app:title="@string/language" />
-
 
     </PreferenceCategory>
 

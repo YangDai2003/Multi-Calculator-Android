@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yangdai.calc">
 
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 地址定位权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <!--适配android 11无法唤起第三方apk-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 适配android 11无法唤起第三方apk -->
     <queries>
-        <!-- com.blankj.utilcode SDK检测虚拟机 -->
         <intent>
             <action android:name="android.intent.action.DIAL" />
         </intent>
         <!-- 支付宝支付SDK -->
         <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+    <!-- 适配android 11无法使用tts -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
     </queries>
 
     <application
@@ -23,6 +29,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:localeConfig="@xml/locales_config"
@@ -32,34 +39,104 @@
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".ChineseNumberConversionActivity"
-            android:exported="false"
-            android:label="@string/chineseNumberConverter"
-            android:parentActivityName=".MainActivity" />
+            android:name=".finance.FinanceActivity"
+            android:exported="true"
+            android:label="@string/financeActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.finance.FinanceActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".ExchangeActivity"
-            android:exported="false"
+            android:name=".DiscountActivity"
+            android:exported="true"
+            android:label="@string/discountActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.DiscountActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".relationship.RelationshipActivity"
+            android:exported="true"
+            android:label="@string/relationshipActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.relationship.RelationshipActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ChineseNumberConversionActivity"
+            android:exported="true"
+            android:label="@string/chineseNumberConverter"
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.ChineseNumberConversionActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".exchange.ExchangeActivity"
+            android:exported="true"
             android:label="@string/exchangeActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.exchange.ExchangeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".BMIActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/bmiActivity"
-            android:parentActivityName=".MainActivity" />
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.BMIActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".time.DateRangeActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/dateActivity"
-            android:parentActivityName=".MainActivity" />
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.time.DateRangeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".compass.Compass"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/compassActivity"
-            android:parentActivityName=".MainActivity" />
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.compass.Compass" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AboutActivity"
             android:exported="false"
-            android:label="@string/title_activity_about"
+            android:label="@string/about"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingActivity"
@@ -67,10 +144,17 @@
             android:label="@string/settings"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ChangeActivity"
-            android:exported="false"
+            android:name=".converter.UnitActivity"
+            android:exported="true"
             android:label="@string/ChangeActivity"
-            android:parentActivityName=".MainActivity" />
+            android:launchMode="singleTask"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.yangdai.calc.converter.ChangeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -80,6 +164,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
@@ -87,6 +175,20 @@
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/AppTheme" />
+
+        <receiver
+            android:name=".MyWidgetProvider"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider" />
+        </receiver>
     </application>
 
 </manifest>

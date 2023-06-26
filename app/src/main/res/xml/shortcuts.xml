@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/unit_icon_shortcuts"
+        android:shortcutId="units"
+        android:shortcutShortLabel="@string/ChangeActivity">
+        <!--        android:shortcutLongLabel="@string/compose_shortcut_long_label1"-->
+        <!--        android:shortcutDisabledMessage="@string/compose_disabled_message1">-->
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.yangdai.calc.converter.UnitActivity"
+            android:targetPackage="com.yangdai.calc" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/currency_exchange_icon_shortcuts"
+        android:shortcutId="currency"
+        android:shortcutShortLabel="@string/exchangeActivity">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.yangdai.calc.exchange.ExchangeActivity"
+            android:targetPackage="com.yangdai.calc" />
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+    </shortcut>
+
+</shortcuts>

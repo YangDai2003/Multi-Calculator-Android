@@ -5,7 +5,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChangeActivity">
+    tools:context="com.yangdai.calc.converter.UnitActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view"
@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:scrollbars="none"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorAnimationMode="fade"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="?colorOnSurface" />
 
@@ -44,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:drawableEnd="@drawable/arrow_drop_down"
+                android:hint="@string/choose"
                 android:onClick="showInputOptions"
-                android:text="@string/choose"
                 android:textColor="?colorOnSurfaceVariant"
                 android:textSize="16sp" />
 
@@ -84,8 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:drawableEnd="@drawable/arrow_drop_down"
+                android:hint="@string/choose"
                 android:onClick="showOutputOptions"
-                android:text="@string/choose"
                 android:textColor="?colorOnSurfaceVariant"
                 android:textSize="16sp" />
 
@@ -97,7 +96,7 @@
                 android:autoSizeTextType="uniform"
                 android:gravity="end|bottom"
                 android:maxLines="1"
-                android:textAlignment="textEnd" />
+                android:textAlignment="gravity" />
 
         </LinearLayout>
 

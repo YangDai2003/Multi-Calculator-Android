@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="700dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/relationship"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/input_textview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="46sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="end|center"
+                android:padding="16dp"
+                android:text="我"
+                android:textColor="?colorOnSurface"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/output"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/call"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/output_textview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="38sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="end|center"
+                android:padding="16dp"
+                android:text=""
+                android:textAlignment="textEnd"
+                android:textIsSelectable="true"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="700dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintWidth_max="700dp">
+
+        <RadioGroup
+            android:id="@+id/ratioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/male"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/male" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/female"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/female" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_h"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="夫"
+                    tools:ignore="HardcodedText,NestedWeights" />
+
+                <Button
+                    android:id="@+id/btn_w"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="妻"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/iv_del"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="⌫"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_clr"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="C"
+                    android:textColor="@android:color/holo_red_dark"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_f"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="父"
+                    tools:ignore="HardcodedText,NestedWeights" />
+
+                <Button
+                    android:id="@+id/btn_m"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="母"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_ob"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="兄"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_lb"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="弟"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_os"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="姐"
+                    tools:ignore="HardcodedText,NestedWeights" />
+
+                <Button
+                    android:id="@+id/btn_ls"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="妹"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_s"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="子"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_d"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="女"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_each"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeTextType="uniform"
+                    android:enabled="false"
+                    android:text="@string/inverseCall"
+                    tools:ignore="NestedWeights" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_eq"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeTextType="uniform"
+                    android:backgroundTint="#FF0080FF"
+                    android:text="="
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

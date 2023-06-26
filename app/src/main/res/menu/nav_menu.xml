@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/all"
+        android:title="@string/all_function">
+
+        <menu>
+
+            <item
+                android:id="@+id/calculator"
+                android:checkable="true"
+                android:checked="true"
+                android:icon="@drawable/calculate_icon"
+                android:title="@string/calculator" />
+
+            <item
+                android:id="@+id/units"
+                android:icon="@drawable/unit_icon"
+                android:title="@string/ChangeActivity" />
+
+            <item
+                android:id="@+id/date"
+                android:icon="@drawable/date_range_icon"
+                android:title="@string/dateActivity" />
+
+            <item
+                android:id="@+id/finance"
+                android:icon="@drawable/finance_icon"
+                android:title="@string/financeActivity" />
+
+            <item
+                android:id="@+id/compass"
+                android:icon="@drawable/compass_icon"
+                android:title="@string/compassActivity" />
+
+            <item
+                android:id="@+id/bmi"
+                android:icon="@drawable/bmi_icon"
+                android:title="@string/bmiActivity" />
+
+            <item
+                android:id="@+id/discount"
+                android:icon="@drawable/discount_icon"
+                android:title="@string/discountActivity" />
+
+            <item
+                android:id="@+id/exchange"
+                android:icon="@drawable/currency_exchange_icon"
+                android:title="@string/exchangeActivity" />
+
+            <item
+                android:id="@+id/chineseNumber"
+                android:icon="@drawable/chinese_number_icon"
+                android:title="@string/chineseNumberConverter" />
+
+            <item
+                android:id="@+id/relationship"
+                android:icon="@drawable/relation_icon"
+                android:title="@string/relationshipActivity" />
+
+        </menu>
+
+    </item>
+
+</menu>

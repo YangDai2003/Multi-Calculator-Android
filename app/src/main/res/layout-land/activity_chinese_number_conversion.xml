@@ -32,7 +32,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_input"
+                android:id="@+id/input_textview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autoSizeMaxTextSize="46sp"
@@ -40,7 +40,7 @@
                 android:gravity="end|center"
                 android:padding="16dp"
                 android:text="0"
-                android:textColor="?colorOnBackground"
+                android:textColor="?colorOnSurface"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>
@@ -54,6 +54,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -62,12 +63,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:onClick="showOutputOptions"
                 android:text="@string/chinese_big_numbers"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_results"
+                android:id="@+id/output_textview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autoSizeMaxTextSize="38sp"
@@ -120,8 +120,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="7"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -142,8 +143,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="9"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -161,8 +163,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="4"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -172,8 +175,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="5"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -183,8 +187,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="6"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -202,8 +207,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="1"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -213,8 +219,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="2"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -224,8 +231,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="3"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -243,8 +251,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="2"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="0"
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
                 <Button
@@ -254,8 +263,9 @@
                     android:layout_height="match_parent"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="36sp"
+                    android:autoSizeTextType="uniform"
                     android:text="."
-                    android:textSize="35sp"
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
@@ -275,8 +285,10 @@
                 android:layout_height="0dp"
                 android:layout_margin="6dp"
                 android:layout_weight="1"
+                android:autoSizeMaxTextSize="25sp"
+                android:autoSizeTextType="uniform"
                 android:text="C"
-                android:textSize="24sp"
+                android:textColor="@android:color/holo_red_dark"
                 tools:ignore="HardcodedText,NestedWeights" />
 
             <Button
@@ -286,8 +298,9 @@
                 android:layout_height="0dp"
                 android:layout_margin="6dp"
                 android:layout_weight="1"
+                android:autoSizeMaxTextSize="25sp"
+                android:autoSizeTextType="uniform"
                 android:text="⌫"
-                android:textSize="24sp"
                 tools:ignore="HardcodedText" />
 
             <Button
@@ -297,8 +310,9 @@
                 android:layout_height="0dp"
                 android:layout_margin="6dp"
                 android:layout_weight="1"
+                android:autoSizeMaxTextSize="25sp"
+                android:autoSizeTextType="uniform"
                 android:text="+/-"
-                android:textSize="24sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>

@@ -1,162 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExchangeActivity">
+    android:fillViewport="true"
+    tools:context="com.yangdai.calc.exchange.ExchangeActivity">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
-        style="@style/Widget.Material3.CardView.Elevated"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="700dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/dropdown_menu_layout"
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            style="@style/Widget.Material3.CardView.Elevated"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="700dp">
 
             <LinearLayout
-                android:id="@+id/layout_one"
+                android:id="@+id/dropdown_menu_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
+                android:orientation="vertical"
+                android:padding="12dp">
 
-                <TextView
-                    android:id="@+id/convert_from_title"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/layout_one"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="@string/from_currency"
-                    android:textAlignment="center" />
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
 
-                <TextView
-                    android:id="@+id/convert_to_title"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/convert_from_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/from_currency"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:id="@+id/convert_to_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/to_currency"
+                        android:textAlignment="viewStart" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_two"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="@string/to_currency"
-                    android:textAlignment="center" />
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/from_currency_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.0"
+                        app:drawableEndCompat="@drawable/arrow_drop_down" />
+
+                    <Spinner
+                        android:id="@+id/to_currency_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.0"
+                        app:drawableEndCompat="@drawable/arrow_drop_down" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/view_amount_to_convert_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/amount_to_convert"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:id="@+id/conversion_rate_result"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/conversion_rate"
+                        android:textAlignment="viewStart" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <EditText
+                        android:id="@+id/amount_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical|start"
+                        android:hint="@string/type_in"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:maxLength="19"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textAlignment="gravity"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/result_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="0"
+                        android:gravity="start|center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
+        </com.google.android.material.card.MaterialCardView>
 
-                <Spinner
-                    android:id="@+id/from_currency_spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    app:drawableEndCompat="@drawable/arrow_drop_down" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:text="@string/ecb"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/card_view"
+            app:layout_constraintStart_toStartOf="@+id/card_view"
+            app:layout_constraintTop_toBottomOf="@+id/card_view"
+            tools:ignore="SmallSp" />
 
-                <Spinner
-                    android:id="@+id/to_currency_spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    app:drawableEndCompat="@drawable/arrow_drop_down" />
+        <ListView
+            android:id="@+id/list_view_currency"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:nestedScrollingEnabled="true"
+            android:scrollIndicators="none"
+            android:scrollbars="none"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="400dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_max="700dp" />
 
-            </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <LinearLayout
-                android:id="@+id/linear_layout_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/view_amount_to_convert_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="@string/amount_to_convert"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/conversion_rate_result"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:text="@string/conversion_rate"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_layout_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <EditText
-                    android:id="@+id/amount_edit_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:importantForAutofill="no"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textAlignment="center"
-                    tools:ignore="LabelFor,RtlSymmetry" />
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:importantForAccessibility="no"
-                    android:src="@drawable/baseline_arrow_forward_24" />
-
-
-                <TextView
-                    android:id="@+id/result_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/conversion"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="6dp"
-                android:gravity="center"
-                android:onClick="calculateCurrency"
-                android:padding="0dp"
-                android:text="@string/convert" />
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
