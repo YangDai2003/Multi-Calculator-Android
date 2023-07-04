@@ -1,3 +1,4 @@
+
 <div align="center">
 
 # 多功能计算器 
@@ -18,7 +19,7 @@
 
 <br>
 
-<div align="left">
+<div align="left"/>
 
 ## 📖 特点 Features
 
@@ -30,9 +31,11 @@
 * 多项实用功能 Multiple useful functions
 
 ## 📷 屏幕截图 Screenshots
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/a6f9bc85-732f-417d-8085-1973c9a93295" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/92681c9e-9236-4cd0-baa5-2c5d7776a65a" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/cc784b7d-6057-4f8a-bef5-7989e8fd9b1d" width="15%"/>
+<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/03930fe4-adcd-4978-96e7-abb5f62075d5" width="15%"/>
+<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/5c509d38-8041-41a7-85cf-1cfd574095d8" width="15%"/>
+<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/d104ca7e-a305-442a-985a-582ec0d1a21c" width="15%"/>
+<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/2b4b8322-59d3-4127-855f-34fecd56686f" width="15%"/>
+<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/93e51a9f-ea9c-4f90-97e6-3e49201068b1" width="15%"/>
 
 ## 🌎 语言翻译 Translations
 
@@ -88,6 +91,16 @@ Welcome to the multifunctional calculator! It integrates multiple practical feat
    - Easily calculates bank deposits, investment returns, loans, and value-added tax.
    - Presents data in the form of charts, achieving data visualization for a more intuitive experience.
 
+10. Random numbers:
+    - Generate a specified number of random numbers in a specified range
+    - Draw a random number within the specified range
+
+12. Solve the equation:
+    - Solve linear equations and quadratic equations in one variable
+
+14. Mathematical statistics:
+    - Greatest common divisor, least common multiple and various averages
+
 Our application is compatible with the latest API 34 and adopts Material Design 3 to provide you with a smooth and consistent user experience. We promise not to collect any personal privacy data to ensure the security of your information.
 
 
@@ -134,5 +147,15 @@ Our application is compatible with the latest API 34 and adopts Material Design 
 9. 金融计算器:
    - 轻松计算银行存款、投资回报、贷款和增值税。
    - 将数据以图表形式呈现，实现数据可视化，更加直观。
+
+10. 随机数字:
+    - 生成指定个数，指定范围的随机数
+    - 抽取指定范围内的随机数
+
+12. 解方程:
+    - 求解线性方程和一元二次方程
+
+14. 数学统计:
+    - 最大公约数，最小公倍数和各种平均值
 
 我们的应用已经适配最新的API 34，并采用了Material Design 3，为您提供流畅一致的用户体验。我们承诺不收集任何个人隐私数据，保障您的信息安全。
