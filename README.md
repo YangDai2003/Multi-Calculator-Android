@@ -13,7 +13,7 @@
       <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="100">
 </a>
 
-<a href="https://github.com/YangDai-Github/Multi-Calculator-Android/releases/tag/apk_release">
+<a href="https://github.com/YangDai2003/Multi-Calculator-Android/releases">
       <img alt="Get it on GitHub" src="https://raw.githubusercontent.com/deckerst/common/main/assets/get-it-on-github.png" height="100">
 </a>
 
@@ -49,64 +49,70 @@ Currently supports Chinese, English and German.
 
 !!! 未经作者允许不得将代码用于盈利性商业用途。
 
-Welcome to the multifunctional calculator! It integrates multiple practical features to provide you with comprehensive calculation and conversion services. Let's explore the features of the application together:
+Welcome to Multi-Calculator!
+It integrates multiple practical functions to provide you with all calculation and conversion services you may need in your life. Let's take a look at the app:
 
-1. Calculator Function:
-   - Supports basic arithmetic operations such as addition, subtraction, multiplication, and division.
-   - Allows advanced operations such as exponentiation, square root, factorial, double factorial, and percentage.
-   - Provides parentheses for complex calculations and supports scientific calculations like logarithms and trigonometric functions.
-   - Supports input of scientific constants: e, π.
-   - Display calculation results in real time and provide historical record function.
+1. Calculator:
+    - Support basic addition, subtraction, multiplication and division.
+    - Advanced calculations such as power, square root, factorial, double factorial, and percentage can be performed.
+    - Provide bracket function, support scientific calculations such as logarithm and trigonometric function operations.
+    - Support input of scientific constants: e, π.
+    - Display calculation results in real time and provide historical record function.
 
 2. Unit Converter:
-   - Supports conversion between various units including length, area, volume, mass, numeral systems, temperature, storage, pressure, energy, speed, time, and angles.
-   - Enables quick conversion between different units.
+    - Support length, area, volume, mass, base, temperature, storage, pressure, heat energy, speed, time, angle and other unit conversions.
+    - Allows you to conveniently perform quick conversions between different units.
 
 3. Date Calculator:
-   - Supports calculation of date intervals, allowing you to determine the number of days, weeks, or months between two dates.
-   - Provides date calculation for future or past dates based on a specified date and number of days.
+    - Support date interval calculation, you can calculate the interval of days between two dates.
+    - Provide date calculation function, according to the specified date and number of days, calculate the future or past date.
 
 4. Compass:
-   - Retrieves information such as azimuth, magnetic declination, latitude and longitude, altitude, speed, magnetic field, and location.
-   - Helps you determine your current position and navigate in the right direction.
+    - Obtain azimuth, magnetic declination, latitude and longitude, altitude, speed, magnetic field, address, atmospheric pressure and other information.
 
 5. BMI Calculator:
-   - Calculates the BMI index based on height and weight.
-   - Provides corresponding health advice based on the calculated result, helping you understand your physical condition.
+    - Calculate BMI index based on height and weight.
+    - According to the calculation results, provide corresponding health advice to help you understand your own physical condition.
 
-6. Real-time Currency Converter:
-   - Supports multiple currency types.
-   - Provides accurate currency exchange rates based on real-time data.
-   - Enables easy conversion between different currencies.
+6. Live Currency Exchange Rate Converter:
+    - Support multiple currency types.
+    - Provides accurate currency exchange rate conversions based on real-time data.
+    - Allows you to easily perform conversion calculations between different currencies.
 
-7. Chinese Number Converter:
-   - Converts Arabic numerals to Chinese numerals in uppercase.
-   - Facilitates quick conversion when you need to use Chinese numerals.
+7. Uppercase Chinese digit converter:
+    - Support converting Arabic numerals to uppercase Chinese numerals.
+    - It is convenient for you to quickly convert when you need to use Chinese numbers.
 
-8. Kinship Term Calculator:
-   - Calculates Chinese kinship terms based on specified relationships.
-   - Determines the correct Chinese kinship term based on given relationships such as parents, grandparents, siblings, etc.
+8. Relative Salutation Calculator:
+    - Calculate Chinese titles by kinship.
+    - Determine the correct Chinese address based on the specified relationship, such as parents, grandparents, siblings, etc.
 
 9. Financial Calculator:
-   - Easily calculates bank deposits, investment returns, loans, and value-added tax.
-   - Presents data in the form of charts, achieving data visualization for a more intuitive experience.
+    - Easily calculate bank deposits, investment returns, loans and VAT.
+    - Present the data in the form of charts to realize data visualization, which is more intuitive.
 
-10. Random numbers:
-    - Generate a specified number of random numbers in a specified range
-    - Draw a random number within the specified range
+10. Random number function:
+    - It can generate random numbers with a specified number and a specified range.
+    - Random numbers within the specified range can be extracted.
 
-12. Solve the equation:
-    - Solve linear equations and quadratic equations in one variable
+11. Equation solving function:
+    - Easily solve linear equations and quadratic equations in one variable.
 
-14. Mathematical statistics:
-    - Greatest common divisor, least common multiple and various averages
+12. Shopping Assistant:
+    - Quickly calculate discounts and unit prices.
 
-Our application is compatible with the latest API 34 and adopts Material Design 3 to provide you with a smooth and consistent user experience. We promise not to collect any personal privacy data to ensure the security of your information.
+13. Mathematical statistics:
+    - Given multiple values entered, the greatest common divisor, least common multiple, arithmetic mean, geometric mean, harmonic mean, square mean, variance, standard deviation, and sum are given.
+
+*** Also provides a variety of widgets for simple calculations without opening the software.
+
+*** Also provides floating window function.
+
+This app has been adapted to the latest API 34 and adopted Material Design 3 to provide you with a smooth and consistent user experience.
 
 
-不仅是计算器，更是您的生活助手。
-
-欢迎使用多功能计算器！它集成了多项实用功能，为您提供全方位的计算和转换服务。让我们一起来了解一下应用的特点：
+欢迎使用多功能计算器！
+它集成了多项实用功能，为您提供生活中可能需要的的所有计算和转换服务。让我们一起来了解一下这款应用：
 
 1. 计算器功能：
    - 支持基本的加减乘除四则运算。
@@ -120,12 +126,11 @@ Our application is compatible with the latest API 34 and adopts Material Design 
    - 让您方便地在不同的单位之间进行快速转换。
 
 3. 日期计算器：
-   - 支持日期间隔计算，可以计算两个日期之间的天数、周数或月数差距。
+   - 支持日期间隔计算，可以计算两个日期之间的天数间隔。
    - 提供日期推算功能，根据指定的日期和天数，计算出未来或过去的日期。
 
 4. 指南针：
-   - 获取方位角、磁偏角、经纬度、海拔、速度、磁场、位置等信息。
-   - 帮助您确定当前位置和导航方向。
+   - 获取方位角、磁偏角、经纬度、海拔、速度、磁场、地址、大气压强等信息。
 
 5. BMI计算器：
    - 根据身高和体重计算BMI指数。
@@ -148,14 +153,21 @@ Our application is compatible with the latest API 34 and adopts Material Design 
    - 轻松计算银行存款、投资回报、贷款和增值税。
    - 将数据以图表形式呈现，实现数据可视化，更加直观。
 
-10. 随机数字:
-    - 生成指定个数，指定范围的随机数
-    - 抽取指定范围内的随机数
+10. 随机数字功能：
+   - 可以生成指定个数指定范围的随机数。
+   - 可以抽取指定范围内的随机数。
 
-12. 解方程:
-    - 求解线性方程和一元二次方程
+11. 解方程功能：
+   - 轻松求解线性方程和一元二次方程。
 
-14. 数学统计:
-    - 最大公约数，最小公倍数和各种平均值
+12. 购物助手：
+   -   快速计算折扣和单价。
 
-我们的应用已经适配最新的API 34，并采用了Material Design 3，为您提供流畅一致的用户体验。我们承诺不收集任何个人隐私数据，保障您的信息安全。
+13. 数学统计：
+   - 根据输入的多个数值，给出最大公约数、最小公倍数、算术平均数、几何平均数、调和平均数、平方平均数、方差、标准差和总和。
+
+*** 还提供多种桌面小部件，无需打开软件即可进行简单运算。
+
+*** 同时提供了悬浮窗功能，在任意位置进行计算。
+
+我们的应用已经适配最新的API 34，并采用了Material Design 3，为您提供流畅一致的用户体验。
