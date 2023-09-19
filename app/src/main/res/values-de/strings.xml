@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Multi-Calculator</string>
-    <string name="error">Fehler</string>
     <string name="about">Über</string>
     <string name="settings">Einstellungen</string>
     <string name="scale">Anzahl der Dezimalstellen</string>
@@ -34,7 +33,6 @@
     <string name="systemTheme">Dem System-Design folgen</string>
     <string name="longitude">Längengrad</string>
     <string name="latitude">Breitengrad</string>
-    <string name="update">Standort aktualisiert</string>
     <string name="permission">Bitte stimmen Sie der Berechtigung zu, um alle Funktionen nutzen zu können.</string>
     <string name="north">Nord</string>
     <string name="south">Süd</string>
@@ -56,7 +54,6 @@
     <string name="languageChange">Ändern Sie die Sprache der App</string>
     <string name="share_this_app">Diese App teilen</string>
     <string name="shareContent">Laden Sie Multi-Rechner jetzt herunter! Es hat alles, was Sie für die Lösung von alltäglichen mathematischen Problemen, Einheitenumrechnungen, Datumsberechnungen, BMI-Berechnungen, Währungsumrechnungen und sogar einen Kompass benötigen. Es ist benutzerfreundlich mit einer schönen Benutzeroberfläche. Klicken Sie auf den Link, um herunterzuladen: https://play.google.com/store/apps/details?id=com.yangdai.calc</string>
-    <string name="distance">Entfernung</string>
     <string name="text_date_diff">Datumsintervall</string>
     <string name="text_addsub_date">Datumsberechnung</string>
     <string name="dateActivity">Datumsrechner</string>
@@ -73,14 +70,11 @@
     <string name="pressure">Druck</string>
     <string name="heat">Wärme</string>
     <string name="time">Zeit</string>
-    <string name="bmiActivity">BMI-Rechner</string>
+    <string name="bmiActivity">BMI</string>
     <string name="angle">Winkel</string>
 
     <string name="reset">ZURÜCKSETZEN</string>
-    <string name="cm">CM</string>
     <string name="kg">KG</string>
-    <string name="weight">Gewicht</string>
-    <string name="click">Klicken</string>
     <string name="height_cm">Höhe in cm</string>
     <string name="weight_kg">Gewicht in kg</string>
     <string name="let_s_begin">Lassen Sie uns berechnen</string>
@@ -97,7 +91,6 @@
     <string name="exchangeActivity">Währungsumrechner</string>
     <string name="from_currency">Von:</string>
     <string name="to_currency">Zu:</string>
-    <string name="convert">Konvertieren</string>
     <string name="amount_to_convert">Zu konvertierender Betrag:</string>
     <string name="conversion_rate">Konvertierter Betrag:</string>
     <string name="app_osl">Open Source-Lizenzen</string>
@@ -114,10 +107,9 @@
     <string name="calculator">Rechner</string>
     <string name="historys">Verlauf</string>
     <string name="inverseCall">Identitäten tauschen</string>
-    <string name="all_function">Alle Funktionen</string>
     <string name="type_in">Eingeben</string>
     <string name="resize">Größe ändern</string>
-    <string name="discountActivity">Rabattrechner</string>
+    <string name="discount_fragment">Rabatt</string>
     <string name="originalPrice">Ursprünglicher Preis:</string>
     <string name="discount">Rabatt (%):</string>
     <string name="discountedPrice">Rabattierter Preis:</string>
@@ -140,7 +132,6 @@
     <string name="interest_rate">Jährlicher Zinssatz (%):</string>
     <string name="period">Zeitraum (in Monaten):</string>
     <string name="capitalization">Zinsabrechnungsdatum:</string>
-    <string name="calculate">Berechnen</string>
     <string name="investment_amount">Investitionsbetrag:</string>
     <string name="settlement_amount">Auszahlungsbetrag:</string>
     <string name="loan_amount">Darlehensbetrag:</string>
@@ -167,19 +158,13 @@
     <string name="multiplyNum">multipliziert mit</string>
     <string name="divideNum">geteilt durch</string>
     <string name="point">Punkt</string>
-    <string name="reciprocal">Kehrwert nehmen</string>
     <string name="percentage">Prozent nehmen</string>
     <string name="power">Potenz</string>
-    <string name="natural_base">Eulersche Zahl</string>
-    <string name="pi">π</string>
-    <string name="g">Erdbeschleunigung</string>
     <string name="factorial">Fakultät</string>
     <string name="double_factorial">Doppel-Fakultät</string>
     <string name="voice">Button-Sound</string>
     <string name="voiceContent">Button-Inhalt vorlesen, wenn der Button gedrückt wird</string>
     <string name="get_more_apps">Mehr Apps erhalten</string>
-    <string name="drawer_open">Schublade öffnen</string>
-    <string name="drawer_close">Schublade schließen</string>
     <string name="sin">Sinus</string>
     <string name="cos">Kosinus</string>
     <string name="tan">Tangens</string>
@@ -196,5 +181,57 @@
     <string name="tips">Tipps</string>
     <string name="updateDate">Die Daten wurden aktualisiert am:</string>
     <string name="powerUnit">Leistung</string>
-    <string name="hint">Wischen Sie nach unten, um den vorherigen Vorgangsdatensatz anzuzeigen.\nWischen Sie nach rechts, um die seitliche Navigationsleiste anzuzeigen.</string>
+    <string name="hint">Wischen Sie nach unten, um den Verlauf anzuzeigen, und wischen Sie nach links, um weitere Funktionen anzuzeigen.</string>
+    <string name="air_pressure">Luftdruck</string>
+    <string name="bigNum">Der Wert ist zu groß</string>
+    <string name="formatError">Ungültige Eingabe</string>
+    <string name="_30_60_t">Die Magnetfeldumgebung ist abnormal, der normale Bereich liegt bei 20–60 μT</string>
+    <string name="more">Toolbox</string>
+    <string name="randomActivity">Zufallszahlen</string>
+    <string name="generator">Generator</string>
+    <string name="draw">Ziehung</string>
+    <string name="count">Menge</string>
+    <string name="minValue">Mindestwert</string>
+    <string name="maxValue">Maximalwert</string>
+    <string name="repeat">Zahlen können wiederholt werden</string>
+    <string name="result">Ergebnis:</string>
+    <string name="generate">Generieren</string>
+    <string name="start_end">Start / Stop</string>
+    <string name="hasCleaned">Der Verlauf wurde gelöscht</string>
+    <string name="functionActivity">Gleichungsrechner</string>
+    <string name="linear">Lineargleichung</string>
+    <string name="quadratic">Unäre quadratische Gleichung</string>
+    <string name="noRoot">Keine wirklichen Wurzeln</string>
+    <string name="noHistory">Kein gespeicherter Verlauf</string>
+    <string name="statisticActivity">Mathematische Statistik</string>
+    <string name="gcd">GGT:</string>
+    <string name="lcm">KGV:</string>
+    <string name="numbers">Zahlenwerte:</string>
+    <string name="addNumber">Zahlen hinzufügen:</string>
+    <string name="avg0">Arithmetisches Mittel:</string>
+    <string name="avg1">Geometrisches Mittel:</string>
+    <string name="avg2">Harmonisches Mittel:</string>
+    <string name="avg3">Quadratischer Durchschnitt:</string>
+    <string name="diff0">Varianz:</string>
+    <string name="diff1">Standardabweichung:</string>
+    <string name="sum">Summe:</string>
+    <string name="jump">Überspringen</string>
+    <string name="xx">(xx) stellt den gebrochenen wiederkehrenden Abschnitt dar</string>
+    <string name="toDecimal">Bruch - Dezimal</string>
+    <string name="toFraction">Dezimal - Bruch</string>
+    <string name="numberConvert">Zahlenkonverter</string>
+    <string name="errorMsg">Leider ist ein Programmfehler aufgetreten und das Programm wurde nach 3 Sekunden beendet.</string>
+    <string name="shoppingActivity">Einkaufsassistent</string>
+    <string name="unit_price_fragment">Einzelpreis</string>
+    <string name="quantity">Menge:</string>
+    <string name="unit_price">Einzelpreis:</string>
+    <string name="factorization">Faktorisierung</string>
+    <string name="isPrime_true">Wahr</string>
+    <string name="isPrime_false">Unwahr</string>
+    <string name="isPrime">Primzahl:</string>
+    <string name="factors">Primfaktoren:</string>
+    <string name="Screen_Overlay_Permission_Needed">Berechtigung zur Bildschirmüberlagerung erforderlich</string>
+    <string name="Permission_Dialog_Messege">Aktivieren Sie ‚Anzeige über anderen Apps‘ in den Systemeinstellungen.</string>
+    <string name="Open_Settings">Einstellungen öffnen</string>
+    <string name="switch_layout">Layout umschalten</string>
 </resources>

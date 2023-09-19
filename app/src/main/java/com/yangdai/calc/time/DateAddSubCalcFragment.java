@@ -29,7 +29,7 @@ import java.util.Locale;
  */
 public class DateAddSubCalcFragment extends Fragment {
 
-    private Date chosenTimeStart = new Date();
+    private final Date chosenTimeStart = new Date(MaterialDatePicker.todayInUtcMilliseconds());
     private int inputtedDay = 0;
     private int inputtedMonth = 0;
     private int inputtedYear = 0;
@@ -58,19 +58,15 @@ public class DateAddSubCalcFragment extends Fragment {
     }
 
     private void initControls(View view) {
-        Calendar calendar = Calendar.getInstance();
 
-        // Initialize the MaterialDatePicker for the start date
-        MaterialDatePicker.Builder<Long> builderStart = MaterialDatePicker.Builder.datePicker();
-        builderStart.setTitleText("");
-        builderStart.setSelection(calendar.getTimeInMillis());
-        MaterialDatePicker<Long> materialDatePickerStart = builderStart.build();
+        MaterialDatePicker<Long> materialDatePickerStart = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("")
+                .setNegativeButtonText(android.R.string.cancel)
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
 
-        // Set the callback for when a start date is selected
         materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
-            Calendar selectedDate = Calendar.getInstance();
-            selectedDate.setTimeInMillis(selection);
-            chosenTimeStart = selectedDate.getTime();
+            chosenTimeStart.setTime(selection);
             updateTimeStart();
             calculate();
         });
@@ -80,7 +76,6 @@ public class DateAddSubCalcFragment extends Fragment {
         btnStartDate.setOnClickListener(v -> materialDatePickerStart.show(getParentFragmentManager(), "DATE_PICKER_START"));
 
         textResultDate = view.findViewById(R.id.text_result_date);
-
         radioButtonSub = view.findViewById(R.id.radio_sub);
         radioButtonAdd = view.findViewById(R.id.radio_add);
 

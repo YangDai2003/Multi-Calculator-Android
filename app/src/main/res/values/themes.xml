@@ -1,7 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.Light">
-        !-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
@@ -12,7 +11,11 @@
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
     </style>
 
-    <style name="Theme.AppWidget.AppWidgetContainer" parent="@android:style/Theme.DeviceDefault" />
+    <style name="Theme.AppWidget.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight" >
+        <item name="android:windowBlurBehindEnabled" tools:targetApi="s">true</item>
+        <item name="android:windowBlurBehindRadius" tools:targetApi="s">25dp</item>
+        <item name="android:windowBackgroundBlurRadius" tools:targetApi="s">25dp</item>
+    </style>
 
     <style name="DrawerArrow" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
@@ -21,5 +24,16 @@
 
     <style name="MyActionMenuOverflow" parent="Widget.Material3.PopupMenu">
         <item name="android:popupBackground">@drawable/popmenu_background</item>
+    </style>
+
+    <style name="AppTheme.noActionBar" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:navigationBarColor">?colorSurface</item>
+        <item name="android:hardwareAccelerated">true</item>
+        <item name="drawerArrowStyle">@style/DrawerArrow</item>
+        <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
     </style>
 </resources>

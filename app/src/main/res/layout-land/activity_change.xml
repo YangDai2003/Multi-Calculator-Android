@@ -9,72 +9,121 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="?colorOnSurface" />
 
-    <TextView
-        android:id="@+id/change_1"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:autoSizeTextType="uniform"
-        android:background="?colorSurfaceVariant"
-        android:gravity="end|center"
-        android:maxLines="1"
-        android:textAlignment="textEnd"
-        app:layout_constraintBottom_toTopOf="@+id/output"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input" />
-
-    <Button
-        android:id="@+id/input"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:drawableEnd="@drawable/arrow_drop_down"
-        android:hint="@string/choose"
-        android:onClick="showInputOptions"
-        android:textColor="?colorOnSurfaceVariant"
-        app:layout_constraintBottom_toTopOf="@+id/change_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_view" />
-
-    <Button
-        android:id="@+id/output"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:drawableEnd="@drawable/arrow_drop_down"
-        android:hint="@string/choose"
-        android:onClick="showOutputOptions"
-        android:textColor="?colorOnSurfaceVariant"
-        app:layout_constraintBottom_toTopOf="@+id/change_result"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_1" />
-
-
-    <TextView
-        android:id="@+id/change_result"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:autoSizeTextType="uniform"
-        android:background="?colorSurfaceVariant"
-        android:gravity="end|center"
-        android:maxLines="1"
-        android:textAlignment="textEnd"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/output" />
+        app:layout_constraintTop_toBottomOf="@id/tab_view">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/input"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:drawableEnd="@drawable/arrow_drop_down"
+                android:hint="@string/choose"
+                android:onClick="showInputOptions"
+                android:textColor="?colorOnSurfaceVariant"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/change_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="48sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="end|bottom"
+                android:maxLines="1"
+                android:textAlignment="gravity" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialDivider1">
+
+            <Button
+                android:id="@+id/output"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:drawableEnd="@drawable/arrow_drop_down"
+                android:hint="@string/choose"
+                android:onClick="showOutputOptions"
+                android:textColor="?colorOnSurfaceVariant"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/change_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="48sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="end|bottom"
+                android:maxLines="1"
+                android:textAlignment="gravity" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
+
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:alpha="0.2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
-        android:id="@+id/gridlayout"
+        android:id="@+id/linear0"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"

@@ -11,8 +11,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  * @author 30415
  */
 public class TouchAnimation implements View.OnTouchListener {
-    private static final float SCALE_DOWN_FACTOR = 0.8f;
-    private static final long ANIMATION_DURATION = 150;
+    private static final float SCALE_DOWN_FACTOR = 0.75f;
+    private static final long ANIMATION_DURATION = 120;
 
     private final View view;
     private ObjectAnimator xAnimator;
@@ -27,17 +27,16 @@ public class TouchAnimation implements View.OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         try {
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_DOWN -> {
                     v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_PRESS);
                     startScaleDownAnimation();
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
+                }
+                case MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_RELEASE);
                     startScaleUpAnimation();
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         } catch (Exception ignored) {
 

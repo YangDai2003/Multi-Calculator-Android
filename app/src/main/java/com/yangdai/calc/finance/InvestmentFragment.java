@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author 30415
  */
-public class InvestmentFragment extends Fragment {
+public class InvestmentFragment extends Fragment implements TextWatcher {
     private TextInputEditText investmentAmountEditText, settlementAmountEditText;
     private TextView profitTextView;
     private TextView profitMarginTextView;
@@ -46,7 +46,6 @@ public class InvestmentFragment extends Fragment {
     private Date chosenTimeEnd = new Date();
 
     public InvestmentFragment() {
-        // Required empty public constructor
     }
 
     public static InvestmentFragment newInstance() {
@@ -54,15 +53,19 @@ public class InvestmentFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_investment, container, false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        investmentAmountEditText.removeTextChangedListener(this);
+        settlementAmountEditText.removeTextChangedListener(this);
+        btnStartDate.removeTextChangedListener(this);
+        btnEndDate.removeTextChangedListener(this);
     }
 
     @Override
@@ -78,16 +81,17 @@ public class InvestmentFragment extends Fragment {
             }
             return false;
         });
-        investmentAmountEditText.addTextChangedListener(textWatcher);
-        settlementAmountEditText.addTextChangedListener(textWatcher);
+        investmentAmountEditText.addTextChangedListener(this);
+        settlementAmountEditText.addTextChangedListener(this);
 
         Calendar calendar = Calendar.getInstance();
 
         // Initialize the MaterialDatePicker for the start date
-        MaterialDatePicker.Builder<Long> builderStart = MaterialDatePicker.Builder.datePicker();
-        builderStart.setTitleText("");
-        builderStart.setSelection(calendar.getTimeInMillis());
-        MaterialDatePicker<Long> materialDatePickerStart = builderStart.build();
+        MaterialDatePicker<Long> materialDatePickerStart = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("")
+                .setNegativeButtonText(android.R.string.cancel)
+                .setSelection(calendar.getTimeInMillis())
+                .build();
 
         // Set the callback for when a start date is selected
         materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
@@ -98,10 +102,11 @@ public class InvestmentFragment extends Fragment {
         });
 
         // Initialize the MaterialDatePicker for the end date
-        MaterialDatePicker.Builder<Long> builderEnd = MaterialDatePicker.Builder.datePicker();
-        builderEnd.setTitleText("");
-        builderEnd.setSelection(calendar.getTimeInMillis());
-        MaterialDatePicker<Long> materialDatePickerEnd = builderEnd.build();
+        MaterialDatePicker<Long> materialDatePickerEnd = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("")
+                .setNegativeButtonText(android.R.string.cancel)
+                .setSelection(calendar.getTimeInMillis())
+                .build();
 
         // Set the callback for when an end date is selected
         materialDatePickerEnd.addOnPositiveButtonClickListener(selection -> {
@@ -113,8 +118,8 @@ public class InvestmentFragment extends Fragment {
 
         btnStartDate = view.findViewById(R.id.btn_start_date);
         btnEndDate = view.findViewById(R.id.btn_end_date);
-        btnStartDate.addTextChangedListener(textWatcher);
-        btnEndDate.addTextChangedListener(textWatcher);
+        btnStartDate.addTextChangedListener(this);
+        btnEndDate.addTextChangedListener(this);
 
         // Show the dialog when the start date button is clicked
         btnStartDate.setOnClickListener(v -> materialDatePickerStart.show(getParentFragmentManager(), "DATE_PICKER_START"));
@@ -132,29 +137,8 @@ public class InvestmentFragment extends Fragment {
                 .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE).show());
     }
 
-    private final TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            try {
-                calculateROI();
-            } catch (Exception ignored){
-
-            }
-        }
-    };
-
     @SuppressLint("SetTextI18n")
-    private void calculateROI() {
+    private void calculateRoi() {
         double investmentAmount = Double.parseDouble(investmentAmountEditText.getText().toString());
         double settlementAmount = Double.parseDouble(settlementAmountEditText.getText().toString());
 
@@ -192,5 +176,24 @@ public class InvestmentFragment extends Fragment {
 
     private void updateTimeEnd() {
         btnEndDate.setText(DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault()).format(chosenTimeEnd));
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        try {
+            calculateRoi();
+        } catch (Exception ignored) {
+
+        }
     }
 }

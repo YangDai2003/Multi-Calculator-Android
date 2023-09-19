@@ -3,7 +3,7 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/unit_icon_shortcuts"
+        android:icon="@drawable/unit_icon_shortcuts_colored"
         android:shortcutId="units"
         android:shortcutShortLabel="@string/ChangeActivity">
         <!--        android:shortcutLongLabel="@string/compose_shortcut_long_label1"-->
@@ -18,12 +18,12 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/currency_exchange_icon_shortcuts"
+        android:icon="@drawable/currency_exchange_icon_shortcuts_colored"
         android:shortcutId="currency"
         android:shortcutShortLabel="@string/exchangeActivity">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.yangdai.calc.exchange.ExchangeActivity"
+            android:targetClass="com.yangdai.calc.currency.CurrencyActivity"
             android:targetPackage="com.yangdai.calc" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />

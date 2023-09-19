@@ -48,7 +48,8 @@
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
 
 
         <LinearLayout
@@ -84,7 +85,8 @@
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
 
     </LinearLayout>
 
@@ -312,7 +314,6 @@
                     android:layout_weight="1"
                     android:autoSizeMaxTextSize="25sp"
                     android:autoSizeTextType="uniform"
-                    android:backgroundTint="#FF0080FF"
                     android:text="="
                     tools:ignore="HardcodedText" />
 

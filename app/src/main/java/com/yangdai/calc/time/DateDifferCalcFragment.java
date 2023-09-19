@@ -1,7 +1,6 @@
 package com.yangdai.calc.time;
 
 import android.icu.text.DateFormat;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +28,8 @@ public class DateDifferCalcFragment extends Fragment {
     private Button btnEndDate;
     private TextView textResultDate;
 
-    private Date chosenTimeStart = new Date();
-    private Date chosenTimeEnd = new Date();
+    private final Date chosenTimeStart = new Date(MaterialDatePicker.todayInUtcMilliseconds());
+    private final Date chosenTimeEnd = new Date(MaterialDatePicker.todayInUtcMilliseconds());
 
     public static DateDifferCalcFragment newInstance() {
         return new DateDifferCalcFragment();
@@ -50,34 +49,27 @@ public class DateDifferCalcFragment extends Fragment {
     }
 
     private void initControls(View view) {
-        Calendar calendar = Calendar.getInstance();
 
-        // Initialize the MaterialDatePicker for the start date
-        MaterialDatePicker.Builder<Long> builderStart = MaterialDatePicker.Builder.datePicker();
-        builderStart.setTitleText("");
-        builderStart.setSelection(calendar.getTimeInMillis());
-        MaterialDatePicker<Long> materialDatePickerStart = builderStart.build();
+        MaterialDatePicker<Long> materialDatePickerStart = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setNegativeButtonText(android.R.string.cancel)
+                .build();
 
-        // Set the callback for when a start date is selected
         materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
-            Calendar selectedDate = Calendar.getInstance();
-            selectedDate.setTimeInMillis(selection);
-            chosenTimeStart = selectedDate.getTime();
+            chosenTimeStart.setTime(selection);
             updateTimeStart();
             calculate();
         });
 
-        // Initialize the MaterialDatePicker for the end date
-        MaterialDatePicker.Builder<Long> builderEnd = MaterialDatePicker.Builder.datePicker();
-        builderEnd.setTitleText("");
-        builderEnd.setSelection(calendar.getTimeInMillis());
-        MaterialDatePicker<Long> materialDatePickerEnd = builderEnd.build();
+        MaterialDatePicker<Long> materialDatePickerEnd = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setNegativeButtonText(android.R.string.cancel)
+                .build();
 
-        // Set the callback for when an end date is selected
         materialDatePickerEnd.addOnPositiveButtonClickListener(selection -> {
-            Calendar selectedDate = Calendar.getInstance();
-            selectedDate.setTimeInMillis(selection);
-            chosenTimeEnd = selectedDate.getTime();
+            chosenTimeEnd.setTime(selection);
             updateTimeEnd();
             calculate();
         });

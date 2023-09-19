@@ -9,9 +9,11 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="?colorOnSurface" />
@@ -63,7 +65,8 @@
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/materialDivider1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
 
 
         <LinearLayout
@@ -103,13 +106,14 @@
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/materialDivider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:alpha="0.2" />
 
     </LinearLayout>
 
 
     <TableLayout
-        android:id="@+id/gridlayout"
+        android:id="@+id/linear0"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"

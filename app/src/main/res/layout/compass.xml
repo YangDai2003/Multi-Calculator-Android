@@ -73,4 +73,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_compass" />
 
+    <TextView
+        android:id="@+id/abnormal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/_30_60_t"
+        android:textAlignment="center"
+        android:textColor="@color/wrong"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

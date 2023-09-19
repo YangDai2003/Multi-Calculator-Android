@@ -16,8 +16,6 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.utils.TouchAnimation;
 
-import java.util.Objects;
-
 /**
  * @author 30415
  */
@@ -45,12 +43,11 @@ public class ChineseNumberConversionActivity extends AppCompatActivity implement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 设置状态栏颜色和导航栏颜色
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        Objects.requireNonNull(getSupportActionBar()).setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_chinese_number_conversion);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         settings.registerOnSharedPreferenceChangeListener(this);
@@ -78,7 +75,6 @@ public class ChineseNumberConversionActivity extends AppCompatActivity implement
         settings.unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -174,8 +170,10 @@ public class ChineseNumberConversionActivity extends AppCompatActivity implement
         while (number > 0) {
             numUnit = (int) (number % 10);
             if (numUnit > 0) {
-                if ((numIndex == 9 || numIndex == 13 || numIndex == 17) && (zeroSize >= 3)) {
-                    sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
+                if (numIndex == 9 || numIndex == 13 || numIndex == 17) {
+                    if (zeroSize >= 3) {
+                        sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
+                    }
                 }
                 sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
                 sb.insert(0, CN_UPPER_NUMBER[numUnit]);

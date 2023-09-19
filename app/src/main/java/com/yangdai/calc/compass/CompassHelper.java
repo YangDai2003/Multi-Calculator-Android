@@ -72,4 +72,31 @@ public class CompassHelper {
             output[i] = output[i] + ALPHA * (input[i] - output[i]);
         }
     }
+
+    public static String convertToDeg(double coordinate) {
+        // 判断是否为负数
+        boolean isNegative = coordinate < 0;
+        // 取绝对值进行计算
+        double absoluteCoordinate = Math.abs(coordinate);
+        // 度部分
+        int degrees = (int) absoluteCoordinate;
+        // 分部分
+        double decimalMinutes = (absoluteCoordinate - degrees) * 60;
+        int minutes = (int) decimalMinutes;
+        // 秒部分
+        double decimalSeconds = (decimalMinutes - minutes) * 60;
+        int seconds = (int) decimalSeconds;
+
+        // 根据是否为负数拼接结果
+        String result;
+        if (isNegative) {
+            result = "-";
+        } else {
+            result = "";
+        }
+
+        result += degrees + "° " + minutes + "' " + seconds + "\" ";
+        return result;
+    }
+
 }

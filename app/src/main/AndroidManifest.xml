@@ -8,15 +8,16 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <!-- 适配android 11无法唤起第三方apk -->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 适配android 11无法唤起第三方apk -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
     <queries>
         <intent>
             <action android:name="android.intent.action.DIAL" />
         </intent>
         <!-- 支付宝支付SDK -->
         <package android:name="com.eg.android.AlipayGphone" />
-    </queries>
-    <!-- 适配android 11无法使用tts -->
+    </queries> <!-- 适配android 11无法使用tts -->
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
@@ -38,12 +39,44 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
+
+        <activity
+            android:name=".fraction.FractionActivity"
+            android:exported="true"
+            android:label="@string/numberConvert"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".algebra.StatisticsActivity"
+            android:exported="true"
+            android:label="@string/statisticActivity"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".function.FunctionActivity"
+            android:exported="true"
+            android:label="@string/functionActivity"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".random.RandomNumberActivity"
+            android:exported="true"
+            android:label="@string/randomActivity"
+            android:parentActivityName=".main.MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".other.AboutActivity"
+            android:exported="false"
+            android:label="@string/about"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".other.SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".finance.FinanceActivity"
             android:exported="true"
             android:label="@string/financeActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.finance.FinanceActivity" />
 
@@ -51,11 +84,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DiscountActivity"
+            android:name=".shopping.ShoppingActivity"
             android:exported="true"
-            android:label="@string/discountActivity"
+            android:label="@string/shoppingActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.DiscountActivity" />
 
@@ -67,7 +100,7 @@
             android:exported="true"
             android:label="@string/relationshipActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.relationship.RelationshipActivity" />
 
@@ -79,7 +112,7 @@
             android:exported="true"
             android:label="@string/chineseNumberConverter"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.ChineseNumberConversionActivity" />
 
@@ -87,10 +120,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".exchange.ExchangeActivity"
+            android:name=".currency.CurrencyActivity"
             android:exported="true"
             android:label="@string/exchangeActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.exchange.ExchangeActivity" />
 
@@ -102,7 +135,7 @@
             android:exported="true"
             android:label="@string/bmiActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.BMIActivity" />
 
@@ -114,7 +147,7 @@
             android:exported="true"
             android:label="@string/dateActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.time.DateRangeActivity" />
 
@@ -126,7 +159,7 @@
             android:exported="true"
             android:label="@string/compassActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.compass.Compass" />
 
@@ -134,21 +167,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity"
-            android:exported="false"
-            android:label="@string/about"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SettingActivity"
-            android:exported="false"
-            android:label="@string/settings"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".converter.UnitActivity"
             android:exported="true"
             android:label="@string/ChangeActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".main.MainActivity">
             <intent-filter>
                 <action android:name="com.yangdai.calc.converter.ChangeActivity" />
 
@@ -156,12 +179,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.APP_CALCULATOR" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -177,7 +202,7 @@
             android:theme="@style/AppTheme" />
 
         <receiver
-            android:name=".MyWidgetProvider"
+            android:name=".widgets.MyWidgetProvider"
             android:exported="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name">
@@ -189,6 +214,36 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider" />
         </receiver>
+        <receiver
+            android:name=".widgets.MyWidgetProviderCalc1"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.yangdai.calc.BUTTON_CLICK1" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_calc1" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MyWidgetProviderCalc2"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.yangdai.calc.BUTTON_CLICK2" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_calc2" />
+        </receiver>
+
+        <service android:name=".floating.FloatingWindow" />
     </application>
 
 </manifest>

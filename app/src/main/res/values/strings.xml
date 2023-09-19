@@ -1,15 +1,12 @@
 <resources>
     <string name="app_name">Multi-Calculator</string>
-    <string name="error">Error</string>
     <string name="about">About</string>
     <string name="settings">Settings</string>
     <string name="scale">Number of Decimal Places</string>
 
-    <!-- Preference Titles -->
     <string name="messages_header">Calculation Preference</string>
     <string name="sync_header">Usage Preference</string>
 
-    <!-- Sync Preferences -->
     <string name="vib">Vibration</string>
     <string name="choose">Choose</string>
     <string name="length">Length</string>
@@ -17,7 +14,6 @@
     <string name="numeration">System of Numeration</string>
     <string name="volume">Volume</string>
 
-    <!-- Sync Preferences -->
     <string name="help_us">HELP US</string>
     <string name="rate">Rate this App</string>
     <string name="social">SOCIAL</string>
@@ -26,7 +22,7 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="app_version">Version</string>
     <string name="thank">Thanks for Using!!!</string>
-    <string name="ChangeActivity">Units Converter</string>
+    <string name="ChangeActivity">Unit Converter</string>
     <string name="clearAll">Clear all History</string>
     <string name="compassActivity">Compass</string>
     <string name="mass">Mass</string>
@@ -39,7 +35,6 @@
     <string name="systemTheme">Follow System Theme</string>
     <string name="longitude">Longitude</string>
     <string name="latitude">Latitude</string>
-    <string name="update">Location Updated</string>
     <string name="permission">Please agree to the permission to use all functions.</string>
     <string name="north">Due North</string>
     <string name="south">Due South</string>
@@ -61,7 +56,6 @@
     <string name="languageChange">Change the app\'s language</string>
     <string name="share_this_app">Share this App</string>
     <string name="shareContent">Download Multi-Calculator right now! It has everything you need for solving everyday math problems, unit conversions, date calculations, BMI calculations, currency exchange rate conversions, and even a compass feature. It\'s user-friendly with a beautiful interface. Click the link to download: https://play.google.com/store/apps/details?id=com.yangdai.calc</string>
-    <string name="distance">Distance</string>
     <string name="text_date_diff">Date Interval</string>
     <string name="text_addsub_date">Date Calculation</string>
     <string name="dateActivity">Date Calculator</string>
@@ -78,17 +72,14 @@
     <string name="pressure">Pressure</string>
     <string name="heat">Heat</string>
     <string name="time">Time</string>
-    <string name="bmiActivity">BMI Calculator</string>
+    <string name="bmiActivity">BMI</string>
     <string name="angle">Angle</string>
 
 
     <string name="reset">RESET</string>
-    <string name="cm">CM</string>
     <string name="kg">KG</string>
-    <string name="weight">Weight</string>
     <string name="_00_00" translatable="false">0.00</string>
     <string name="bmi" translatable="false">BMI</string>
-    <string name="click">Click</string>
     <string name="height_cm">Height cm</string>
     <string name="weight_kg">Weight kg</string>
     <string name="let_s_begin">Let\'s calculate</string>
@@ -113,7 +104,6 @@
     <string name="exchangeActivity">Currency Converter</string>
     <string name="from_currency">From:</string>
     <string name="to_currency">To:</string>
-    <string name="convert">Convert</string>
     <string name="amount_to_convert">Amount to Convert:</string>
     <string name="conversion_rate">Converted Amount:</string>
     <string name="app_osl">Open Source Licenses</string>
@@ -121,28 +111,23 @@
     <string name="donate">Donate</string>
     <string name="arabic_numbers">Arabic Numerals:</string>
     <string name="chinese_big_numbers">Uppercase Chinese Numerals:</string>
-    <string name="email">Email</string>
+    <string name="email">E-mail</string>
     <string name="relationshipActivity">Kinship Title Calculator</string>
     <string name="relationship">Kinship:</string>
     <string name="call">Title:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="calculator">Calculator</string>
-    <string name="historys">Historys</string>
+    <string name="historys">History</string>
     <string name="inverseCall">Swap Identities</string>
-    <string name="all_function">All Functions</string>
     <string name="type_in">Type in</string>
-    <string name="resize">Resize</string>
-    <string name="discountActivity">Discount Calculator</string>
+    <string name="resize">Show Floating Window</string>
+    <string name="discount_fragment">Discount</string>
     <string name="originalPrice">Original Price:</string>
     <string name="discount">Discount(%):</string>
     <string name="discountedPrice">Discounted Price:</string>
     <string name="savedAmount">Saved Amount:</string>
     <string name="check_for_updates">Check for Updates</string>
-
-    <string-array name="currencies_array">
-        <item>N/A</item>
-    </string-array>
 
     <string name="newest">Already the latest version</string>
     <string name="checkNet">Network Error</string>
@@ -160,7 +145,6 @@
     <string name="interest_rate">Annual Interest Rate (%):</string>
     <string name="period">Period (in months):</string>
     <string name="capitalization">Interest Settlement Date:</string>
-    <string name="calculate">Calculate</string>
     <string name="investment_amount">Investment Amount:</string>
     <string name="settlement_amount">Settlement Amount:</string>
     <string name="loan_amount">Loan Amount:</string>
@@ -187,19 +171,13 @@
     <string name="multiplyNum">multiply by</string>
     <string name="divideNum">divide by</string>
     <string name="point">point</string>
-    <string name="reciprocal">take the reciprocal</string>
     <string name="percentage">take percent</string>
     <string name="power">power</string>
-    <string name="natural_base">Euler\'s number</string>
-    <string name="pi">π</string>
-    <string name="g">gravitational acceleration</string>
     <string name="factorial">factorial</string>
     <string name="double_factorial">double factorial</string>
     <string name="voice">Button Sound</string>
     <string name="voiceContent">Read the button content when the button is pressed</string>
     <string name="get_more_apps">Get more Apps</string>
-    <string name="drawer_open">Drawer Open</string>
-    <string name="drawer_close">Drawer Close</string>
     <string name="sin">sine</string>
     <string name="cos">cosine</string>
     <string name="tan">tangent</string>
@@ -216,5 +194,62 @@
     <string name="tips">Tips</string>
     <string name="updateDate">The data was updated on:</string>
     <string name="powerUnit">Power</string>
-    <string name="hint">Swipe down to display the previous operation record.\nSwipe right to show the side navigation bar.</string>
+    <string name="hint">Slide down to display history.\nSwipe left to show more functions.</string>
+    <string name="air_pressure">Atmospheric Pressure</string>
+    <string name="bigNum">The value is too large</string>
+    <string name="formatError">Invalid Input</string>
+    <string name="_30_60_t">The magnetic field environment is abnormal, the normal range is 20~60μT</string>
+    <string name="more">Toolbox</string>
+    <string name="randomActivity">Random Number</string>
+    <string name="generator">Generator</string>
+    <string name="draw">Draw</string>
+    <string name="count">Quantity</string>
+    <string name="minValue">Minimum Value</string>
+    <string name="maxValue">Maximum Value</string>
+    <string name="repeat">Numbers can be repeated</string>
+    <string name="result">Result:</string>
+    <string name="generate">Generate</string>
+    <string name="start_end">Start / Stop</string>
+    <string name="hasCleaned">All history cleared</string>
+    <string name="functionActivity">Equation Calculator</string>
+    <string name="linear">Linear Equation</string>
+    <string name="quadratic">Quadratic Equation</string>
+    <string name="noRoot">No real roots</string>
+    <string name="noHistory">No history</string>
+    <string name="statisticActivity">Mathematical Statistics</string>
+    <string name="gcd">GCF:</string>
+    <string name="lcm">LCM:</string>
+    <string name="numbers">Numbers:</string>
+    <string name="addNumber">Add Number:</string>
+    <string name="avg0">Arithmetic Mean:</string>
+    <string name="avg1">Geometric Mean:</string>
+    <string name="avg2">Harmonic Mean:</string>
+    <string name="avg3">Square Average:</string>
+    <string name="diff0">Variance:</string>
+    <string name="diff1">Standard Deviation:</string>
+    <string name="sum">Sum:</string>
+    <string name="jump">Skip</string>
+
+    <string name="toDecimal">Fraction to Decimal</string>
+    <string name="toFraction">Decimal to Fraction</string>
+    <string name="numberConvert">Number Converter</string>
+    <string name="xx">(xx) represents the fractional recurring section</string>
+    <string name="errorMsg">Sorry, a program error occurred and exited after 3 seconds.</string>
+
+    <string name="shoppingActivity">Shopping Assistant</string>
+    <string name="unit_price_fragment">Unit Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="unit_price">Unit Price:</string>
+
+    <string name="factorization">Factorization</string>
+    <string name="isPrime_true">True</string>
+    <string name="isPrime_false">False</string>
+    <string name="isPrime">Prime Number:</string>
+    <string name="factors">Factors:</string>
+
+    <string name="Screen_Overlay_Permission_Needed">Screen Overlay Permission Needed</string>
+    <string name="Permission_Dialog_Messege">Enable \'Display over other apps\' from System Settings.</string>
+    <string name="Open_Settings">Open Settings</string>
+    <string name="switch_layout">Switch Layout</string>
+
 </resources>

@@ -23,6 +23,12 @@
             app:title="@string/trigonometric"
             app:widgetLayout="@drawable/material_switch" />
 
+        <Preference
+            android:icon="@drawable/delete_outline"
+            app:key="clean"
+            app:summary="@string/clearAll"
+            app:title="@string/historys" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/sync_header">

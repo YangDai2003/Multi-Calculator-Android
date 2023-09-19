@@ -36,13 +36,12 @@ import java.util.ArrayList;
 /**
  * @author 30415
  */
-public class BankFragment extends Fragment {
+public class BankFragment extends Fragment implements TextWatcher {
     FragmentBankBinding binding;
     private TextInputEditText editTextPrincipal, editTextInterestRate, editTextTime;
     int flag;
 
     public BankFragment() {
-        // Required empty public constructor
     }
 
     public static BankFragment newInstance() {
@@ -50,8 +49,11 @@ public class BankFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onDestroy() {
+        super.onDestroy();
+        editTextPrincipal.removeTextChangedListener(this);
+        editTextInterestRate.removeTextChangedListener(this);
+        editTextTime.removeTextChangedListener(this);
     }
 
     @Override
@@ -75,9 +77,9 @@ public class BankFragment extends Fragment {
             }
             return false;
         });
-        editTextTime.addTextChangedListener(textWatcher);
-        editTextPrincipal.addTextChangedListener(textWatcher);
-        editTextInterestRate.addTextChangedListener(textWatcher);
+        editTextTime.addTextChangedListener(this);
+        editTextPrincipal.addTextChangedListener(this);
+        editTextInterestRate.addTextChangedListener(this);
 
         Spinner spinner = binding.spinnerPeriod;
 
@@ -104,27 +106,6 @@ public class BankFragment extends Fragment {
         });
     }
 
-    private final TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            try {
-                calculateInterest();
-            } catch (Exception ignored) {
-
-            }
-        }
-    };
-
     @SuppressLint("SetTextI18n")
     private void calculateInterest() {
         double principal = Double.parseDouble(editTextPrincipal.getText().toString());
@@ -133,23 +114,13 @@ public class BankFragment extends Fragment {
         int compoundPeriods = 0;
         double interest = 0;
         switch (flag) {
-            case 0:
-                compoundPeriods = 12;
-                break;
-            case 1:
-                compoundPeriods = 4;
-                break;
-            case 2:
-                compoundPeriods = 2;
-                break;
-            case 3:
-                compoundPeriods = 1;
-                break;
-            case 4:
-                interest = principal * (interestRate / 100);
-                break;
-            default:
-                break;
+            case 0 -> compoundPeriods = 12;
+            case 1 -> compoundPeriods = 4;
+            case 2 -> compoundPeriods = 2;
+            case 3 -> compoundPeriods = 1;
+            case 4 -> interest = principal * (interestRate / 100);
+            default -> {
+            }
         }
         if (flag != 4) {
             double ratePerPeriod = (interestRate / 100) / compoundPeriods;
@@ -190,5 +161,24 @@ public class BankFragment extends Fragment {
 
         // 刷新图表
         pieChart.invalidate();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        try {
+            calculateInterest();
+        } catch (Exception ignored) {
+
+        }
     }
 }

@@ -3,24 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/historys"
+        android:icon="@drawable/history"
+        android:title="@string/historys"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/view_layout"
+        android:icon="@drawable/grid_on"
+        android:title="@string/switch_layout"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/resize"
-        android:icon="@drawable/baseline_close_fullscreen_24"
+        android:icon="@drawable/fullscreen_exit"
         android:title="@string/resize"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/historys"
-        android:icon="@drawable/history"
-        android:title="@string/historys"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/settings"
+        android:id="@+id/setting"
+        android:icon="@drawable/settings_icon"
         android:title="@string/settings"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/about"
+        android:icon="@drawable/info_icon"
         android:title="@string/about"
         app:showAsAction="never" />
+
 </menu>

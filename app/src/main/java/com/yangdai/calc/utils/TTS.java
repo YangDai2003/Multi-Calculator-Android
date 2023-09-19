@@ -3,7 +3,9 @@ package com.yangdai.calc.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
-import android.widget.Toast;
+import android.util.Log;
+
+import com.yangdai.calc.R;
 
 import java.util.Locale;
 
@@ -13,8 +15,9 @@ import java.util.Locale;
 public class TTS implements TextToSpeech.OnInitListener {
     private TextToSpeech textToSpeech;
     private Context mContext;
+    private TTSInitializationListener initializationListener;
 
-    public void ttsCreate(Activity activity) {
+    public boolean ttsCreate(Activity activity, TTSInitializationListener initializationListener) {
         //语音初始化
         if (textToSpeech != null) {
             textToSpeech.stop();
@@ -23,11 +26,14 @@ public class TTS implements TextToSpeech.OnInitListener {
         }
 
         mContext = activity.getApplicationContext();
+        this.initializationListener = initializationListener;
         // 创建新的TextToSpeech对象并设置语言
         try {
             textToSpeech = new TextToSpeech(mContext, this);
-        } catch (Exception ignored) {
-
+            return true;
+        } catch (Exception exception) {
+            textToSpeech = null;
+            return false;
         }
     }
 
@@ -40,8 +46,30 @@ public class TTS implements TextToSpeech.OnInitListener {
         }
     }
 
-    public void ttsSpeak(final String content) {
-        if (textToSpeech != null) {
+    public void ttsSpeak(String content) {
+        if (textToSpeech != null && !content.isEmpty()) {
+            content = content.replace("=", mContext.getString(R.string.equal))
+                    .replace("(", mContext.getString(R.string.bracket))
+                    .replace(")", mContext.getString(R.string.bracket))
+                    .replace("!!", mContext.getString(R.string.double_factorial))
+                    .replace("!", mContext.getString(R.string.factorial))
+                    .replace("%", mContext.getString(R.string.percentage))
+                    .replace("^", mContext.getString(R.string.power))
+                    .replace(".", mContext.getString(R.string.point))
+                    .replace("+", mContext.getString(R.string.addNum))
+                    .replace("-", mContext.getString(R.string.minusNum))
+                    .replace("×", mContext.getString(R.string.multiplyNum))
+                    .replace("÷", mContext.getString(R.string.divideNum))
+                    .replace("asin", mContext.getString(R.string.asin))
+                    .replace("acos", mContext.getString(R.string.acos))
+                    .replace("atan", mContext.getString(R.string.atan))
+                    .replace("acot", mContext.getString(R.string.acot))
+                    .replace("sin", mContext.getString(R.string.sin))
+                    .replace("cos", mContext.getString(R.string.cos))
+                    .replace("tan", mContext.getString(R.string.tan))
+                    .replace("cot", mContext.getString(R.string.cot))
+                    .replace("log", mContext.getString(R.string.log))
+                    .replace("ln", mContext.getString(R.string.ln));
             textToSpeech.speak(content, TextToSpeech.QUEUE_FLUSH, null, null);
         }
     }
@@ -54,13 +82,14 @@ public class TTS implements TextToSpeech.OnInitListener {
 
             // 设置TextToSpeech的语言为应用语言
             int result = textToSpeech.setLanguage(appLocale);
-            textToSpeech.setSpeechRate(1.3f);
+            textToSpeech.setSpeechRate(1.2f);
             textToSpeech.setPitch(0.8f);
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 textToSpeech = null;
                 // 语言数据缺失或不支持，无法进行语音播报
-                Toast.makeText(mContext, "Language pack is missing", Toast.LENGTH_SHORT).show();
+                Log.e("TTS", "Language pack is missing");
+                initializationListener.onTTSInitialized(false);
             }
         } else {
             textToSpeech = null;
@@ -72,20 +101,23 @@ public class TTS implements TextToSpeech.OnInitListener {
 
                     // 设置TextToSpeech的语言为应用语言
                     int result = textToSpeech.setLanguage(appLocale);
-                    textToSpeech.setSpeechRate(1.3f);
+                    textToSpeech.setSpeechRate(1.2f);
                     textToSpeech.setPitch(0.8f);
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         textToSpeech = null;
                         // 语言数据缺失或不支持，无法进行语音播报
-                        Toast.makeText(mContext, "Language pack is missing", Toast.LENGTH_SHORT).show();
+                        Log.e("TTS", "Language pack is missing");
+                        initializationListener.onTTSInitialized(false);
                     }
                 } else {
                     textToSpeech = null;
                     // 初始化TextToSpeech失败
-                    Toast.makeText(mContext, "Failed to initialize TTS", Toast.LENGTH_SHORT).show();
+                    Log.e("TTS", "Failed to initialize TTS");
+                    initializationListener.onTTSInitialized(false);
                 }
             }, "com.iflytek.speechsuite");
         }
     }
 }
+

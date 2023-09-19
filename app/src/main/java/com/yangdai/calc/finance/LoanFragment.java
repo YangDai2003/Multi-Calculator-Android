@@ -32,12 +32,11 @@ import java.util.ArrayList;
 /**
  * @author 30415
  */
-public class LoanFragment extends Fragment {
+public class LoanFragment extends Fragment implements TextWatcher {
     private TextInputEditText etLoanAmount, etInterestRate, etLoanPeriod;
     FragmentLoanBinding binding;
 
     public LoanFragment() {
-        // Required empty public constructor
     }
 
     public static LoanFragment newInstance() {
@@ -45,15 +44,18 @@ public class LoanFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoanBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        etLoanPeriod.removeTextChangedListener(this);
+        etLoanAmount.removeTextChangedListener(this);
+        etInterestRate.removeTextChangedListener(this);
     }
 
     @Override
@@ -70,31 +72,10 @@ public class LoanFragment extends Fragment {
             }
             return false;
         });
-        etLoanAmount.addTextChangedListener(textWatcher);
-        etInterestRate.addTextChangedListener(textWatcher);
-        etLoanPeriod.addTextChangedListener(textWatcher);
+        etLoanAmount.addTextChangedListener(this);
+        etInterestRate.addTextChangedListener(this);
+        etLoanPeriod.addTextChangedListener(this);
     }
-
-    private final TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            try {
-                calculateLoan();
-            } catch (Exception ignored) {
-
-            }
-        }
-    };
 
     private void calculateLoan() {
         double loanAmount = Double.parseDouble(etLoanAmount.getText().toString());
@@ -141,5 +122,24 @@ public class LoanFragment extends Fragment {
 
         // 刷新图表
         pieChart.invalidate();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        try {
+            calculateLoan();
+        } catch (Exception ignored) {
+
+        }
     }
 }

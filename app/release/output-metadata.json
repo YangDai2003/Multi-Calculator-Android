@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.yangdai.calc",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 42,
+      "versionName": "5.2",
+      "outputFile": "多功能计算器(Multi-Calculator)_Release_5.2.apk"
+    }
+  ],
+  "elementType": "File"
+}

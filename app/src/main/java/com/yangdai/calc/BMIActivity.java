@@ -2,6 +2,7 @@ package com.yangdai.calc;
 
 import static com.yangdai.calc.utils.Utils.closeKeyboard;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,14 +18,11 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.databinding.ActivityBmiBinding;
 
-import java.text.DecimalFormat;
-import java.util.Objects;
-
 /**
  * @author 30415
  */
 public class BMIActivity extends AppCompatActivity {
-    float heightCm = 0, weightKg = 0, sum = 0, totalMeter = 0, totalWeight = 0, newSum = 0;
+    double heightCm = 0, weightKg = 0, sum = 0, totalMeter = 0, totalWeight = 0, newSum = 0;
     String strWeight = "";
     ActivityBmiBinding binding;
 
@@ -39,7 +37,6 @@ public class BMIActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.delete) {
             resetColor();
 
-            //set All Text Null
             binding.heightCm.setText("");
             binding.weightKg.setText("");
             binding.bmi.setText(R.string._00_00);
@@ -60,11 +57,11 @@ public class BMIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        Objects.requireNonNull(getSupportActionBar()).setElevation(0f);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         binding = ActivityBmiBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screen", false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -75,56 +72,7 @@ public class BMIActivity extends AppCompatActivity {
         binding.cardView.setCardBackgroundColor(SurfaceColors.SURFACE_5.getColor(this));
         binding.CardViewRes.setCardBackgroundColor(SurfaceColors.SURFACE_5.getColor(this));
 
-        DecimalFormat precision = new DecimalFormat("0.00");
-
-        //Button Clicked
-        binding.calculate.setOnClickListener(view -> {
-
-            resetColor();
-            binding.bmi.setText(R.string._00_00);
-            binding.comment.setText("");
-            sum = 0;
-            newSum = 0;
-            strWeight = "";
-            binding.commentLayout.setVisibility(View.GONE);
-
-
-            try {
-                String cm = binding.heightCm.getText().toString();
-                String kg = binding.weightKg.getText().toString();
-                if (TextUtils.isEmpty(kg)) {
-                    binding.weightKg.setError("This Field Can't be Empty or 0");
-                } else {
-                    weightKg = Float.parseFloat(binding.weightKg.getText().toString());
-                    if (weightKg == 0) {
-                        binding.weightKg.setError("This Field Can't be Empty or 0");
-                    } else {
-                        totalWeight = weightKg;
-                    }
-                }
-
-                if (TextUtils.isEmpty(cm)) {
-                    binding.heightCm.setError("This Field Can't be Empty or 0");
-                } else {
-                    heightCm = Float.parseFloat(binding.heightCm.getText().toString());
-                    if (heightCm == 0 || weightKg == 0) {
-                        binding.heightCm.setError("This Field Can't be Empty or 0");
-                    } else {
-                        totalMeter = heightCm / 100;
-                        sum = totalWeight / (totalMeter * totalMeter);
-                        binding.bmi.setText(precision.format(sum));
-                    }
-                }
-            } catch (Exception ignored) {
-
-            }
-
-            if (sum > 0) {
-                setMessageBackground();
-                findRecommended();
-            }
-
-        });
+        binding.calculate.setOnClickListener(view -> calculateBmi());
         binding.heightCm.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
                 closeKeyboard(this);
@@ -143,11 +91,56 @@ public class BMIActivity extends AppCompatActivity {
         });
     }
 
-    private void findRecommended() {
+    @SuppressLint("DefaultLocale")
+    private void calculateBmi() {
+        resetColor();
+        binding.bmi.setText(R.string._00_00);
+        binding.comment.setText("");
+        sum = 0;
+        newSum = 0;
+        strWeight = "";
+        binding.commentLayout.setVisibility(View.GONE);
 
+        try {
+            String cm = binding.heightCm.getText().toString();
+            String kg = binding.weightKg.getText().toString();
+            if (TextUtils.isEmpty(kg)) {
+                binding.weightKg.setError("Can't be Empty or 0");
+                return;
+            }
+            weightKg = Double.parseDouble(kg);
+            if (weightKg == 0) {
+                binding.weightKg.setError("Can't be Empty or 0");
+                return;
+            }
+            totalWeight = weightKg;
+
+            if (TextUtils.isEmpty(cm)) {
+                binding.heightCm.setError("Can't be Empty or 0");
+                return;
+            }
+            heightCm = Double.parseDouble(cm);
+            if (heightCm == 0 || weightKg == 0) {
+                binding.heightCm.setError("Can't be Empty or 0");
+                return;
+            }
+            totalMeter = heightCm / 100;
+            sum = totalWeight / (totalMeter * totalMeter);
+            binding.bmi.setText(String.format("%.2f", sum));
+        } catch (Exception ignored) {
+
+        }
+
+        if (sum > 0) {
+            setMessageBackground();
+            findRecommended();
+        }
+    }
+
+    private void findRecommended() {
         if (sum < 18.50) {
             for (int i = 1; i < 100; i++) {
-                float newWeight = totalWeight + i;
+                double newWeight = totalWeight + i;
                 newSum = newWeight / (totalMeter * totalMeter);
                 if (newSum >= 18.5) {
                     strWeight = String.valueOf(i);
@@ -161,7 +154,7 @@ public class BMIActivity extends AppCompatActivity {
 
         } else if (sum > 24.90) {
             for (int i = 1; i < 150; i++) {
-                float newWeight = totalWeight - i;
+                double newWeight = totalWeight - i;
                 newSum = newWeight / (totalMeter * totalMeter);
                 if (newSum <= 24.9) {
                     strWeight = String.valueOf(i);
@@ -211,7 +204,6 @@ public class BMIActivity extends AppCompatActivity {
     }
 
     private void resetColor() {
-        //Chart Background set null
         binding.verySeverelyUnderweight.setBackgroundColor(SurfaceColors.SURFACE_5.getColor(this));
         binding.severelyUnderweight.setBackgroundColor(SurfaceColors.SURFACE_5.getColor(this));
         binding.underweight.setBackgroundColor(SurfaceColors.SURFACE_5.getColor(this));

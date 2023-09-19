@@ -63,13 +63,25 @@
     <TextView
         android:id="@+id/location"
         android:layout_width="0dp"
-        android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:text=""
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/image_compass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_compass"
         app:layout_constraintTop_toTopOf="@+id/image_compass" />
+
+    <TextView
+        android:id="@+id/abnormal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/_30_60_t"
+        android:textAlignment="center"
+        android:textColor="@color/wrong"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_compass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

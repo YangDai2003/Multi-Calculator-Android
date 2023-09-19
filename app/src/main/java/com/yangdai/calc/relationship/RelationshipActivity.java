@@ -21,12 +21,12 @@ import com.yangdai.calc.utils.TouchAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author 30415
  */
-public class RelationshipActivity extends AppCompatActivity implements View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class RelationshipActivity extends AppCompatActivity implements View.OnClickListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     MaterialRadioButton male, female;
     RadioGroup radioGroup;
     TextView tvInput;
@@ -50,10 +50,10 @@ public class RelationshipActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        Objects.requireNonNull(getSupportActionBar()).setElevation(0f);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_relationship);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         settings.registerOnSharedPreferenceChangeListener(this);
@@ -321,51 +321,23 @@ public class RelationshipActivity extends AppCompatActivity implements View.OnCl
         for (int i = callList.size() - 1; i > 0; i--) {
             if (("我".equals(callList.get(i - 1)) && !initSex) || isMan(callList.get(i - 1))) {
                 switch (callList.get(i)) {
-                    case "儿子":
-                    case "女儿":
-                        tempList.add("爸爸");
-                        break;
-                    case "弟弟":
-                    case "妹妹":
-                        tempList.add("哥哥");
-                        break;
-                    case "哥哥":
-                    case "姐姐":
-                        tempList.add("弟弟");
-                        break;
-                    case "爸爸":
-                    case "妈妈":
-                        tempList.add("儿子");
-                        break;
-                    case "妻子":
-                        tempList.add("丈夫");
-                        break;
-                    default:
-                        break;
+                    case "儿子", "女儿" -> tempList.add("爸爸");
+                    case "弟弟", "妹妹" -> tempList.add("哥哥");
+                    case "哥哥", "姐姐" -> tempList.add("弟弟");
+                    case "爸爸", "妈妈" -> tempList.add("儿子");
+                    case "妻子" -> tempList.add("丈夫");
+                    default -> {
+                    }
                 }
             } else {
                 switch (callList.get(i)) {
-                    case "儿子":
-                    case "女儿":
-                        tempList.add("妈妈");
-                        break;
-                    case "弟弟":
-                    case "妹妹":
-                        tempList.add("姐姐");
-                        break;
-                    case "哥哥":
-                    case "姐姐":
-                        tempList.add("妹妹");
-                        break;
-                    case "爸爸":
-                    case "妈妈":
-                        tempList.add("女儿");
-                        break;
-                    case "丈夫":
-                        tempList.add("妻子");
-                        break;
-                    default:
-                        break;
+                    case "儿子", "女儿" -> tempList.add("妈妈");
+                    case "弟弟", "妹妹" -> tempList.add("姐姐");
+                    case "哥哥", "姐姐" -> tempList.add("妹妹");
+                    case "爸爸", "妈妈" -> tempList.add("女儿");
+                    case "丈夫" -> tempList.add("妻子");
+                    default -> {
+                    }
                 }
             }
         }

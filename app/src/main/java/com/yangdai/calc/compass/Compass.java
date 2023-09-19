@@ -1,8 +1,11 @@
 package com.yangdai.calc.compass;
 
+import static com.yangdai.calc.compass.CompassHelper.convertToDeg;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
@@ -11,9 +14,13 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.icu.math.BigDecimal;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -21,49 +28,71 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.Priority;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.R;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author 30415
  */
 public class Compass extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
-
+    Sensor accelerationSensor, magneticFieldSensor, pressureSensor;
     private final float[] accelerometerValues = new float[3];
     private final float[] magneticValues = new float[3];
 
-    private float heading;
-    private float longitude;
-    private float latitude;
-    private float altitude;
-    private float magneticDeclination;
-
+    private float heading, longitude, latitude, altitude, magneticDeclination;
     private boolean isLocationRetrieved = false;
-
-    private TextView textViewTrueHeading, textViewMagneticDeclination, degree, locationView;
+    private TextView tvTrueHeading, tvMagneticDeclination, tvDegree, tvLocation;
     private ImageView imageViewCompass;
-    private static final int PERMISSION_REQUEST_CODE = 1024;
-    String magneticFieldStrength, local, address, altitudeStr, speed;
-    Location location;
+
+    private String magneticFieldStrengthStr;
+    private String addressStr;
+    private String pressureStr;
+    private Location location;
     SharedPreferences settings;
+    int isGoogleAvailable;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
+    private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
+    boolean permissionChecked = false;
+    boolean updated = false;
+    private Geocoder geocoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        Objects.requireNonNull(getSupportActionBar()).setElevation(0f);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.compass);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        getSupportActionBar().setElevation(0f);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         if (settings.getBoolean("screen", false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -71,67 +100,140 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-        degree = findViewById(R.id.degree);
-        locationView = findViewById(R.id.location);
-        textViewTrueHeading = findViewById(R.id.text_view_true_heading);
-        textViewMagneticDeclination = findViewById(R.id.text_view_magnetic_declination);
+        tvDegree = findViewById(R.id.degree);
+        tvLocation = findViewById(R.id.location);
+        tvTrueHeading = findViewById(R.id.text_view_true_heading);
+        tvMagneticDeclination = findViewById(R.id.text_view_magnetic_declination);
         imageViewCompass = findViewById(R.id.image_compass);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        // 加速度感应器
-        Sensor magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        // 地磁感应器
-        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(this, magneticSensor, SensorManager.SENSOR_DELAY_GAME);
-        sensorManager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+        accelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        isGoogleAvailable = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        geocoder = new Geocoder(this, Locale.getDefault());
 
+        @SuppressLint("MissingPermission") ActivityResultLauncher<String[]> locationPermissionRequest =
+                registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                    boolean fineLocationGranted = result.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false);
+                    boolean coarseLocationGranted = result.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false);
+                    if (fineLocationGranted || coarseLocationGranted) {
+                        permissionChecked = true;
+                        getLocation();
+                    } else {
+                        // 用户拒绝了权限，可以根据需求进行相应的处理，例如显示一个提示信息或者禁用相关功能
+                        Toast.makeText(getApplicationContext(), getString(R.string.permission), Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
             //请求权限
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_CODE);
+            locationPermissionRequest.launch(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
         } else {
-            location = LocationUtils.getInstance(this, locationListener).getLocation();
-            update(location);
+            permissionChecked = true;
+            getLocation();
         }
 
         // 默认值为N/A。如果已检索到位置，则文本将更新为相应的值
-        textViewTrueHeading.setText(R.string.not_available);
-        textViewMagneticDeclination.setText(R.string.not_available);
+        tvTrueHeading.setText(R.string.not_available);
+        tvMagneticDeclination.setText(R.string.not_available);
     }
 
-    LocationUtils.OnAddressFetchedListener addressFetchCallback
-            = address -> Compass.this.address = address;
+    @SuppressLint("MissingPermission")
+    private void getLocation() {
+        if (isGoogleAvailable == ConnectionResult.SUCCESS) {
+            locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000).build();
+            locationCallback = new LocationCallback() {
+                @Override
+                public void onLocationResult(@NonNull LocationResult locationResult) {
+                    if (locationResult == null) {
+                        return;
+                    }
+                    for (Location location1 : locationResult.getLocations()) {
+                        Compass.this.location = location1;
+                        update(location1);
+                    }
+                }
+            };
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                    .addLocationRequest(locationRequest);
+            SettingsClient client = LocationServices.getSettingsClient(this);
+            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+            task.addOnFailureListener(this, e -> {
+                if (e instanceof ResolvableApiException) {
+                    try {
+                        ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                        resolvableApiException.startResolutionForResult(Compass.this, 2048);
+                    } catch (IntentSender.SendIntentException ignored) {
+
+                    }
+                }
+            });
+
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+                if (location != null) {
+                    this.location = location;
+                    update(location);
+                }
+            });
+            startLocationUpdates();
+            updated = true;
+        } else {
+            Toast.makeText(getApplicationContext(), "Not available on this device.", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startLocationUpdates() {
+        fusedLocationProviderClient
+                .requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+    }
+
+    private void stopLocationUpdates() {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
 
     @SuppressLint("SetTextI18n")
     private void update(Location location) {
         if (location != null) {
-            local = getString(R.string.latitude) + ": " + location.getLatitude()
-                    + " " + getString(R.string.longitude) + ": " + location.getLongitude();
-            LocationUtils.getAddress(this, location, addressFetchCallback);
-            altitudeStr = getString(R.string.altitude) + ": "
+            getAddress(location);
+            String coordinateStr = getString(R.string.latitude) + ": " + convertToDeg(location.getLatitude())
+                    + " " + getString(R.string.longitude) + ": " + convertToDeg(location.getLongitude());
+            String altitudeStr = getString(R.string.altitude) + ": "
                     + BigDecimal.valueOf(location.getAltitude())
-                    .setScale(settings.getInt("scale", 10), BigDecimal.ROUND_HALF_UP) + " m";
-            speed = getString(R.string.speed) + ": "
+                    .setScale(2, BigDecimal.ROUND_HALF_UP) + " m";
+            String speedStr = getString(R.string.speed) + ": "
                     + BigDecimal.valueOf(location.getSpeed())
-                    .setScale(settings.getInt("scale", 10), BigDecimal.ROUND_HALF_UP) + " m/s";
-            magneticFieldStrength = getString(R.string.magnetic) + ": " + (int) Math.sqrt(
-                    Math.pow(magneticValues[0], 2) +
-                            Math.pow(magneticValues[1], 2) +
-                            Math.pow(magneticValues[2], 2)
-            ) + " μT";
-            locationView
-                    .setText(local + "\n" + address + "\n" + altitudeStr + "\n" + speed + "\n" + magneticFieldStrength);
+                    .setScale(2, BigDecimal.ROUND_HALF_UP) + " m/s";
+            tvLocation.setText(coordinateStr + "\n"
+                    + (addressStr == null ? "" : addressStr) + "\n"
+                    + altitudeStr + "\n"
+                    + speedStr + "\n"
+                    + (magneticFieldStrengthStr == null ? getString(R.string.magnetic) + ": " : magneticFieldStrengthStr) + "\n"
+                    + (pressureStr == null ? getString(R.string.air_pressure) + ": " : pressureStr));
+            int mv = (int) Math.sqrt(Math.pow(magneticValues[0], 2) +
+                    Math.pow(magneticValues[1], 2) + Math.pow(magneticValues[2], 2));
+            if (mv > 20 && mv < 60) {
+                findViewById(R.id.abnormal).setVisibility(View.INVISIBLE);
+            } else {
+                findViewById(R.id.abnormal).setVisibility(View.VISIBLE);
+            }
 
             isLocationRetrieved = true;
             latitude = (float) location.getLatitude();
             longitude = (float) location.getLongitude();
             altitude = (float) location.getAltitude();
             magneticDeclination = CompassHelper.calculateMagneticDeclination(latitude, longitude, altitude);
-            textViewMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
+            tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
         }
     }
 
@@ -139,22 +241,29 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     protected void onResume() {
         super.onResume();
 
-        Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        if (accelerometer != null) {
-            sensorManager.registerListener(this, accelerometer,
-                    SensorManager.SENSOR_DELAY_GAME, SensorManager.SENSOR_DELAY_GAME);
+        if (permissionChecked && updated) {
+            startLocationUpdates();
         }
 
-        Sensor magneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        if (magneticField != null) {
-            sensorManager.registerListener(this, magneticField,
-                    SensorManager.SENSOR_DELAY_GAME, SensorManager.SENSOR_DELAY_GAME);
+        if (accelerationSensor != null) {
+            sensorManager.registerListener(this, accelerationSensor, SensorManager.SENSOR_DELAY_GAME);
+        }
+
+        if (magneticFieldSensor != null) {
+            sensorManager.registerListener(this, magneticFieldSensor, SensorManager.SENSOR_DELAY_GAME);
+        }
+
+        if (pressureSensor != null) {
+            sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        if (permissionChecked && updated) {
+            stopLocationUpdates();
+        }
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
         }
@@ -168,21 +277,24 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             CompassHelper.lowPassFilter(event.values.clone(), accelerometerValues);
         } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             // 使用低通滤波器使传感器读数更平滑
-            magneticFieldStrength = getString(R.string.magnetic) + ": " + (int) Math.sqrt(
+            magneticFieldStrengthStr = getString(R.string.magnetic) + ": " + (int) Math.sqrt(
                     Math.pow(magneticValues[0], 2) +
                             Math.pow(magneticValues[1], 2) +
-                            Math.pow(magneticValues[2], 2)
-            ) + " μT";
-            locationView
-                    .setText(local + "\n" + address + "\n" + altitudeStr + "\n" + speed + "\n" + magneticFieldStrength);
+                            Math.pow(magneticValues[2], 2)) + " μT";
             CompassHelper.lowPassFilter(event.values.clone(), magneticValues);
+        } else if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+            pressureStr = getString(R.string.air_pressure) + ": "
+                    + BigDecimal.valueOf(event.values[0]).setScale(2, BigDecimal.ROUND_HALF_UP) + " hPa";
         }
+        update(location);
         updateHeading();
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
+
 
     private void updateHeading() {
         // 旧的heading值用于图像旋转动画
@@ -211,7 +323,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         } else {
             direction = getString(R.string.northwest) + " " + (360 - angle) + "°";
         }
-        degree.setText(direction);
+        tvDegree.setText(direction);
 
         if (isLocationRetrieved) {
             float trueHeading = heading + magneticDeclination;
@@ -219,9 +331,9 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                 // 如果trueHeading为362度，例如，它应该调整为2度
                 trueHeading = trueHeading - 360;
             }
-            textViewTrueHeading.setText(getString(R.string.true_heading, (int) trueHeading));
+            tvTrueHeading.setText(getString(R.string.true_heading, (int) trueHeading));
             magneticDeclination = CompassHelper.calculateMagneticDeclination(latitude, longitude, altitude);
-            textViewMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
+            tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
         }
 
         RotateAnimation rotateAnimation
@@ -232,28 +344,36 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         imageViewCompass.startAnimation(rotateAnimation);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            // 检查权限授予结果
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // 用户授予了权限，进行定位操作
-                location = LocationUtils.getInstance(this, locationListener).getLocation();
-                update(location);
-            } else {
-                // 用户拒绝了权限，可以根据需求进行相应的处理，例如显示一个提示信息或者禁用相关功能
-                Toast.makeText(this, getString(R.string.permission), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
     /**
-     * 当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
+     * 获取地址信息: 城市、街道等信息
      */
-    public LocationListener locationListener = location -> {
-        Compass.this.location = location;
-        update(location);
-    };
+    private void getAddress(Location location) {
+        if (location == null) {
+            return;
+        }
+
+        EXECUTOR.execute(() -> {
+            try {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                    geocoder.getFromLocation(location.getLatitude(),
+                            location.getLongitude(),
+                            1,
+                            list -> {
+                                if (list != null && !list.isEmpty()) {
+                                    Compass.this.addressStr = list.get(0).getAddressLine(0);
+                                }
+                            });
+                } else {
+                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),
+                            location.getLongitude(),
+                            1);
+                    if (addresses != null && !addresses.isEmpty()) {
+                        Compass.this.addressStr = addresses.get(0).getAddressLine(0);
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("Address", e.toString());
+            }
+        });
+    }
 }

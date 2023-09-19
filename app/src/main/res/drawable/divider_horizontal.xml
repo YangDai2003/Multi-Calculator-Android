@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="?colorOnSurface" /> <!-- Set the desired color for the separator line -->
+    <size android:height="1dp" /> <!-- Set the desired height for the separator line -->
+</shape>

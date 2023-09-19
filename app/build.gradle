@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+android {
+    namespace 'com.yangdai.calc'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.yangdai.calc"
+        minSdk 28
+        targetSdk 34
+        versionCode 42
+        versionName '5.2'
+        resourceConfigurations += ["en", "zh", "de"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    viewBinding {
+        enabled = true
+    }
+    // 修改发布包名称
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+            def appName = "多功能计算器(Multi-Calculator)" // 替换应用名称
+            def buildType = variant.buildType.name.capitalize() // 获取构建类型的名称并首字母大写
+            def versionName = variant.versionName // 获取版本名称
+
+            outputFileName = "${appName}_${buildType}_${versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
+    implementation 'com.tbuonomo:dotsindicator:5.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.google.android.play:app-update:2.1.0'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference:1.2.1'
+}
