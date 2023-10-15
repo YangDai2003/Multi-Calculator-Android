@@ -52,7 +52,7 @@ public class LinearFragment extends Fragment {
         bEditText.addTextChangedListener(textWatcher);
         bEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 bEditText.clearFocus();
                 return true;
             }

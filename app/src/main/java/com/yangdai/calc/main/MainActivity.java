@@ -37,6 +37,7 @@ import com.yangdai.calc.toolbox.ToolBoxFragment;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author 30415
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         pageIcon = findViewById(R.id.view_pager_icon);

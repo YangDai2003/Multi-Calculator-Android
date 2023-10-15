@@ -16,6 +16,8 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.utils.TouchAnimation;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -45,7 +47,7 @@ public class ChineseNumberConversionActivity extends AppCompatActivity implement
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.activity_chinese_number_conversion);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -188,7 +190,7 @@ public class ChineseNumberConversionActivity extends AppCompatActivity implement
                     }
                 }
 
-                if (numIndex == 2 && number > 0) {
+                if (numIndex == 2) {
                     sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
                 } else if (((numIndex - 2) % 4 == 0) && (number % 1000 > 0)) {
                     sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);

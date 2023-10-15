@@ -51,7 +51,7 @@ public class FractorizationFragment extends Fragment implements TextWatcher {
         edEnter.addTextChangedListener(this);
         edEnter.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 edEnter.clearFocus();
                 return true;
             }

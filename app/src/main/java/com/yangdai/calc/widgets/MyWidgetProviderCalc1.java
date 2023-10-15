@@ -42,7 +42,9 @@ public class MyWidgetProviderCalc1 extends AppWidgetProvider {
         if (intent.getAction() != null && intent.getAction().equals(ACTION_BUTTON_CLICK)) {
             // Handle button click action
             String buttonValue = intent.getStringExtra("buttonValue");
-            Log.e("input", buttonValue);
+            if (buttonValue != null) {
+                Log.e("input", buttonValue);
+            }
             updateTextView(context, buttonValue);
         }
     }

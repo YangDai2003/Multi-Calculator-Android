@@ -54,7 +54,7 @@ public class QuadraticFragment extends Fragment {
         cEditText.addTextChangedListener(textWatcher);
         cEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 cEditText.clearFocus();
                 return true;
             }

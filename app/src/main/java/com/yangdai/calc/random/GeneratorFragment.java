@@ -69,7 +69,7 @@ public class GeneratorFragment extends Fragment {
         maxValueEditText = view.findViewById(R.id.maxValueEditText);
         maxValueEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 maxValueEditText.clearFocus();
                 return true;
             }
@@ -82,7 +82,7 @@ public class GeneratorFragment extends Fragment {
         checkBox.setOnCheckedChangeListener((compoundButton, b) -> repeat = b);
 
         generateButton.setOnClickListener(v -> {
-            closeKeyboard(getActivity());
+            closeKeyboard(requireActivity());
             if (generateButton.getText().toString().equals(getString(R.string.jump))) {
                 animatorSet.cancel();
                 randomNumber.setVisibility(View.GONE);

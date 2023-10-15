@@ -24,6 +24,7 @@ import com.yangdai.calc.utils.Utils;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -40,7 +41,7 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.activity_statistic);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -100,7 +101,7 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     });
 
-    TextWatcher textWatcher = new TextWatcher() {
+    final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

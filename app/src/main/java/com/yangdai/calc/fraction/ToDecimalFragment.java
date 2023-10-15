@@ -22,6 +22,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
 import com.yangdai.calc.utils.Utils;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -50,7 +52,7 @@ public class ToDecimalFragment extends Fragment implements TextWatcher {
         bInput = view.findViewById(R.id.bEditText);
         bInput.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 bInput.clearFocus();
                 return true;
             }
@@ -74,8 +76,8 @@ public class ToDecimalFragment extends Fragment implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable editable) {
-        String a = aInput.getText().toString();
-        String b = bInput.getText().toString();
+        String a = Objects.requireNonNull(aInput.getText()).toString();
+        String b = Objects.requireNonNull(bInput.getText()).toString();
 
         StringBuilder equationStr = new StringBuilder();
         if (a.isEmpty()) {

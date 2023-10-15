@@ -89,8 +89,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     }
 
     static class viewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        EditText editText;
+        final TextView textView;
+        final EditText editText;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);

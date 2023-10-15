@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ToolBoxAdapter extends RecyclerView.Adapter<ToolBoxAdapter.ViewHolder> {
     private final List<ToolBoxItem> list;
-    ItemClick itemClick;
+    final ItemClick itemClick;
     private final boolean isGrid;
 
     public ToolBoxAdapter(List<ToolBoxItem> list, boolean isGrid, ItemClick itemClick) {
@@ -60,8 +60,8 @@ public class ToolBoxAdapter extends RecyclerView.Adapter<ToolBoxAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        ImageView imageView;
+        final TextView textView;
+        final ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -54,6 +54,7 @@ import com.yangdai.calc.R;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -92,7 +93,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.compass);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -160,9 +161,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                 locationCallback = new LocationCallback() {
                     @Override
                     public void onLocationResult(@NonNull LocationResult locationResult) {
-                        if (locationResult == null) {
-                            return;
-                        }
                         update(locationResult.getLastLocation());
                     }
                 };
@@ -373,7 +371,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                             location.getLongitude(),
                             1,
                             list -> {
-                                if (list != null && !list.isEmpty()) {
+                                if (!list.isEmpty()) {
                                     Compass.this.addressStr = list.get(0).getAddressLine(0);
                                 }
                             });

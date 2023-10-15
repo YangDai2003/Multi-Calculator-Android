@@ -57,7 +57,7 @@ public class PickerFragment extends Fragment {
         minValueEditText = view.findViewById(R.id.minValueEditText);
         minValueEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 minValueEditText.clearFocus();
                 return true;
             }
@@ -66,7 +66,7 @@ public class PickerFragment extends Fragment {
         maxValueEditText = view.findViewById(R.id.maxValueEditText);
         maxValueEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 maxValueEditText.clearFocus();
                 return true;
             }
@@ -75,7 +75,7 @@ public class PickerFragment extends Fragment {
         handler = new Handler(Looper.getMainLooper());
 
         startButton.setOnClickListener(v -> {
-            closeKeyboard(getActivity());
+            closeKeyboard(requireActivity());
             if (isRolling) {
                 stopRolling();
             } else {

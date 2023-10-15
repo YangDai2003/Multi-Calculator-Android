@@ -31,6 +31,7 @@ import com.yangdai.calc.R;
 import com.yangdai.calc.databinding.FragmentVatBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author 30415
@@ -70,7 +71,7 @@ public class VatFragment extends Fragment implements TextWatcher {
         editTextVatRate.addTextChangedListener(this);
         editTextVatRate.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 editTextVatRate.clearFocus();
                 return true;
             }
@@ -82,8 +83,8 @@ public class VatFragment extends Fragment implements TextWatcher {
 
     @SuppressLint("SetTextI18n")
     private void calculateVat() {
-        String amountStr = editTextAmount.getText().toString();
-        String vatRateStr = editTextVatRate.getText().toString();
+        String amountStr = Objects.requireNonNull(editTextAmount.getText()).toString();
+        String vatRateStr = Objects.requireNonNull(editTextVatRate.getText()).toString();
 
         if (amountStr.isEmpty() || vatRateStr.isEmpty()) {
             return;

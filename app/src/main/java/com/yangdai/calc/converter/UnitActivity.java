@@ -30,6 +30,8 @@ import com.yangdai.calc.R;
 import com.yangdai.calc.utils.TouchAnimation;
 import com.yangdai.calc.utils.Utils;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -70,7 +72,7 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.activity_change);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -122,11 +124,9 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
             public void onTabSelected(TabLayout.Tab tab) {
                 flag = tab.getPosition() + 1;
                 TextView textView = new TextView(UnitActivity.this);
-                if (textView != null) {
-                    textView.setText(tab.getText());
-                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                }
+                textView.setText(tab.getText());
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 tab.setCustomView(textView);
                 btInput.setText("");
                 btOutput.setText("");
@@ -177,13 +177,13 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
                         // swipe right
                         int selectedTabPosition = mTabLayout.getSelectedTabPosition();
                         if (selectedTabPosition > 0) {
-                            mTabLayout.getTabAt(selectedTabPosition - 1).select();
+                            Objects.requireNonNull(mTabLayout.getTabAt(selectedTabPosition - 1)).select();
                         }
                     } else if (e1.getX() > e2.getX()) {
                         // swipe left
                         int selectedTabPosition = mTabLayout.getSelectedTabPosition();
                         if (selectedTabPosition < mTabLayout.getTabCount() - 1) {
-                            mTabLayout.getTabAt(selectedTabPosition + 1).select();
+                            Objects.requireNonNull(mTabLayout.getTabAt(selectedTabPosition + 1)).select();
                         }
                     }
                 }

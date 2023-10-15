@@ -29,6 +29,7 @@ import com.yangdai.calc.utils.Utils;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -75,7 +76,7 @@ public class InvestmentFragment extends Fragment implements TextWatcher {
         settlementAmountEditText = view.findViewById(R.id.settlementAmountEditText);
         settlementAmountEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 settlementAmountEditText.clearFocus();
                 return true;
             }
@@ -139,8 +140,8 @@ public class InvestmentFragment extends Fragment implements TextWatcher {
 
     @SuppressLint("SetTextI18n")
     private void calculateRoi() {
-        double investmentAmount = Double.parseDouble(investmentAmountEditText.getText().toString());
-        double settlementAmount = Double.parseDouble(settlementAmountEditText.getText().toString());
+        double investmentAmount = Double.parseDouble(Objects.requireNonNull(investmentAmountEditText.getText()).toString());
+        double settlementAmount = Double.parseDouble(Objects.requireNonNull(settlementAmountEditText.getText()).toString());
 
         Date chosenTimeStartS;
         Date chosenTimeEndS;

@@ -22,6 +22,7 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -147,7 +148,7 @@ public class MyCrashHandler implements Thread.UncaughtExceptionHandler {
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                stringHashMap.put(field.getName(), field.get(null).toString());
+                stringHashMap.put(field.getName(), Objects.requireNonNull(field.get(null)).toString());
                 Log.d(TAG, field.getName() + " : " + field.get(null));
             } catch (Exception e) {
                 Log.e(TAG, "an error occurred when collect crash info", e);

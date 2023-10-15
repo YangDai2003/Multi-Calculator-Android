@@ -32,6 +32,7 @@ import com.yangdai.calc.R;
 import com.yangdai.calc.databinding.FragmentBankBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author 30415
@@ -71,7 +72,7 @@ public class BankFragment extends Fragment implements TextWatcher {
         editTextTime = binding.editTextTime;
         editTextTime.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 editTextTime.clearFocus();
                 return true;
             }
@@ -85,7 +86,7 @@ public class BankFragment extends Fragment implements TextWatcher {
 
         String[] arr = new String[]{getString(R.string.monthly), getString(R.string.quarterly), getString(R.string.half)
                 , getString(R.string.yearly), getString(R.string.end)};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, arr);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, arr);
         adapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -108,9 +109,9 @@ public class BankFragment extends Fragment implements TextWatcher {
 
     @SuppressLint("SetTextI18n")
     private void calculateInterest() {
-        double principal = Double.parseDouble(editTextPrincipal.getText().toString());
-        double interestRate = Double.parseDouble(editTextInterestRate.getText().toString());
-        int time = Integer.parseInt(editTextTime.getText().toString());
+        double principal = Double.parseDouble(Objects.requireNonNull(editTextPrincipal.getText()).toString());
+        double interestRate = Double.parseDouble(Objects.requireNonNull(editTextInterestRate.getText()).toString());
+        int time = Integer.parseInt(Objects.requireNonNull(editTextTime.getText()).toString());
         int compoundPeriods = 0;
         double interest = 0;
         switch (flag) {

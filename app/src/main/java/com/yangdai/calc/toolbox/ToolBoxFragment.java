@@ -105,7 +105,7 @@ public class ToolBoxFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View notes, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(notes, savedInstanceState);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         isGrid = sharedPreferences.getBoolean("GridLayout", true);
         getParentFragmentManager().setFragmentResultListener("ChangeLayout", getViewLifecycleOwner(), (requestKey, bundle) -> {
             isGrid = bundle.getBoolean("GridLayout", true);
@@ -135,7 +135,7 @@ public class ToolBoxFragment extends Fragment {
             newData.add(data.get(index));
         }
 
-        recyclerView = getView().findViewById(R.id.recyclerView);
+        recyclerView = requireView().findViewById(R.id.recyclerView);
         updateRecycleView(isGrid);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createItemTouchHelperCallback());

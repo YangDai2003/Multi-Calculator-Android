@@ -28,6 +28,7 @@ import com.yangdai.calc.R;
 import com.yangdai.calc.databinding.FragmentLoanBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author 30415
@@ -66,7 +67,7 @@ public class LoanFragment extends Fragment implements TextWatcher {
         etLoanPeriod = view.findViewById(R.id.etLoanPeriod);
         etLoanPeriod.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 etLoanPeriod.clearFocus();
                 return true;
             }
@@ -78,9 +79,9 @@ public class LoanFragment extends Fragment implements TextWatcher {
     }
 
     private void calculateLoan() {
-        double loanAmount = Double.parseDouble(etLoanAmount.getText().toString());
-        double interestRate = Double.parseDouble(etInterestRate.getText().toString()) / 100;
-        int loanPeriod = Integer.parseInt(etLoanPeriod.getText().toString());
+        double loanAmount = Double.parseDouble(Objects.requireNonNull(etLoanAmount.getText()).toString());
+        double interestRate = Double.parseDouble(Objects.requireNonNull(etInterestRate.getText()).toString()) / 100;
+        int loanPeriod = Integer.parseInt(Objects.requireNonNull(etLoanPeriod.getText()).toString());
 
         double monthlyInterestRate = interestRate / 12;
 

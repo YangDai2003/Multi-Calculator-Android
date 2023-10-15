@@ -48,7 +48,7 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewPager2 = view.findViewById(R.id.view_pager);
-        history = getActivity().getSharedPreferences("history", MODE_PRIVATE);
+        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
         history.registerOnSharedPreferenceChangeListener(this);
         updateScrollState();
         List<Fragment> fragments = new ArrayList<>();

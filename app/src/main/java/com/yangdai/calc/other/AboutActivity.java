@@ -28,6 +28,8 @@ import com.yangdai.calc.utils.PaymentUtil;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.elevation.SurfaceColors;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -42,7 +44,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.activity_about);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

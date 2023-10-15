@@ -18,14 +18,10 @@ public class UnitConverter {
 
         UnitValue unitValue = new UnitValue();
 
-        if (fromValue != null) {
-            value = value.multiply(fromValue);
-            value = value.divide(toValue, scale, BigDecimal.ROUND_HALF_UP);
-            unitValue.setValue(value);
-            unitValue.setUnit(to);
-        } else {
-            return null;
-        }
+        value = value.multiply(fromValue);
+        value = value.divide(toValue, scale, BigDecimal.ROUND_HALF_UP);
+        unitValue.setValue(value);
+        unitValue.setUnit(to);
         return unitValue;
     }
 }

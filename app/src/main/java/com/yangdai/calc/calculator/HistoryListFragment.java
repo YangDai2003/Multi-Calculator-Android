@@ -52,7 +52,7 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        history = getActivity().getSharedPreferences("history", MODE_PRIVATE);
+        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
         if (history != null) {
             history.registerOnSharedPreferenceChangeListener(this);
         }
@@ -89,7 +89,7 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
             Collections.reverse(savedStringList);
             textView.setVisibility(View.INVISIBLE);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item, savedStringList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), R.layout.list_item, savedStringList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             String content = savedStringList.get(i);
@@ -97,7 +97,7 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
                 Bundle result = new Bundle();
                 result.putString("select", content.split("=")[1].trim());
                 getParentFragmentManager().setFragmentResult("requestKey", result);
-                ViewPager2 viewPager = getParentFragment().requireView().findViewById(R.id.view_pager);
+                ViewPager2 viewPager = requireParentFragment().requireView().findViewById(R.id.view_pager);
                 viewPager.setCurrentItem(1);
             }
         });
@@ -113,7 +113,7 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
                     atBottomTime = 0;
                     listView.setSelection(0);
                     // 滑动到最底部
-                    ViewPager2 viewPager = getActivity().findViewById(R.id.view_pager);
+                    ViewPager2 viewPager = requireActivity().findViewById(R.id.view_pager);
                     viewPager.setCurrentItem(1);
                 }
             }

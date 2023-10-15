@@ -18,6 +18,8 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.databinding.ActivityBmiBinding;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -59,7 +61,7 @@ public class BMIActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         binding = ActivityBmiBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -102,8 +104,8 @@ public class BMIActivity extends AppCompatActivity {
         binding.commentLayout.setVisibility(View.GONE);
 
         try {
-            String cm = binding.heightCm.getText().toString();
-            String kg = binding.weightKg.getText().toString();
+            String cm = Objects.requireNonNull(binding.heightCm.getText()).toString();
+            String kg = Objects.requireNonNull(binding.weightKg.getText()).toString();
             if (TextUtils.isEmpty(kg)) {
                 binding.weightKg.setError("Can't be Empty or 0");
                 return;

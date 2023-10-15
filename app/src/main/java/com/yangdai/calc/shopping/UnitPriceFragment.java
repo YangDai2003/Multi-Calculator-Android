@@ -58,7 +58,7 @@ public class UnitPriceFragment extends Fragment implements TextWatcher {
         etQuantity.addTextChangedListener(this);
         etQuantity.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 etQuantity.clearFocus();
                 return true;
             }

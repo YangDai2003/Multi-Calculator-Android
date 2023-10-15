@@ -32,7 +32,9 @@ public class CurrencyAdapter extends ArrayAdapter<Currency> {
         Currency currency = getItem(position);
 
         TextView textView = convertView.findViewById(android.R.id.text1);
-        textView.setText(currency.symbol() + " - " + currency.chineseName() + " - " + currency.englishName());
+        if (currency != null) {
+            textView.setText(currency.symbol() + " - " + currency.chineseName() + " - " + currency.englishName());
+        }
 
         return convertView;
     }

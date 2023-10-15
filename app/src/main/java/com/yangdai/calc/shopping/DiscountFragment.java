@@ -54,7 +54,7 @@ public class DiscountFragment extends Fragment implements TextWatcher {
         etDiscountPercentage.addTextChangedListener(this);
         etDiscountPercentage.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 etDiscountPercentage.clearFocus();
                 return true;
             }

@@ -96,9 +96,9 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        settings = PreferenceManager.getDefaultSharedPreferences(requireContext());
         settings.registerOnSharedPreferenceChangeListener(this);
-        history = getActivity().getSharedPreferences("history", MODE_PRIVATE);
+        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
 
         // 初始化TextToSpeech对象
         tts = new TTS();
@@ -121,7 +121,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().equals(getString(R.string.formatError)) || editable.toString().equals(getString(R.string.bigNum))) {
-                    outputView.setTextColor(getActivity().getColor(R.color.wrong));
+                    outputView.setTextColor(requireActivity().getColor(R.color.wrong));
                 } else {
                     outputView.setTextColor(color);
                 }
@@ -153,11 +153,11 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             if (null != bundle.getString("select")) {
                 String selected = bundle.getString("select");
                 // 负数加括号
-                if (selected.contains("-")) {
+                if (selected != null && selected.contains("-")) {
                     selected = "(" + selected + ")";
                 }
                 String inputtedEquation = inputView.getText().toString();
-                if (inputtedEquation == null || inputtedEquation.isEmpty()) {
+                if (inputtedEquation.isEmpty()) {
                     // 输入框为空，直接显示点击的历史记录
                     inputView.setText(selected);
                 } else {
@@ -182,7 +182,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String s) {
         if ("vib".equals(s)) {
             for (int buttonId : BUTTON_IDS) {
-                View view = getView().findViewById(buttonId);
+                View view = requireView().findViewById(buttonId);
                 if (view != null) {
                     view.setHapticFeedbackEnabled(settings.getBoolean("vib", false));
                 }
@@ -254,7 +254,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
                 }
                 handleInverseButton(inputStr);
             } else if (v.getId() == R.id.switchViews) {
-                View view = getView();
+                View view = requireView();
                 if (!switched) {
                     ((Button) view.findViewById(R.id.sin)).setText("asin");
                     ((Button) view.findViewById(R.id.cos)).setText("acos");

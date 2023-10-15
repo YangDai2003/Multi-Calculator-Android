@@ -22,6 +22,8 @@ import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.R;
 import com.yangdai.calc.utils.Utils;
 
+import java.util.Objects;
+
 /**
  * @author 30415
  */
@@ -33,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.settings_activity);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -80,7 +82,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
-            defaultSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            defaultSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
 
             themePref = findPreference("theme");
             languagePref = findPreference("language");
@@ -95,7 +97,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         public boolean onPreferenceClick(@NonNull Preference preference) {
             if ("theme".equals(preference.getKey())) {
                 SharedPreferences.Editor editor = defaultSharedPrefs.edit();
-                new MaterialAlertDialogBuilder(getContext())
+                new MaterialAlertDialogBuilder(requireContext())
                         .setTitle(getString(R.string.theme))
                         .setSingleChoiceItems(
                                 new String[]{getString(R.string.light), getString(R.string.dark), getString(R.string.systemTheme)},
@@ -135,7 +137,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                     }
                 }
             } else if ("clean".equals(preference.getKey())) {
-                SharedPreferences history = getActivity().getSharedPreferences("history", MODE_PRIVATE);
+                SharedPreferences history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
                 SharedPreferences.Editor editor = history.edit();
                 editor.putString("newHistory", "");
                 if (editor.commit()) {

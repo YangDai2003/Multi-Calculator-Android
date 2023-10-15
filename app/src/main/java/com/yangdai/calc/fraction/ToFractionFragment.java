@@ -21,6 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
 import com.yangdai.calc.utils.Utils;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -53,7 +54,7 @@ public class ToFractionFragment extends Fragment implements TextWatcher {
         editText.addTextChangedListener(this);
         editText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                closeKeyboard(getActivity());
+                closeKeyboard(requireActivity());
                 editText.clearFocus();
                 return true;
             }
@@ -74,7 +75,7 @@ public class ToFractionFragment extends Fragment implements TextWatcher {
     @SuppressLint("SetTextI18n")
     @Override
     public void afterTextChanged(Editable editable) {
-        String input = editText.getText().toString();
+        String input = Objects.requireNonNull(editText.getText()).toString();
         if (input.isEmpty()) {
             textView.setText("_.__ = A / B");
             return;
