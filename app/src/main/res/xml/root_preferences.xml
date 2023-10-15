@@ -56,6 +56,14 @@
             app:title="@string/wake"
             app:widgetLayout="@drawable/material_switch" />
 
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:icon="@drawable/splitscreen"
+            app:key="split"
+            app:summary="@string/embedding_content"
+            app:title="@string/embedding"
+            app:widgetLayout="@drawable/material_switch" />
+
         <Preference
             android:icon="@drawable/theme_color"
             app:key="theme"

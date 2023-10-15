@@ -18,7 +18,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Looper;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -83,6 +84,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     boolean permissionChecked = false;
     boolean updated = false;
     private Geocoder geocoder;
+    private final HandlerThread handlerThread = new HandlerThread("LocationThread");
+    private Handler handler = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,9 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        handlerThread.start();
+        handler = new Handler(handlerThread.getLooper());
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         if (settings.getBoolean("screen", false)) {
@@ -149,43 +155,37 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     @SuppressLint("MissingPermission")
     private void getLocation() {
         if (isGoogleAvailable == ConnectionResult.SUCCESS) {
-            locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000).build();
-            locationCallback = new LocationCallback() {
-                @Override
-                public void onLocationResult(@NonNull LocationResult locationResult) {
-                    if (locationResult == null) {
-                        return;
+            handler.post(() -> {
+                locationRequest = new LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 1000).build();
+                locationCallback = new LocationCallback() {
+                    @Override
+                    public void onLocationResult(@NonNull LocationResult locationResult) {
+                        if (locationResult == null) {
+                            return;
+                        }
+                        update(locationResult.getLastLocation());
                     }
-                    for (Location location1 : locationResult.getLocations()) {
-                        Compass.this.location = location1;
-                        update(location1);
-                    }
-                }
-            };
-            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                    .addLocationRequest(locationRequest);
-            SettingsClient client = LocationServices.getSettingsClient(this);
-            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-            task.addOnFailureListener(this, e -> {
-                if (e instanceof ResolvableApiException) {
-                    try {
-                        ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                        resolvableApiException.startResolutionForResult(Compass.this, 2048);
-                    } catch (IntentSender.SendIntentException ignored) {
+                };
+                LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                        .addLocationRequest(locationRequest);
+                SettingsClient client = LocationServices.getSettingsClient(this);
+                Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+                task.addOnFailureListener(this, e -> {
+                    if (e instanceof ResolvableApiException) {
+                        try {
+                            ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                            resolvableApiException.startResolutionForResult(Compass.this, 2048);
+                        } catch (IntentSender.SendIntentException ignored) {
 
+                        }
                     }
-                }
+                });
+
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+                startLocationUpdates();
+                updated = true;
             });
 
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
-                if (location != null) {
-                    this.location = location;
-                    update(location);
-                }
-            });
-            startLocationUpdates();
-            updated = true;
         } else {
             Toast.makeText(getApplicationContext(), "Not available on this device.", Toast.LENGTH_LONG).show();
             finish();
@@ -194,17 +194,19 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
-        fusedLocationProviderClient
-                .requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, handlerThread.getLooper());
     }
 
     private void stopLocationUpdates() {
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        if (fusedLocationProviderClient != null) {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private void update(Location location) {
         if (location != null) {
+            this.location = location;
             getAddress(location);
             String coordinateStr = getString(R.string.latitude) + ": " + convertToDeg(location.getLatitude())
                     + " " + getString(R.string.longitude) + ": " + convertToDeg(location.getLongitude());
@@ -214,26 +216,29 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             String speedStr = getString(R.string.speed) + ": "
                     + BigDecimal.valueOf(location.getSpeed())
                     .setScale(2, BigDecimal.ROUND_HALF_UP) + " m/s";
-            tvLocation.setText(coordinateStr + "\n"
-                    + (addressStr == null ? "" : addressStr) + "\n"
-                    + altitudeStr + "\n"
-                    + speedStr + "\n"
-                    + (magneticFieldStrengthStr == null ? getString(R.string.magnetic) + ": " : magneticFieldStrengthStr) + "\n"
-                    + (pressureStr == null ? getString(R.string.air_pressure) + ": " : pressureStr));
             int mv = (int) Math.sqrt(Math.pow(magneticValues[0], 2) +
                     Math.pow(magneticValues[1], 2) + Math.pow(magneticValues[2], 2));
-            if (mv > 20 && mv < 60) {
-                findViewById(R.id.abnormal).setVisibility(View.INVISIBLE);
-            } else {
-                findViewById(R.id.abnormal).setVisibility(View.VISIBLE);
-            }
-
             isLocationRetrieved = true;
             latitude = (float) location.getLatitude();
             longitude = (float) location.getLongitude();
             altitude = (float) location.getAltitude();
             magneticDeclination = CompassHelper.calculateMagneticDeclination(latitude, longitude, altitude);
-            tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
+
+            runOnUiThread(() -> {
+                tvLocation.setText(coordinateStr + "\n"
+                        + (addressStr == null ? "" : addressStr) + "\n"
+                        + altitudeStr + "\n"
+                        + speedStr + "\n"
+                        + (magneticFieldStrengthStr == null ? getString(R.string.magnetic) + ": " : magneticFieldStrengthStr) + "\n"
+                        + (pressureStr == null ? getString(R.string.air_pressure) + ": " : pressureStr));
+
+                if (mv > 20 && mv < 60) {
+                    findViewById(R.id.abnormal).setVisibility(View.INVISIBLE);
+                } else {
+                    findViewById(R.id.abnormal).setVisibility(View.VISIBLE);
+                }
+                tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
+            });
         }
     }
 
@@ -267,6 +272,12 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handlerThread.quitSafely();
     }
 
     @SuppressLint("SetTextI18n")
@@ -323,25 +334,28 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         } else {
             direction = getString(R.string.northwest) + " " + (360 - angle) + "°";
         }
-        tvDegree.setText(direction);
 
-        if (isLocationRetrieved) {
-            float trueHeading = heading + magneticDeclination;
-            if (trueHeading > 360) {
-                // 如果trueHeading为362度，例如，它应该调整为2度
-                trueHeading = trueHeading - 360;
+        runOnUiThread(() -> {
+            tvDegree.setText(direction);
+
+            if (isLocationRetrieved) {
+                float trueHeading = heading + magneticDeclination;
+                if (trueHeading > 360) {
+                    // 如果trueHeading为362度，例如，它应该调整为2度
+                    trueHeading = trueHeading - 360;
+                }
+                tvTrueHeading.setText(getString(R.string.true_heading, (int) trueHeading));
+                magneticDeclination = CompassHelper.calculateMagneticDeclination(latitude, longitude, altitude);
+                tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
             }
-            tvTrueHeading.setText(getString(R.string.true_heading, (int) trueHeading));
-            magneticDeclination = CompassHelper.calculateMagneticDeclination(latitude, longitude, altitude);
-            tvMagneticDeclination.setText(getString(R.string.magnetic_declination, magneticDeclination));
-        }
 
-        RotateAnimation rotateAnimation
-                = new RotateAnimation(-oldHeading, -heading,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        rotateAnimation.setDuration(500);
-        rotateAnimation.setFillAfter(true);
-        imageViewCompass.startAnimation(rotateAnimation);
+            RotateAnimation rotateAnimation
+                    = new RotateAnimation(-oldHeading, -heading,
+                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            rotateAnimation.setDuration(500);
+            rotateAnimation.setFillAfter(true);
+            imageViewCompass.startAnimation(rotateAnimation);
+        });
     }
 
     /**

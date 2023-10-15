@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
@@ -91,16 +92,20 @@ public class ToDecimalFragment extends Fragment implements TextWatcher {
         equationStr.append(" = ");
 
         if (!a.isEmpty() && !b.isEmpty()) {
-            if (new BigDecimal(b).compareTo(BigDecimal.ZERO) != 0) {
-                String resStr;
-                try {
-                    resStr = Utils.fractionToDecimal(Integer.parseInt(a), Integer.parseInt(b));
-                } catch (Exception e) {
-                    resStr = "_.__";
+            try {
+                if (new BigDecimal(b).compareTo(BigDecimal.ZERO) != 0) {
+                    String resStr;
+                    try {
+                        resStr = Utils.fractionToDecimal(Integer.parseInt(a), Integer.parseInt(b));
+                    } catch (Exception e) {
+                        resStr = "_.__";
+                    }
+                    equationStr.append(resStr);
+                    textView.setText(equationStr);
+                    return;
                 }
-                equationStr.append(resStr);
-                textView.setText(equationStr);
-                return;
+            } catch (NumberFormatException e) {
+                Toast.makeText(requireContext(), getString(R.string.formatError), Toast.LENGTH_SHORT).show();
             }
         }
         equationStr.append("_.__");

@@ -72,7 +72,6 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
         android:layout_marginVertical="16dp"
         android:autoSizeMaxTextSize="80sp"
         android:autoSizeTextType="uniform"

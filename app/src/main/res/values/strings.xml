@@ -251,5 +251,8 @@
     <string name="Permission_Dialog_Messege">Enable \'Display over other apps\' from System Settings.</string>
     <string name="Open_Settings">Open Settings</string>
     <string name="switch_layout">Switch Layout</string>
+    <string name="embedding">Activity Embedding</string>
+    <string name="embedding_content">Display activities in parallel on large-screen devices</string>
+    <string name="restart">Restart the app to take effect</string>
 
 </resources>

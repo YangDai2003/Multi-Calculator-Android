@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,7 @@ public class PickerFragment extends Fragment {
         String minText = minValueEditText.getText().toString();
         String maxText = maxValueEditText.getText().toString();
 
-        if (minText == null || minText.isEmpty() || maxText == null || maxText.isEmpty()) {
+        if (TextUtils.isEmpty(minText) || TextUtils.isEmpty(maxText)) {
             return false;
         }
 
@@ -120,7 +121,7 @@ public class PickerFragment extends Fragment {
     private final Runnable rollingRunnable = new Runnable() {
         @Override
         public void run() {
-            if (minValueEditText.getText().toString().isEmpty() || maxValueEditText.getText().toString().isEmpty()) {
+            if (!validateInput()) {
                 return;
             }
             try {

@@ -81,14 +81,19 @@ public class TTS implements TextToSpeech.OnInitListener {
             Locale appLocale = mContext.getResources().getConfiguration().getLocales().get(0);
 
             // 设置TextToSpeech的语言为应用语言
-            int result = textToSpeech.setLanguage(appLocale);
-            textToSpeech.setSpeechRate(1.2f);
-            textToSpeech.setPitch(0.8f);
+            if (textToSpeech != null) {
+                int result = textToSpeech.setLanguage(appLocale);
+                textToSpeech.setSpeechRate(1.2f);
+                textToSpeech.setPitch(0.8f);
 
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                textToSpeech = null;
-                // 语言数据缺失或不支持，无法进行语音播报
-                Log.e("TTS", "Language pack is missing");
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    textToSpeech = null;
+                    // 语言数据缺失或不支持，无法进行语音播报
+                    Log.e("TTS", "Language pack is missing");
+                    initializationListener.onTTSInitialized(false);
+                }
+            } else {
+                Log.e("TTS", "TextToSpeech object is null");
                 initializationListener.onTTSInitialized(false);
             }
         } else {
@@ -100,14 +105,19 @@ public class TTS implements TextToSpeech.OnInitListener {
                     Locale appLocale = mContext.getResources().getConfiguration().getLocales().get(0);
 
                     // 设置TextToSpeech的语言为应用语言
-                    int result = textToSpeech.setLanguage(appLocale);
-                    textToSpeech.setSpeechRate(1.2f);
-                    textToSpeech.setPitch(0.8f);
+                    if (textToSpeech != null) {
+                        int result = textToSpeech.setLanguage(appLocale);
+                        textToSpeech.setSpeechRate(1.2f);
+                        textToSpeech.setPitch(0.8f);
 
-                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        textToSpeech = null;
-                        // 语言数据缺失或不支持，无法进行语音播报
-                        Log.e("TTS", "Language pack is missing");
+                        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                            textToSpeech = null;
+                            // 语言数据缺失或不支持，无法进行语音播报
+                            Log.e("TTS", "Language pack is missing");
+                            initializationListener.onTTSInitialized(false);
+                        }
+                    } else {
+                        Log.e("TTS", "TextToSpeech object is null");
                         initializationListener.onTTSInitialized(false);
                     }
                 } else {

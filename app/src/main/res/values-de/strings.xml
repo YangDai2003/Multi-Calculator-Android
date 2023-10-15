@@ -234,4 +234,7 @@
     <string name="Permission_Dialog_Messege">Aktivieren Sie ‚Anzeige über anderen Apps‘ in den Systemeinstellungen.</string>
     <string name="Open_Settings">Einstellungen öffnen</string>
     <string name="switch_layout">Layout umschalten</string>
+    <string name="embedding">Aktivitätseinbettung</string>
+    <string name="embedding_content">Zeigen Sie Aktivitäten parallel auf Großbildgeräten an.</string>
+    <string name="restart">Bitte starten Sie die App neu</string>
 </resources>

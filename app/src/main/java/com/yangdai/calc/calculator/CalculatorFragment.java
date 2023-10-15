@@ -26,6 +26,7 @@ import androidx.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -583,17 +584,22 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
     }
 
     private void updateSpeaker() {
-        ImageButton readoutButton = getView().findViewById(R.id.speak);
-        if (!ttsAvailable) {
-            readoutButton.setVisibility(View.INVISIBLE);
-        } else {
-            readoutButton.bringToFront();
-            readoutButton.setOnClickListener(v -> {
-                if (!inputView.getText().toString().isEmpty() && !outputView.getText().toString().isEmpty()) {
-                    String text = inputView.getText().toString() + "= " + outputView.getText().toString();
-                    tts.ttsSpeak(text);
-                }
-            });
+        try {
+            ImageButton readoutButton = requireView().findViewById(R.id.speak);
+            if (!ttsAvailable) {
+                readoutButton.setVisibility(View.INVISIBLE);
+            } else {
+                readoutButton.setVisibility(View.VISIBLE);
+                readoutButton.bringToFront();
+                readoutButton.setOnClickListener(v -> {
+                    if (!inputView.getText().toString().isEmpty() && !outputView.getText().toString().isEmpty()) {
+                        String text = inputView.getText().toString() + "= " + outputView.getText().toString();
+                        tts.ttsSpeak(text);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Log.e("updateSpeaker", e.toString());
         }
     }
 }

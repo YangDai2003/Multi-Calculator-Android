@@ -12,7 +12,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  */
 public class TouchAnimation implements View.OnTouchListener {
     private static final float SCALE_DOWN_FACTOR = 0.75f;
-    private static final long ANIMATION_DURATION = 120;
+    private static final long ANIMATION_DURATION = 100;
 
     private final View view;
     private ObjectAnimator xAnimator;

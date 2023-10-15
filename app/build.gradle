@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 42
-        versionName '5.2'
+        versionCode 44
+        versionName '5.4'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.window:window:1.1.0'
     implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
     implementation 'com.tbuonomo:dotsindicator:5.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
@@ -59,7 +60,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.preference:preference:1.2.1'
 }

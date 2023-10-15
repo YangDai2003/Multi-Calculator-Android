@@ -38,7 +38,7 @@ public class DateDifferCalcFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_page_date_diff_calc, container, false);
+        return inflater.inflate(R.layout.fragmen_date_diff_calc, container, false);
     }
 
     @Override

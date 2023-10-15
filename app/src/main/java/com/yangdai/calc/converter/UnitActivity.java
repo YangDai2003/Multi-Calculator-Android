@@ -211,13 +211,16 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
                 tvInput.setText(editText);
             }
         } else {
-            String append = ((MaterialButton) v).getText().toString();
-            if (".".equals(append)) {
-                if (editText.length() == 0 || editText.toString().contains(".")) {
-                    return;
+            // 限制输入长度
+            if (editText.toString().length() < 9) {
+                String append = ((MaterialButton) v).getText().toString();
+                if (".".equals(append)) {
+                    if (editText.length() == 0 || editText.toString().contains(".")) {
+                        return;
+                    }
                 }
+                tvInput.setText(editText + append);
             }
-            tvInput.setText(editText + append);
         }
     }
 

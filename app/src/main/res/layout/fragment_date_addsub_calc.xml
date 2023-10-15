@@ -131,7 +131,7 @@
                 android:hint="0"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:maxLines="10"
+                android:maxLength="5"
                 android:textAlignment="textEnd"
                 tools:ignore="HardcodedText,LabelFor" />
 

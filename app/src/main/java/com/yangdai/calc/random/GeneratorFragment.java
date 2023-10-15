@@ -115,6 +115,10 @@ public class GeneratorFragment extends Fragment {
         int min = Integer.parseInt(minText);
         int max = Integer.parseInt(maxText);
 
+        if (count == 0) {
+            return false;
+        }
+
         if (!repeat) {
             if (count > Math.abs(max - min) + 1) {
                 return false;
@@ -187,6 +191,14 @@ public class GeneratorFragment extends Fragment {
                 randomNumberTextView.setText(randomNumberTextView.getText().toString() + randomNumbersList.get(index) + ", ");
             }
             index++;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
     }
 }

@@ -65,6 +65,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         if (defaultSharedPrefs.getBoolean("vib", false)) {
             Utils.vibrate(this);
         }
+        if (key.equals("split")) {
+            Toast.makeText(this, getString(R.string.restart), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat

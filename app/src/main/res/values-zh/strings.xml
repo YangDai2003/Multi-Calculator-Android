@@ -231,4 +231,7 @@
     <string name="Permission_Dialog_Messege">请在系统设置中打开权限。</string>
     <string name="Open_Settings">前往设置</string>
     <string name="switch_layout">切换布局</string>
+    <string name="embedding">平行窗口</string>
+    <string name="embedding_content">在大屏设备上显示平行窗口</string>
+    <string name="restart">重启应用以生效</string>
 </resources>
