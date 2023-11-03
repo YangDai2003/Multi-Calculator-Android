@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 44
-        versionName '5.4'
+        versionCode 45
+        versionName '5.5'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -49,13 +49,13 @@ android {
 
 dependencies {
     implementation 'androidx.window:window:1.1.0'
-    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.20'))
     implementation 'com.tbuonomo:dotsindicator:5.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
-    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation platform('com.google.firebase:firebase-bom:32.5.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
 

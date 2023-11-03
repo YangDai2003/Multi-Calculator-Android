@@ -6,7 +6,10 @@ import static android.content.Context.VIBRATOR_SERVICE;
 import android.app.Activity;
 import android.content.Context;
 import android.icu.math.BigDecimal;
-import android.icu.text.DecimalFormat;
+import android.icu.number.NumberFormatter;
+import android.icu.number.Precision;
+import android.icu.text.NumberFormat;
+import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.os.VibratorManager;
@@ -16,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -70,8 +74,14 @@ public class Utils {
     public static String formatNumber(String number) {
         try {
             BigDecimal bigDecimal = new BigDecimal(number);
-            DecimalFormat format = new DecimalFormat("###,###.##########");
-            return format.format(bigDecimal);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                return NumberFormatter.withLocale(Locale.getDefault())
+                        .format(bigDecimal)
+                        .toString();
+            } else {
+                NumberFormat numberFormat = NumberFormat.getNumberInstance();
+                return numberFormat.format(bigDecimal);
+            }
         } catch (Exception e) {
             return "";
         }
@@ -83,8 +93,16 @@ public class Utils {
     public static String formatNumberFinance(String number) {
         try {
             BigDecimal bigDecimal = new BigDecimal(number);
-            DecimalFormat format = new DecimalFormat("###,###.##");
-            return format.format(bigDecimal);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                return NumberFormatter.withLocale(Locale.getDefault())
+                        .precision(Precision.maxFraction(2))
+                        .format(bigDecimal)
+                        .toString();
+            } else {
+                NumberFormat numberFormat = NumberFormat.getNumberInstance();
+                numberFormat.setMaximumFractionDigits(2);
+                return numberFormat.format(bigDecimal);
+            }
         } catch (Exception e) {
             return "";
         }
@@ -216,9 +234,11 @@ public class Utils {
         }
         if (remainder != 0) {
             // 有循环节
-            int insertIndex = remainderIndexMap.get(remainder);
-            fractionPart.insert(insertIndex, '(');
-            fractionPart.append(')');
+            Integer insertIndex = remainderIndexMap.get(remainder);
+            if (insertIndex != null) {
+                fractionPart.insert(insertIndex.intValue(), '(');
+                fractionPart.append(')');
+            }
         }
 
         sb.append(fractionPart);

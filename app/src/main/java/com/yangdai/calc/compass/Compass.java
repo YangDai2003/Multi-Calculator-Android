@@ -122,8 +122,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         @SuppressLint("MissingPermission") ActivityResultLauncher<String[]> locationPermissionRequest =
                 registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
-                    boolean fineLocationGranted = result.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false);
-                    boolean coarseLocationGranted = result.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false);
+                    boolean fineLocationGranted = Boolean.TRUE.equals(result.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false));
+                    boolean coarseLocationGranted = Boolean.TRUE.equals(result.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false));
                     if (fineLocationGranted || coarseLocationGranted) {
                         permissionChecked = true;
                         getLocation();
@@ -315,19 +315,19 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         int angle = (int) heading;
         String direction;
-        if (angle > 358 && angle < 2) {
+        if (angle > 358 || angle < 2) {
             direction = getString(R.string.north);
-        } else if (angle >= 2 && angle <= 88) {
+        } else if (angle <= 88) {
             direction = getString(R.string.northeast) + " " + angle + "°";
-        } else if (angle > 88 && angle < 92) {
+        } else if (angle < 92) {
             direction = getString(R.string.east);
-        } else if (angle >= 92 && angle <= 178) {
+        } else if (angle <= 178) {
             direction = getString(R.string.southeast) + " " + (180 - angle) + "°";
-        } else if (angle > 178 && angle < 182) {
+        } else if (angle < 182) {
             direction = getString(R.string.south);
-        } else if (angle >= 182 && angle <= 268) {
+        } else if (angle <= 268) {
             direction = getString(R.string.southwest) + " " + (angle - 180) + "°";
-        } else if (angle > 268 && angle < 272) {
+        } else if (angle < 272) {
             direction = getString(R.string.west);
         } else {
             direction = getString(R.string.northwest) + " " + (360 - angle) + "°";

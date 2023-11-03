@@ -100,7 +100,7 @@ public class TTS implements TextToSpeech.OnInitListener {
             textToSpeech = null;
             // 可能遇到手机内置讯飞tts
             textToSpeech = new TextToSpeech(mContext, i -> {
-                if (status == TextToSpeech.SUCCESS) {
+                if (i == TextToSpeech.SUCCESS) {
                     // 获取应用语言设置
                     Locale appLocale = mContext.getResources().getConfiguration().getLocales().get(0);
 

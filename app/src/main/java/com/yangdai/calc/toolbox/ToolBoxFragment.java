@@ -75,19 +75,19 @@ public class ToolBoxFragment extends Fragment {
     @SuppressLint("UseCompatLoadingForDrawables")
     private List<ToolBoxItem> createToolBoxItems() {
         List<ToolBoxItem> items = new ArrayList<>();
-        items.add(new ToolBoxItem(UNIT_ACTIVITY_ID, getString(R.string.ChangeActivity), getResources().getDrawable(R.drawable.unit_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(DATE_RANGE_ACTIVITY_ID, getString(R.string.dateActivity), getResources().getDrawable(R.drawable.date_range_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(FINANCE_ACTIVITY_ID, getString(R.string.financeActivity), getResources().getDrawable(R.drawable.finance_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(COMPASS_ACTIVITY_ID, getString(R.string.compassActivity), getResources().getDrawable(R.drawable.compass_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(BMI_ACTIVITY_ID, getString(R.string.bmiActivity), getResources().getDrawable(R.drawable.bmi_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(SHOPPING_ACTIVITY_ID, getString(R.string.shoppingActivity), getResources().getDrawable(R.drawable.discount_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(CURRENCY_ACTIVITY_ID, getString(R.string.exchangeActivity), getResources().getDrawable(R.drawable.currency_exchange_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(CHINESE_NUMBER_CONVERSION_ACTIVITY_ID, getString(R.string.chineseNumberConverter), getResources().getDrawable(R.drawable.chinese_number_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(RELATIONSHIP_ACTIVITY_ID, getString(R.string.relationshipActivity), getResources().getDrawable(R.drawable.relation_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(RANDOM_ACTIVITY_ID, getString(R.string.randomActivity), getResources().getDrawable(R.drawable.random_number_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(FUNCTION_ACTIVITY_ID, getString(R.string.functionActivity), getResources().getDrawable(R.drawable.functions_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(STATISTICS_ACTIVITY_ID, getString(R.string.statisticActivity), getResources().getDrawable(R.drawable.statistics_icon, getContext().getTheme())));
-        items.add(new ToolBoxItem(FRACTION_ACTIVITY_ID, getString(R.string.numberConvert), getResources().getDrawable(R.drawable.fraction, getContext().getTheme())));
+        items.add(new ToolBoxItem(UNIT_ACTIVITY_ID, getString(R.string.ChangeActivity), getResources().getDrawable(R.drawable.unit_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(DATE_RANGE_ACTIVITY_ID, getString(R.string.dateActivity), getResources().getDrawable(R.drawable.date_range_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(FINANCE_ACTIVITY_ID, getString(R.string.financeActivity), getResources().getDrawable(R.drawable.finance_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(COMPASS_ACTIVITY_ID, getString(R.string.compassActivity), getResources().getDrawable(R.drawable.compass_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(BMI_ACTIVITY_ID, getString(R.string.bmiActivity), getResources().getDrawable(R.drawable.bmi_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(SHOPPING_ACTIVITY_ID, getString(R.string.shoppingActivity), getResources().getDrawable(R.drawable.discount_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(CURRENCY_ACTIVITY_ID, getString(R.string.exchangeActivity), getResources().getDrawable(R.drawable.currency_exchange_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(CHINESE_NUMBER_CONVERSION_ACTIVITY_ID, getString(R.string.chineseNumberConverter), getResources().getDrawable(R.drawable.chinese_number_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(RELATIONSHIP_ACTIVITY_ID, getString(R.string.relationshipActivity), getResources().getDrawable(R.drawable.relation_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(RANDOM_ACTIVITY_ID, getString(R.string.randomActivity), getResources().getDrawable(R.drawable.random_number_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(FUNCTION_ACTIVITY_ID, getString(R.string.functionActivity), getResources().getDrawable(R.drawable.functions_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(STATISTICS_ACTIVITY_ID, getString(R.string.statisticActivity), getResources().getDrawable(R.drawable.statistics_icon, requireContext().getTheme())));
+        items.add(new ToolBoxItem(FRACTION_ACTIVITY_ID, getString(R.string.numberConvert), getResources().getDrawable(R.drawable.fraction, requireContext().getTheme())));
         return items;
     }
 

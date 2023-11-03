@@ -1,6 +1,6 @@
 package com.yangdai.calc.compass;
 
-import java.util.GregorianCalendar;
+import android.hardware.GeomagneticField;
 
 /**
  * @author 30415
@@ -10,7 +10,7 @@ public class CompassHelper {
      * 0 ≤ ALPHA ≤ 1
      * 较小的ALPHA值会导致更平滑的传感器数据，但更新速度较慢
      */
-    public static final float ALPHA = 0.15f;
+    public static final float ALPHA = 0.12f;
 
     public static float calculateHeading(float[] accelerometerReading, float[] magnetometerReading) {
         float ax = accelerometerReading[0];
@@ -47,10 +47,16 @@ public class CompassHelper {
         return (float) Math.atan2(hy, my);
     }
 
+    /**
+     * 获取真北与磁北的磁偏角
+     */
     public static float calculateMagneticDeclination(double latitude, double longitude, double altitude) {
-        TSAGeoMag geoMag = new TSAGeoMag();
-        return (float) geoMag
-                .getDeclination(latitude, longitude, geoMag.decimalYear(new GregorianCalendar()), altitude);
+        GeomagneticField geomagneticField =
+                new GeomagneticField((float) latitude,
+                        (float) longitude,
+                        (float) altitude,
+                        System.currentTimeMillis());
+        return geomagneticField.getDeclination();
     }
 
     public static float convertRadioDeg(float rad) {

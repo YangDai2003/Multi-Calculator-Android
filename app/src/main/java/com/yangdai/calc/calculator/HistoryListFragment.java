@@ -35,6 +35,7 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
     private int atBottomTime = 0;
     private TextView textView;
 
+
     public HistoryListFragment() {
     }
 
