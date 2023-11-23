@@ -1,12 +1,12 @@
 package com.yangdai.calc.main;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.BackEventCompat;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -15,20 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yangdai.calc.R;
-import com.yangdai.calc.calculator.CalculatorFragment;
-import com.yangdai.calc.calculator.HistoryListFragment;
+import com.yangdai.calc.main.calculator.CalculatorFragment;
+import com.yangdai.calc.main.calculator.HistoryListFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author 30415
  */
-public class MainFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainFragment extends Fragment {
+    private MyPagerAdapter myPagerAdapter;
     private ViewPager2 viewPager2;
-    private boolean scrollable;
-    SharedPreferences history;
 
     public MainFragment() {
     }
@@ -38,8 +36,16 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(HistoryListFragment.newInstance());
+        fragments.add(CalculatorFragment.newInstance());
+        myPagerAdapter = new MyPagerAdapter(getChildFragmentManager(), getLifecycle(), fragments);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
@@ -48,38 +54,43 @@ public class MainFragment extends Fragment implements SharedPreferences.OnShared
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewPager2 = view.findViewById(R.id.view_pager);
-        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
-        history.registerOnSharedPreferenceChangeListener(this);
-        updateScrollState();
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(HistoryListFragment.newInstance());
-        fragments.add(CalculatorFragment.newInstance());
-        MyPagerAdapter pagerAdapter = new MyPagerAdapter(getChildFragmentManager(), getLifecycle(), fragments);
-        viewPager2.setAdapter(pagerAdapter);
+        viewPager2.setAdapter(myPagerAdapter);
+        viewPager2.setPageTransformer(new DepthPageTransformer());
         viewPager2.setCurrentItem(1, false);
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    viewPager2.setUserInputEnabled(true);
-                } else {
-                    viewPager2.setUserInputEnabled(scrollable);
+                if (position == 0) {
+                    callback.setEnabled(true);
                 }
             }
         });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String s) {
-        if ("newHistory".equals(s)) {
-            updateScrollState();
+    final OnBackPressedCallback callback = new OnBackPressedCallback(false) {
+
+        @Override
+        public void handleOnBackPressed() {
+            if (viewPager2.getCurrentItem() == 0) {
+                viewPager2.setCurrentItem(1);
+            }
+            this.setEnabled(false);
         }
-    }
 
-    private void updateScrollState() {
-        String historys = history.getString("newHistory", "");
-        List<String> savedStringList = new ArrayList<>(Arrays.asList(historys.split("//")));
-        savedStringList.removeIf(String::isEmpty);
-        scrollable = savedStringList.size() < 8;
-    }
+        @RequiresApi(34)
+        @Override
+        public void handleOnBackCancelled() {
+            super.handleOnBackCancelled();
+            viewPager2.setCurrentItem(0);
+        }
+
+        @RequiresApi(34)
+        @Override
+        public void handleOnBackProgressed(@NonNull BackEventCompat backEvent) {
+            super.handleOnBackProgressed(backEvent);
+            viewPager2.setCurrentItem(1);
+        }
+    };
 }

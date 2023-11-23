@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yangdai.calc.compass.Compass">
+    tools:context=".main.toolbox.functions.compass.Compass">
 
     <LinearLayout
         android:id="@+id/linear_layout_values"

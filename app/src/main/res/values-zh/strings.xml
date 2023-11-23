@@ -103,7 +103,6 @@
     <string name="call">称呼:</string>
     <string name="male">男</string>
     <string name="female">女</string>
-    <string name="calculator">计算器</string>
     <string name="historys">历史记录</string>
     <string name="inverseCall">交换身份</string>
     <string name="type_in">请输入</string>
@@ -178,12 +177,10 @@
     <string name="tips">小贴士</string>
     <string name="updateDate">数据更新日期为:</string>
     <string name="powerUnit">功率</string>
-    <string name="hint">向下滑动显示历史记录。\n向左滑动显示更多功能。</string>
     <string name="air_pressure">大气压强</string>
     <string name="bigNum">数值过大</string>
     <string name="formatError">无效输入</string>
     <string name="_30_60_t">磁场环境异常，正常范围在20~60μT</string>
-    <string name="more">工具箱</string>
     <string name="randomActivity">随机数字</string>
     <string name="generator">随机数生成</string>
     <string name="draw">随机数抽取</string>

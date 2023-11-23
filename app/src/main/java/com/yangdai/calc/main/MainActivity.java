@@ -29,10 +29,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.elevation.SurfaceColors;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 import com.yangdai.calc.R;
-import com.yangdai.calc.floating.FloatingWindow;
+import com.yangdai.calc.features.FloatingWindow;
 import com.yangdai.calc.other.AboutActivity;
 import com.yangdai.calc.other.SettingsActivity;
-import com.yangdai.calc.toolbox.ToolBoxFragment;
+import com.yangdai.calc.main.toolbox.ToolBoxFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -260,8 +260,10 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView recyclerView = (RecyclerView) ff.get(viewPager);
             Field touchSlopField = RecyclerView.class.getDeclaredField("mTouchSlop");
             touchSlopField.setAccessible(true);
-            int touchSlop = (int) touchSlopField.get(recyclerView);
-            touchSlopField.set(recyclerView, touchSlop * 5);
+            Integer touchSlop = (Integer) touchSlopField.get(recyclerView);
+            if (touchSlop != null) {
+                touchSlopField.set(recyclerView, touchSlop * 5);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

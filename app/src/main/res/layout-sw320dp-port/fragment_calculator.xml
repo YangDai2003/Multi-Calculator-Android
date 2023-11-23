@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_calculator_scene"
-    tools:context=".calculator.CalculatorFragment">
+    tools:context=".main.calculator.CalculatorFragment">
 
     <TextView
         android:id="@+id/edit"

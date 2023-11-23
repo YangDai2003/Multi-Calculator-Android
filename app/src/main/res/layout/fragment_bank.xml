@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".finance.BankFragment">
+    tools:context=".main.toolbox.functions.finance.BankFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

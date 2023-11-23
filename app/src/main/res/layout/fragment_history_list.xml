@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".calculator.HistoryListFragment">
+    tools:context=".main.calculator.HistoryListFragment">
 
     <TextView
         android:id="@+id/historyHint"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
+    <com.yangdai.calc.main.calculator.MyScrollListView
         android:id="@+id/historyList"
         android:layout_width="0dp"
         android:layout_height="0dp"

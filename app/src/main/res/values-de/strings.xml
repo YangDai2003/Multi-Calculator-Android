@@ -104,7 +104,6 @@
     <string name="call">Titel:</string>
     <string name="male">Männlich</string>
     <string name="female">Weiblich</string>
-    <string name="calculator">Rechner</string>
     <string name="historys">Verlauf</string>
     <string name="inverseCall">Identitäten tauschen</string>
     <string name="type_in">Eingeben</string>
@@ -181,12 +180,10 @@
     <string name="tips">Tipps</string>
     <string name="updateDate">Die Daten wurden aktualisiert am:</string>
     <string name="powerUnit">Leistung</string>
-    <string name="hint">Wischen Sie nach unten, um den Verlauf anzuzeigen, und wischen Sie nach links, um weitere Funktionen anzuzeigen.</string>
     <string name="air_pressure">Luftdruck</string>
     <string name="bigNum">Der Wert ist zu groß</string>
     <string name="formatError">Ungültige Eingabe</string>
     <string name="_30_60_t">Die Magnetfeldumgebung ist abnormal, der normale Bereich liegt bei 20–60 μT</string>
-    <string name="more">Toolbox</string>
     <string name="randomActivity">Zufallszahlen</string>
     <string name="generator">Generator</string>
     <string name="draw">Ziehung</string>

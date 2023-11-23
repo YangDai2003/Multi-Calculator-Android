@@ -10,7 +10,7 @@
         <!--        android:shortcutDisabledMessage="@string/compose_disabled_message1">-->
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.yangdai.calc.converter.UnitActivity"
+            android:targetClass="com.yangdai.calc.main.toolbox.functions.converter.UnitActivity"
             android:targetPackage="com.yangdai.calc" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
@@ -23,7 +23,7 @@
         android:shortcutShortLabel="@string/exchangeActivity">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.yangdai.calc.currency.CurrencyActivity"
+            android:targetClass="com.yangdai.calc.main.toolbox.functions.currency.CurrencyActivity"
             android:targetPackage="com.yangdai.calc" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />

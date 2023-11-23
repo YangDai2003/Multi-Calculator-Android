@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.FunctionActivity">
+    tools:context=".main.toolbox.functions.function.FunctionActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view"

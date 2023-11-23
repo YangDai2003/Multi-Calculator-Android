@@ -117,7 +117,6 @@
     <string name="call">Title:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="calculator">Calculator</string>
     <string name="historys">History</string>
     <string name="inverseCall">Swap Identities</string>
     <string name="type_in">Type in</string>
@@ -194,12 +193,10 @@
     <string name="tips">Tips</string>
     <string name="updateDate">The data was updated on:</string>
     <string name="powerUnit">Power</string>
-    <string name="hint">Slide down to display history.\nSwipe left to show more functions.</string>
     <string name="air_pressure">Atmospheric Pressure</string>
     <string name="bigNum">The value is too large</string>
     <string name="formatError">Invalid Input</string>
     <string name="_30_60_t">The magnetic field environment is abnormal, the normal range is 20~60μT</string>
-    <string name="more">Toolbox</string>
     <string name="randomActivity">Random Number</string>
     <string name="generator">Generator</string>
     <string name="draw">Draw</string>

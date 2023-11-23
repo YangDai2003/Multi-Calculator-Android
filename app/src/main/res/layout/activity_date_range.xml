@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".time.DateRangeActivity">
+    tools:context=".main.toolbox.functions.time.DateRangeActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_view"

@@ -33,7 +33,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentMore"
-        android:name="com.yangdai.calc.toolbox.ToolBoxFragment"
+        android:name="com.yangdai.calc.main.toolbox.ToolBoxFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
