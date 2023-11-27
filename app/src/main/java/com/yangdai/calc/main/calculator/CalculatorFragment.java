@@ -38,7 +38,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
         , View.OnClickListener, TTSInitializationListener {
     private TextView inputView;
     private TextView outputView;
-    SharedPreferences settings, history;
+    SharedPreferences defaultSp, historySp;
     private boolean switched = false;
     private TTS tts;
     private boolean ttsAvailable;
@@ -76,9 +76,9 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        settings = PreferenceManager.getDefaultSharedPreferences(requireContext());
-        settings.registerOnSharedPreferenceChangeListener(this);
-        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
+        defaultSp = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        defaultSp.registerOnSharedPreferenceChangeListener(this);
+        historySp = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
 
         // 初始化TextToSpeech对象
         tts = new TTS();
@@ -111,7 +111,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
         for (int buttonId : BUTTON_IDS) {
             View view1 = view.findViewById(buttonId);
             if (null != view1) {
-                view1.setHapticFeedbackEnabled(settings.getBoolean("vib", false));
+                view1.setHapticFeedbackEnabled(defaultSp.getBoolean("vib", false));
                 view1.setOnClickListener(this);
                 TouchAnimation touchAnimation = new TouchAnimation(view1);
                 view1.setOnTouchListener(touchAnimation);
@@ -139,10 +139,10 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
                     } else {
                         inputView.setText(inputtedEquation + "+" + selected);
                     }
-                    boolean useDeg = settings.getBoolean("mode", false);
+                    boolean useDeg = defaultSp.getBoolean("mode", false);
                     Calculator formulaUtil1 = new Calculator(useDeg);
                     fromUser = false;
-                    viewModel.handleEqualButton(inputView.getText().toString(), formulaUtil1, settings, history, fromUser, getString(R.string.bigNum), getString(R.string.formatError));
+                    viewModel.handleEqualButton(inputView.getText().toString(), formulaUtil1, defaultSp, historySp, fromUser, getString(R.string.bigNum), getString(R.string.formatError));
                 }
                 highlightSpecialSymbols(inputView);
             }
@@ -159,17 +159,17 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             for (int buttonId : BUTTON_IDS) {
                 View view = requireView().findViewById(buttonId);
                 if (view != null) {
-                    view.setHapticFeedbackEnabled(settings.getBoolean("vib", false));
+                    view.setHapticFeedbackEnabled(defaultSp.getBoolean("vib", false));
                 }
             }
         } else if ("scale".equals(s) || "mode".equals(s)) {
             String inputStr1 = inputView.getText().toString();
             //自动运算
-            boolean useDeg = settings.getBoolean("mode", false);
+            boolean useDeg = defaultSp.getBoolean("mode", false);
             if (inputStr1.length() > 0) {
                 Calculator formulaUtil1 = new Calculator(useDeg);
                 fromUser = false;
-                viewModel.handleEqualButton(inputStr1, formulaUtil1, settings, history, false, getString(R.string.bigNum), getString(R.string.formatError));
+                viewModel.handleEqualButton(inputStr1, formulaUtil1, defaultSp, historySp, false, getString(R.string.bigNum), getString(R.string.formatError));
             }
         }
     }
@@ -188,15 +188,15 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
         super.onDestroy();
         // 释放TextToSpeech资源
         tts.ttsDestroy();
-        settings.unregisterOnSharedPreferenceChangeListener(this);
+        defaultSp.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     @Override
     public void onClick(View v) {
 
-        boolean useDeg = settings.getBoolean("mode", false);
-        boolean canSpeak = settings.getBoolean("voice", false);
+        boolean useDeg = defaultSp.getBoolean("mode", false);
+        boolean canSpeak = defaultSp.getBoolean("voice", false);
 
         //获取输入
         String inputStr = inputView.getText().toString();
@@ -208,7 +208,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
                     tts.ttsSpeak(getString(R.string.equal));
                 }
                 fromUser = true;
-                viewModel.handleEqualButton(inputStr, formulaUtil, settings, history, true, getString(R.string.bigNum), getString(R.string.formatError));
+                viewModel.handleEqualButton(inputStr, formulaUtil, defaultSp, historySp, true, getString(R.string.bigNum), getString(R.string.formatError));
             } else if (v.getId() == R.id.Clean) {
                 if (canSpeak) {
                     tts.ttsSpeak(getString(R.string.resetInput));
@@ -258,7 +258,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
                 if (inputStr1.length() > 0) {
                     Calculator formulaUtil1 = new Calculator(useDeg);
                     fromUser = false;
-                    viewModel.handleEqualButton(inputStr1, formulaUtil1, settings, history, false, getString(R.string.bigNum), getString(R.string.formatError));
+                    viewModel.handleEqualButton(inputStr1, formulaUtil1, defaultSp, historySp, false, getString(R.string.bigNum), getString(R.string.formatError));
                 }
             }
         } catch (Exception e) {

@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 47
-        versionName '5.7'
+        versionCode 48
+        versionName '5.8'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
 
+    implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'androidx.activity:activity:1.8.1'
     implementation 'androidx.window:window:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

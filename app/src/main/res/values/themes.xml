@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.Material3.DynamicColors.Light">
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/background
+        </item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
@@ -11,7 +13,7 @@
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
     </style>
 
-    <style name="Theme.AppWidget.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight" >
+    <style name="Theme.AppWidget.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:windowBlurBehindEnabled" tools:targetApi="s">true</item>
         <item name="android:windowBlurBehindRadius" tools:targetApi="s">25dp</item>
         <item name="android:windowBackgroundBlurRadius" tools:targetApi="s">25dp</item>

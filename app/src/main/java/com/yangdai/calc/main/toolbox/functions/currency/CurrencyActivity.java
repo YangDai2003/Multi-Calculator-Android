@@ -41,7 +41,7 @@ import java.util.Objects;
  * @author 30415
  */
 public class CurrencyActivity extends AppCompatActivity {
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences defaultSp;
     private Spinner fromCurrencySpinner;
     private Spinner toCurrencySpinner;
     private EditText amountEditText;
@@ -81,9 +81,9 @@ public class CurrencyActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0f);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        defaultSp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (sharedPreferences.getBoolean("screen", false)) {
+        if (defaultSp.getBoolean("screen", false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -102,7 +102,7 @@ public class CurrencyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 calculateCurrency();
                 if (!first) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    SharedPreferences.Editor editor = defaultSp.edit();
                     editor.putInt("from", position);
                     editor.apply();
                 }
@@ -119,7 +119,7 @@ public class CurrencyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 calculateCurrency();
                 if (!first) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    SharedPreferences.Editor editor = defaultSp.edit();
                     editor.putInt("to", position);
                     editor.apply();
                 }
@@ -143,8 +143,8 @@ public class CurrencyActivity extends AppCompatActivity {
 
                 if (first) {
                     first = false;
-                    fromCurrencySpinner.setSelection(sharedPreferences.getInt("from", 0));
-                    toCurrencySpinner.setSelection(sharedPreferences.getInt("to", 0));
+                    fromCurrencySpinner.setSelection(defaultSp.getInt("from", 0));
+                    toCurrencySpinner.setSelection(defaultSp.getInt("to", 0));
                 }
 
                 String date;

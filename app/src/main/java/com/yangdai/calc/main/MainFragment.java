@@ -86,10 +86,17 @@ public class MainFragment extends Fragment {
             viewPager2.setCurrentItem(0);
         }
 
+//        @RequiresApi(34)
+//        @Override
+//        public void handleOnBackProgressed(@NonNull BackEventCompat backEvent) {
+//            super.handleOnBackProgressed(backEvent);
+//            viewPager2.setCurrentItem(1);
+//        }
+
         @RequiresApi(34)
         @Override
-        public void handleOnBackProgressed(@NonNull BackEventCompat backEvent) {
-            super.handleOnBackProgressed(backEvent);
+        public void handleOnBackStarted(@NonNull BackEventCompat backEvent) {
+            super.handleOnBackStarted(backEvent);
             viewPager2.setCurrentItem(1);
         }
     };
