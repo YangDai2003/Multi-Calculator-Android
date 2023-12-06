@@ -6,142 +6,152 @@
 
     <!-- Define a split for the named activity pair. -->
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".fraction.FractionActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.programmer.ProgrammerActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".algebra.StatisticsActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.fraction.FractionActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".function.FunctionActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.algebra.StatisticsActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".random.RandomNumberActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.equation.EquationActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".finance.FinanceActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.random.RandomNumberActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".shopping.ShoppingActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.finance.FinanceActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".relationship.RelationshipActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.shopping.ShoppingActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".ChineseNumberConversionActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.relationship.RelationshipActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".currency.CurrencyActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.chinese.ChineseNumberConversionActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".BMIActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.currency.CurrencyActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".time.DateRangeActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.bmi.BMIActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".compass.Compass"/>
+            window:secondaryActivityName=".main.toolbox.functions.time.DateRangeActivity" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName=".main.MainActivity"
-            window:secondaryActivityName=".converter.UnitActivity"/>
+            window:secondaryActivityName=".main.toolbox.functions.compass.Compass" />
     </SplitPairRule>
 
     <SplitPairRule
-        window:splitRatio="0.33"
-        window:splitMinWidthDp="840"
         window:finishPrimaryWithSecondary="never"
-        window:finishSecondaryWithPrimary="always">
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
+        <SplitPairFilter
+            window:primaryActivityName=".main.MainActivity"
+            window:secondaryActivityName=".main.toolbox.functions.converter.UnitActivity" />
+    </SplitPairRule>
+
+    <SplitPairRule
+        window:finishPrimaryWithSecondary="never"
+        window:finishSecondaryWithPrimary="always"
+        window:splitMinWidthDp="840"
+        window:splitRatio="0.33">
         <SplitPairFilter
             window:primaryActivityName="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            window:secondaryActivityName="com.google.android.gms.oss.licenses.OssLicensesActivity"/>
+            window:secondaryActivityName="com.google.android.gms.oss.licenses.OssLicensesActivity" />
     </SplitPairRule>
 </resources>
