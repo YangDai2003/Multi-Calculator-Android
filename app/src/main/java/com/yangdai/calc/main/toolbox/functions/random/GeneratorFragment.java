@@ -87,7 +87,7 @@ public class GeneratorFragment extends Fragment {
                 animatorSet.cancel();
                 randomNumber.setVisibility(View.GONE);
                 index = 0;
-                randomNumberTextView.setText(TextUtils.join(", ", randomNumbersList));
+                randomNumberTextView.setText(TextUtils.join(";  ", randomNumbersList));
                 generateButton.setText(getString(R.string.generate));
                 return;
             }
@@ -188,7 +188,7 @@ public class GeneratorFragment extends Fragment {
                 generateButton.setText(getString(R.string.generate));
                 randomNumberTextView.setText(randomNumberTextView.getText().toString() + randomNumbersList.get(index));
             } else {
-                randomNumberTextView.setText(randomNumberTextView.getText().toString() + randomNumbersList.get(index) + ", ");
+                randomNumberTextView.setText(randomNumberTextView.getText().toString() + randomNumbersList.get(index) + ";  ");
             }
             index++;
         }

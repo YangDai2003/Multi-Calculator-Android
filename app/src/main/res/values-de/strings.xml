@@ -10,17 +10,17 @@
     <string name="choose">Auswählen</string>
     <string name="length">Länge</string>
     <string name="area">Fläche</string>
-    <string name="numeration">Numerisches System</string>
+    <string name="programmer">Numerische Basis</string>
     <string name="volume">Volumen</string>
     <string name="help_us">HILF UNS</string>
-    <string name="rate">Bewerte diese App</string>
+    <string name="rate">Bewerten</string>
     <string name="social">SOZIALE MEDIEN</string>
     <string name="github">Github</string>
     <string name="other">ANDERE</string>
     <string name="privacy_policy">Datenschutzrichtlinie</string>
     <string name="app_version">Version</string>
     <string name="thank">Vielen Dank für die Benutzung!!!</string>
-    <string name="ChangeActivity">Einheitenrechner</string>
+    <string name="UnitsActivity">Einheit</string>
     <string name="clearAll">Alle Verlaufsdaten löschen</string>
     <string name="compassActivity">Kompass</string>
     <string name="mass">Masse</string>
@@ -28,9 +28,7 @@
     <string name="storage">Speicher</string>
     <string name="theme">Design</string>
     <string name="changeTheme">Ändere das Design der App</string>
-    <string name="light">Helles Design</string>
-    <string name="dark">Dunkles Design</string>
-    <string name="systemTheme">Dem System-Design folgen</string>
+
     <string name="longitude">Längengrad</string>
     <string name="latitude">Breitengrad</string>
     <string name="permission">Bitte stimmen Sie der Berechtigung zu, um alle Funktionen nutzen zu können.</string>
@@ -52,11 +50,11 @@
     <string name="wakeSummery">Verhindert, dass das Handy in den Ruhezustand wechselt, wenn die App im Vordergrund ist</string>
     <string name="language">Sprache</string>
     <string name="languageChange">Ändern Sie die Sprache der App</string>
-    <string name="share_this_app">Diese App teilen</string>
+    <string name="share_this_app">Teilen</string>
     <string name="shareContent">Laden Sie Multi-Rechner jetzt herunter! Es hat alles, was Sie für die Lösung von alltäglichen mathematischen Problemen, Einheitenumrechnungen, Datumsberechnungen, BMI-Berechnungen, Währungsumrechnungen und sogar einen Kompass benötigen. Es ist benutzerfreundlich mit einer schönen Benutzeroberfläche. Klicken Sie auf den Link, um herunterzuladen: https://play.google.com/store/apps/details?id=com.yangdai.calc</string>
     <string name="text_date_diff">Datumsintervall</string>
     <string name="text_addsub_date">Datumsberechnung</string>
-    <string name="dateActivity">Datumsrechner</string>
+    <string name="dateActivity">Datum</string>
     <string name="text_same_day">Gleicher Tag</string>
     <string name="startDate">Startdatum:</string>
     <string name="add">Addieren</string>
@@ -75,9 +73,9 @@
 
     <string name="reset">ZURÜCKSETZEN</string>
     <string name="kg">KG</string>
-    <string name="height_cm">Höhe in cm</string>
-    <string name="weight_kg">Gewicht in kg</string>
-    <string name="let_s_begin">Lassen Sie uns berechnen</string>
+    <string name="height_cm">Höhe:</string>
+    <string name="weight_kg">Gewicht:</string>
+
     <string name="underweight">Untergewicht</string>
     <string name="severely_underweight">Schweres Untergewicht</string>
     <string name="very_severely_underweight">Sehr schweres Untergewicht</string>
@@ -88,25 +86,21 @@
     <string name="obese_class_iii">Stark übergewichtig (Klasse III)</string>
     <string name="need_healthy">Für ein gesundes Leben müssen Sie erhöhen:</string>
     <string name="lose_healthy">Für ein gesundes Leben müssen Sie verringern:</string>
-    <string name="exchangeActivity">Währungsumrechner</string>
-    <string name="from_currency">Von:</string>
-    <string name="to_currency">Zu:</string>
-    <string name="amount_to_convert">Zu konvertierender Betrag:</string>
-    <string name="conversion_rate">Konvertierter Betrag:</string>
-    <string name="app_osl">Open Source-Lizenzen</string>
+    <string name="exchangeActivity">Währung</string>
+
+    <string name="app_osl">Open Source Lizenzen</string>
     <string name="chineseNumberConverter">Chinesischer Zahlwandler</string>
     <string name="donate">Spenden</string>
     <string name="arabic_numbers">Arabische Ziffern:</string>
     <string name="chinese_big_numbers">Große chinesische Ziffern:</string>
     <string name="email">E-Mail</string>
-    <string name="relationshipActivity">Verwandtschaftstitel-Rechner</string>
+    <string name="relationshipActivity">Verwandtschaftstitel</string>
     <string name="relationship">Verwandtschaft:</string>
     <string name="call">Titel:</string>
     <string name="male">Männlich</string>
     <string name="female">Weiblich</string>
     <string name="historys">Verlauf</string>
     <string name="inverseCall">Identitäten tauschen</string>
-    <string name="type_in">Eingeben</string>
     <string name="resize">Größe ändern</string>
     <string name="discount_fragment">Rabatt</string>
     <string name="originalPrice">Ursprünglicher Preis:</string>
@@ -117,11 +111,11 @@
 
     <string name="newest">Bereits die neueste Version</string>
     <string name="checkNet">Netzwerkfehler</string>
-    <string name="ecb">Verwendung von Echtzeit-Wechselkursdaten von der Europäischen Zentralbank</string>
+    <string name="ecb">Verwendung von Wechselkursdaten von der Europäischen Zentralbank</string>
     <string name="bankFragment">Bankeinlage</string>
     <string name="roiFragment">Rendite der Investition</string>
     <string name="loanFragment">Darlehen</string>
-    <string name="financeActivity">Finanzrechner</string>
+    <string name="financeActivity">Finanz</string>
     <string name="monthly">Monatlich</string>
     <string name="quarterly">Vierteljährlich</string>
     <string name="half">Alle halben Jahre</string>
@@ -184,7 +178,7 @@
     <string name="bigNum">Der Wert ist zu groß</string>
     <string name="formatError">Ungültige Eingabe</string>
     <string name="_30_60_t">Die Magnetfeldumgebung ist abnormal, der normale Bereich liegt bei 20–60 μT</string>
-    <string name="randomActivity">Zufallszahlen</string>
+    <string name="randomActivity">Zufallszahl</string>
     <string name="generator">Generator</string>
     <string name="draw">Ziehung</string>
     <string name="count">Menge</string>
@@ -195,7 +189,7 @@
     <string name="generate">Generieren</string>
     <string name="start_end">Start / Stop</string>
     <string name="hasCleaned">Der Verlauf wurde gelöscht</string>
-    <string name="functionActivity">Gleichungsrechner</string>
+    <string name="EquationActivity">Gleichung</string>
     <string name="linear">Lineargleichung</string>
     <string name="quadratic">Unäre quadratische Gleichung</string>
     <string name="noRoot">Keine wirklichen Wurzeln</string>
@@ -204,6 +198,7 @@
     <string name="gcd">GGT:</string>
     <string name="lcm">KGV:</string>
     <string name="numbers">Zahlenwerte:</string>
+    <string name="number">Zahlenwert:</string>
     <string name="addNumber">Zahlen hinzufügen:</string>
     <string name="avg0">Arithmetisches Mittel:</string>
     <string name="avg1">Geometrisches Mittel:</string>
@@ -218,7 +213,7 @@
     <string name="toFraction">Dezimal - Bruch</string>
     <string name="numberConvert">Zahlenkonverter</string>
     <string name="errorMsg">Leider ist ein Programmfehler aufgetreten und das Programm wurde nach 3 Sekunden beendet.</string>
-    <string name="shoppingActivity">Einkaufsassistent</string>
+    <string name="shoppingActivity">Einkauf</string>
     <string name="unit_price_fragment">Einzelpreis</string>
     <string name="quantity">Menge:</string>
     <string name="unit_price">Einzelpreis:</string>
@@ -234,4 +229,19 @@
     <string name="embedding">Aktivitätseinbettung</string>
     <string name="embedding_content">Zeigen Sie Aktivitäten parallel auf Großbildgeräten an.</string>
     <string name="restart">Bitte starten Sie die App neu</string>
+    <string name="about_app">Hilfe und Feedback</string>
+    <string name="about_app_content">Hier können Sie nach Aktualisierungen suchen, Probleme melden, Vorschläge unterbreiten usw.</string>
+    <string name="historyNum">Ergebnisse im Verlauf gespeichert.</string>
+    <string name="hex">Hex</string>
+    <string name="decimal">Dezimal</string>
+    <string name="octal">Oktal</string>
+    <string name="binary">Binär</string>
+    <string name="helper_include">*inbegriffen</string>
+
+    <string-array name="theme_options">
+        <item>Helles Design</item>
+        <item>Dunkles Design</item>
+        <item>Dem System-Design folgen</item>
+    </string-array>
+
 </resources>

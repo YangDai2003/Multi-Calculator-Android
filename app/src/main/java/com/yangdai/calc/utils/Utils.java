@@ -55,17 +55,17 @@ public class Utils {
      * 判断是否是数字
      */
     public static boolean isNumber(String num) {
-        return num.contains("0") || num.contains("1") || num.contains("2") || num.contains("3") || num.contains("4")
-                || num.contains("5") || num.contains("6") || num.contains("7") || num.contains("8") || num.contains("9")
-                || num.contains("e") || num.contains("π");
+        return num.equals("0") || num.equals("1") || num.equals("2") || num.equals("3") || num.equals("4")
+                || num.equals("5") || num.equals("6") || num.equals("7") || num.equals("8") || num.equals("9")
+                || num.equals("e") || num.equals("π");
     }
 
     /**
      * 判断是否是运算符
      */
     public static boolean isSymbol(String s) {
-        return s.contains("+") || s.contains("-") || s.contains("×") || s.contains(".") || s.contains("^")
-                || s.contains("÷");
+        return s.equals("+") || s.equals("-") || s.equals("×") || s.equals(".") || s.equals("^")
+                || s.equals("÷");
     }
 
     /**

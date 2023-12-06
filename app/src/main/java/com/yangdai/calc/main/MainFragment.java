@@ -2,11 +2,8 @@ package com.yangdai.calc.main;
 
 import android.os.Bundle;
 
-import androidx.activity.BackEventCompat;
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -26,7 +23,6 @@ import java.util.List;
  */
 public class MainFragment extends Fragment {
     private MyPagerAdapter myPagerAdapter;
-    private ViewPager2 viewPager2;
 
     public MainFragment() {
     }
@@ -53,51 +49,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewPager2 = view.findViewById(R.id.view_pager);
+        ViewPager2 viewPager2 = view.findViewById(R.id.view_pager);
         viewPager2.setAdapter(myPagerAdapter);
         viewPager2.setPageTransformer(new DepthPageTransformer());
         viewPager2.setCurrentItem(1, false);
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0) {
-                    callback.setEnabled(true);
-                }
-            }
-        });
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
     }
 
-    final OnBackPressedCallback callback = new OnBackPressedCallback(false) {
-
-        @Override
-        public void handleOnBackPressed() {
-            if (viewPager2.getCurrentItem() == 0) {
-                viewPager2.setCurrentItem(1);
-            }
-            this.setEnabled(false);
-        }
-
-        @RequiresApi(34)
-        @Override
-        public void handleOnBackCancelled() {
-            super.handleOnBackCancelled();
-            viewPager2.setCurrentItem(0);
-        }
-
-//        @RequiresApi(34)
-//        @Override
-//        public void handleOnBackProgressed(@NonNull BackEventCompat backEvent) {
-//            super.handleOnBackProgressed(backEvent);
-//            viewPager2.setCurrentItem(1);
-//        }
-
-        @RequiresApi(34)
-        @Override
-        public void handleOnBackStarted(@NonNull BackEventCompat backEvent) {
-            super.handleOnBackStarted(backEvent);
-            viewPager2.setCurrentItem(1);
-        }
-    };
 }

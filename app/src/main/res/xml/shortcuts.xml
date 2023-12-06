@@ -5,7 +5,7 @@
         android:enabled="true"
         android:icon="@drawable/unit_icon_shortcuts_colored"
         android:shortcutId="units"
-        android:shortcutShortLabel="@string/ChangeActivity">
+        android:shortcutShortLabel="@string/UnitsActivity">
         <!--        android:shortcutLongLabel="@string/compose_shortcut_long_label1"-->
         <!--        android:shortcutDisabledMessage="@string/compose_disabled_message1">-->
         <intent

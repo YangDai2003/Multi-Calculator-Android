@@ -13,22 +13,19 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.yangdai.calc.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * @author 30415
  */
 public class HistoryListFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private SharedPreferences history;
-    private List<String> savedStringList;
+    private SharedPreferences historySp;
     private MyScrollListView listView;
     private TextView textView;
 
@@ -48,22 +45,28 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        historySp = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
+        if (historySp != null) {
+            historySp.registerOnSharedPreferenceChangeListener(this);
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        history = requireActivity().getSharedPreferences("history", MODE_PRIVATE);
-        if (history != null) {
-            history.registerOnSharedPreferenceChangeListener(this);
-        }
+
         listView = view.findViewById(R.id.historyList);
         textView = view.findViewById(R.id.historyHint);
         setupListView();
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (history != null) {
-            history.unregisterOnSharedPreferenceChangeListener(this);
+    public void onDestroy() {
+        super.onDestroy();
+        if (historySp != null) {
+            historySp.unregisterOnSharedPreferenceChangeListener(this);
         }
     }
 
@@ -78,26 +81,23 @@ public class HistoryListFragment extends Fragment implements SharedPreferences.O
         if (listView == null) {
             return;
         }
-        String historys = history.getString("newHistory", "");
-        savedStringList = new ArrayList<>(Arrays.asList(historys.split("//")));
+        String historys = historySp.getString("newHistory", "");
+        List<String> savedStringList = new ArrayList<>(Arrays.asList(historys.split("//")));
         savedStringList.removeIf(String::isEmpty);
         if (savedStringList.isEmpty()) {
             textView.setVisibility(View.VISIBLE);
         } else {
-            Collections.reverse(savedStringList);
             textView.setVisibility(View.INVISIBLE);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), R.layout.list_item, savedStringList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            String content = savedStringList.get(i);
-            if (!content.isEmpty()) {
+        HistoryAdapter adapter = new HistoryAdapter(requireContext(), savedStringList, str -> {
+            if (!str.isEmpty()) {
                 Bundle result = new Bundle();
-                result.putString("select", content.split("=")[1].trim());
+                result.putString("select", str.trim());
                 getParentFragmentManager().setFragmentResult("requestKey", result);
                 ViewPager2 viewPager = requireParentFragment().requireView().findViewById(R.id.view_pager);
                 viewPager.setCurrentItem(1);
             }
         });
+        listView.setAdapter(adapter);
     }
 }

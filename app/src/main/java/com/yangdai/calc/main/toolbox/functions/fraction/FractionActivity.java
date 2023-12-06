@@ -1,44 +1,33 @@
 package com.yangdai.calc.main.toolbox.functions.fraction;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.WindowManager;
 
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 
-import java.util.Objects;
 
 /**
  * @author 30415
  */
-public class FractionActivity extends AppCompatActivity {
+public class FractionActivity extends BaseFunctionActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_fraction);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         initView();
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_fraction);
     }
 
     private void initView() {
@@ -46,6 +35,7 @@ public class FractionActivity extends AppCompatActivity {
         TabLayout mTabLayout = findViewById(R.id.tab_view);
 
         final String[] tabs = new String[]{getString(R.string.toDecimal), getString(R.string.toFraction), getString(R.string.factorization)};
+        final int[] icons = new int[]{R.drawable.fraction_icon, R.drawable.decimal_icon, R.drawable.factor_icon};
 
         mViewPager.setAdapter(new FragmentStateAdapter(getSupportFragmentManager(), getLifecycle()) {
             @NonNull
@@ -67,6 +57,9 @@ public class FractionActivity extends AppCompatActivity {
         });
 
         new TabLayoutMediator(mTabLayout, mViewPager,
-                (tab, position) -> tab.setText(tabs[position])).attach();
+                (tab, position) -> {
+                    tab.setText(tabs[position]);
+                    tab.setIcon(icons[position]);
+                }).attach();
     }
 }

@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
+            android:animateLayoutChanges="true"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,44 +32,48 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal"
-                    android:paddingBottom="8dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/numbers"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:text="@string/number"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-                    <EditText
-                        android:id="@+id/enter"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:gravity="end"
-                        android:hint="@string/type_in"
-                        android:importantForAutofill="no"
-                        android:inputType="number"
-                        android:maxLength="9"
-                        android:maxLines="1"
-                        android:textAlignment="gravity" />
+                        android:layout_marginBottom="16dp"
+                        android:padding="0dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/enter"
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="9"
+                            android:maxLines="1"
+                            android:padding="0dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="horizontal"
-                    android:paddingVertical="8dp">
+                    android:layout_marginVertical="16dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
                         android:text="@string/isPrime"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAlignment="gravity"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                     <TextView
                         android:id="@+id/isPrim"
@@ -79,22 +83,24 @@
                         android:gravity="end"
                         android:maxLines="1"
                         android:textAlignment="gravity"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    android:paddingTop="8dp">
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
                         android:text="@string/factors"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAlignment="gravity"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                     <TextView
                         android:id="@+id/factor"
@@ -104,7 +110,7 @@
                         android:gravity="end"
                         android:maxLines="1"
                         android:textAlignment="gravity"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
                 </LinearLayout>
 

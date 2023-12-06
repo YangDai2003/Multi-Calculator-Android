@@ -10,15 +10,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.material.imageview.ShapeableImageView;
+import com.yangdai.calc.R;
+
 import java.util.List;
 
 /**
  * @author 30415
  */
 public class CurrencyAdapter extends ArrayAdapter<Currency> {
+    private final boolean showEnglishName;
 
-    public CurrencyAdapter(Context context, List<Currency> currencies) {
+    public CurrencyAdapter(Context context, List<Currency> currencies, boolean showEnglishName) {
         super(context, 0, currencies);
+        this.showEnglishName = showEnglishName;
     }
 
     @NonNull
@@ -26,14 +31,21 @@ public class CurrencyAdapter extends ArrayAdapter<Currency> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.currency_layout, parent, false);
         }
 
         Currency currency = getItem(position);
-
-        TextView textView = convertView.findViewById(android.R.id.text1);
         if (currency != null) {
-            textView.setText(currency.symbol() + " - " + currency.chineseName() + " - " + currency.englishName());
+            ShapeableImageView shapeableImageView = convertView.findViewById(R.id.flag);
+            shapeableImageView.setImageResource(currency.id());
+            TextView textView = convertView.findViewById(R.id.symbol);
+            textView.setText(currency.symbol());
+            TextView textView1 = convertView.findViewById(R.id.name);
+            if (!showEnglishName) {
+                textView1.setText(currency.chineseName());
+            } else {
+                textView1.setText(currency.englishName());
+            }
         }
 
         return convertView;

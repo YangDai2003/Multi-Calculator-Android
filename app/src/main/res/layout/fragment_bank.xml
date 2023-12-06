@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
             app:cardElevation="8dp">
 
             <LinearLayout
@@ -30,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/principal"
-                    android:textSize="18sp" />
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -42,7 +41,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextPrincipal"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="42dp"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
                         android:padding="0dp" />
@@ -51,8 +50,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/interest_rate"
-                    android:textSize="18sp" />
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextInterestRate"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="42dp"
                         android:importantForAutofill="no"
                         android:inputType="numberDecimal"
                         android:padding="0dp" />
@@ -73,8 +73,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/period"
-                    android:textSize="18sp" />
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTime"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="42dp"
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:padding="0dp" />
@@ -103,12 +104,12 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:text="@string/capitalization"
-                        android:textSize="18sp" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                     <Spinner
                         android:id="@+id/spinnerPeriod"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_vertical" />
 
                 </LinearLayout>

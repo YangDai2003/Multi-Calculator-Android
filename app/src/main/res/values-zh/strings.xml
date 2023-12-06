@@ -10,7 +10,7 @@
     <string name="choose">选择</string>
     <string name="length">长度</string>
     <string name="area">面积</string>
-    <string name="numeration">进制</string>
+    <string name="programmer">进制</string>
     <string name="volume">体积</string>
     <string name="help_us">助力</string>
     <string name="rate">评价应用</string>
@@ -20,7 +20,7 @@
     <string name="privacy_policy">隐私政策</string>
     <string name="app_version">版本</string>
     <string name="thank">感谢使用！！！</string>
-    <string name="ChangeActivity">单位转换</string>
+    <string name="UnitsActivity">单位</string>
     <string name="clearAll">清空记录</string>
     <string name="compassActivity">指南针</string>
     <string name="mass">质量</string>
@@ -28,9 +28,7 @@
     <string name="storage">存储</string>
     <string name="theme">主题</string>
     <string name="changeTheme">更改应用主题</string>
-    <string name="light">浅色主题</string>
-    <string name="dark">深色主题</string>
-    <string name="systemTheme">跟随系统主题</string>
+
     <string name="longitude">经度</string>
     <string name="latitude">纬度</string>
     <string name="permission">请同意权限，以使用全部功能。</string>
@@ -56,7 +54,7 @@
     <string name="shareContent">快来使用多功能计算器！解决日常数学问题、单位转换、日期计算、BMI计算、货币汇率转换、指南针功能，一应俱全。简单易用，界面精美，点击链接下载：https://play.google.com/store/apps/details?id=com.yangdai.calc</string>
     <string name="text_date_diff">日期差值</string>
     <string name="text_addsub_date">日期推算</string>
-    <string name="dateActivity">日期计算</string>
+    <string name="dateActivity">日期</string>
     <string name="text_same_day">同一天</string>
     <string name="startDate">开始日期:</string>
     <string name="add">增加</string>
@@ -74,9 +72,9 @@
     <string name="angle">角度</string>
     <string name="reset">重置</string>
     <string name="kg">千克</string>
-    <string name="height_cm">身高（厘米）</string>
-    <string name="weight_kg">体重（千克）</string>
-    <string name="let_s_begin">开始计算</string>
+    <string name="height_cm">身高：</string>
+    <string name="weight_kg">体重：</string>
+
     <string name="underweight">偏瘦</string>
     <string name="severely_underweight">过瘦</string>
     <string name="very_severely_underweight">严重过瘦</string>
@@ -88,24 +86,20 @@
     <string name="obese_class_iii">重度肥胖</string>
     <string name="lose_healthy">为了身体健康，你必须减肥:</string>
     <string name="exchangeActivity">货币汇率</string>
-    <string name="from_currency">当前货币:</string>
-    <string name="to_currency">目标货币:</string>
-    <string name="amount_to_convert">要转换的金额:</string>
-    <string name="conversion_rate">转换后的金额:</string>
+
     <string name="app_osl">开源许可证</string>
     <string name="chineseNumberConverter">大写中文数字</string>
     <string name="donate">捐赠</string>
     <string name="arabic_numbers">阿拉伯数字:</string>
     <string name="chinese_big_numbers">大写中文数字:</string>
     <string name="email">电子邮件</string>
-    <string name="relationshipActivity">亲戚称呼计算</string>
+    <string name="relationshipActivity">亲戚称呼</string>
     <string name="relationship">亲属关系:</string>
     <string name="call">称呼:</string>
     <string name="male">男</string>
     <string name="female">女</string>
     <string name="historys">历史记录</string>
     <string name="inverseCall">交换身份</string>
-    <string name="type_in">请输入</string>
     <string name="resize">显示悬浮窗</string>
     <string name="discount_fragment">折扣</string>
     <string name="originalPrice">原价:</string>
@@ -115,11 +109,11 @@
     <string name="check_for_updates">检查更新</string>
     <string name="newest">已经是最新版本</string>
     <string name="checkNet">请检查网络连接</string>
-    <string name="ecb">采用欧洲中央银行实时汇率数据</string>
+    <string name="ecb">采用欧洲中央银行汇率数据</string>
     <string name="bankFragment">银行存款</string>
     <string name="roiFragment">投资回报</string>
     <string name="loanFragment">贷款</string>
-    <string name="financeActivity">金融计算</string>
+    <string name="financeActivity">金融</string>
     <string name="monthly">每月</string>
     <string name="quarterly">每季度</string>
     <string name="half">每半年</string>
@@ -190,17 +184,18 @@
     <string name="repeat">可以重复</string>
     <string name="result">结果：</string>
     <string name="generate">生成随机数</string>
-    <string name="start_end">开始 / 结束</string>
+    <string name="start_end">开始 / 暂停</string>
     <string name="hasCleaned">已清除所有历史记录</string>
-    <string name="functionActivity">解方程</string>
+    <string name="EquationActivity">方程</string>
     <string name="linear">线性方程</string>
     <string name="quadratic">一元二次方程</string>
     <string name="noRoot">没有实数根</string>
-    <string name="noHistory">没有历史记录</string>
+    <string name="noHistory">无历史记录</string>
     <string name="statisticActivity">数学统计</string>
     <string name="gcd">最大公约数:</string>
     <string name="lcm">最小公倍数:</string>
     <string name="numbers">数值：</string>
+    <string name="number">数值：</string>
     <string name="addNumber">添加数值:</string>
     <string name="avg0">算术平均值:</string>
     <string name="avg1">几何平均值:</string>
@@ -231,4 +226,19 @@
     <string name="embedding">平行窗口</string>
     <string name="embedding_content">在大屏设备上显示平行窗口</string>
     <string name="restart">重启应用以生效</string>
+    <string name="about_app">帮助与反馈</string>
+    <string name="about_app_content">检查更新、反馈问题、提供建议等</string>
+    <string name="historyNum">保留历史记录条数</string>
+    <string name="hex">十六进制</string>
+    <string name="decimal">十进制</string>
+    <string name="octal">八进制</string>
+    <string name="binary">二进制</string>
+    <string name="helper_include">*包含</string>
+
+    <string-array name="theme_options">
+        <item>浅色主题</item>
+        <item>深色主题</item>
+        <item>跟随系统主题</item>
+    </string-array>
+
 </resources>

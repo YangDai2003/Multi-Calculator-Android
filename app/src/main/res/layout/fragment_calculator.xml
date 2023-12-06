@@ -146,7 +146,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/time"
         app:layout_constraintTop_toTopOf="@+id/time"
-        app:srcCompat="@drawable/combined_drawable_down" />
+        app:srcCompat="@drawable/combined_drawable_down"
+        tools:ignore="InconsistentLayout" />
 
 
     <Button

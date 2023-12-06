@@ -2,17 +2,7 @@
 <resources xmlns:window="http://schemas.android.com/apk/res-auto">
 
     <!-- Activities that should never be in a split. -->
-    <ActivityRule
-        window:alwaysExpand="true">
-        <ActivityFilter
-            window:activityName=".other.SettingsActivity"/>
-    </ActivityRule>
 
-    <ActivityRule
-        window:alwaysExpand="true">
-        <ActivityFilter
-            window:activityName=".other.AboutActivity"/>
-    </ActivityRule>
 
     <!-- Define a split for the named activity pair. -->
     <SplitPairRule

@@ -10,21 +10,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
+
 
 /**
  * @author 30415
  */
 public class UnitPriceFragment extends Fragment implements TextWatcher {
-    private EditText etQuantity, etPrice;
+    private TextInputEditText etQuantity, etPrice;
     private TextView tvUnitPrice;
 
     public UnitPriceFragment() {
@@ -67,9 +69,10 @@ public class UnitPriceFragment extends Fragment implements TextWatcher {
     }
 
     private void calculateUnitPrice() {
-        String quantityStr = etQuantity.getText().toString();
-        String priceStr = etPrice.getText().toString();
-        if (!quantityStr.isEmpty() && !priceStr.isEmpty()) {
+        if (!TextUtils.isEmpty(etQuantity.getText()) && !TextUtils.isEmpty(etPrice.getText())) {
+            String quantityStr = etQuantity.getText().toString();
+            String priceStr = etPrice.getText().toString();
+
             double quantity = Double.parseDouble(quantityStr);
             double price = Double.parseDouble(priceStr);
             if (quantity == 0) {

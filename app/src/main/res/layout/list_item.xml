@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/textView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="false"
-    android:focusable="false"
-    android:gravity="end|center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
-    android:paddingVertical="10dp"
-    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:textAlignment="textEnd"
-    android:textSize="28sp" />
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingVertical="16dp">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/input_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="end|bottom"
+            android:hint="1+2+3+4+5+6+7+8"
+            android:maxLines="1"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            android:textColor="?colorOnSurface"
+            tools:ignore="HardcodedText" />
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/output_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="end|top"
+            android:hint="114514"
+            android:maxLines="1"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+            android:textColor="?colorOnSurfaceVariant"
+            tools:ignore="HardcodedText" />
+    </HorizontalScrollView>
+
+</LinearLayout>

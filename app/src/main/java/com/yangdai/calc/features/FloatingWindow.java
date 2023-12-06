@@ -139,7 +139,6 @@ public class FloatingWindow extends Service implements View.OnClickListener {
         windowManager.addView(floatView, floatWindowLayoutParam);
 
         btMaximize.setOnClickListener(v -> {
-            exit();
             // 返回应用 MainActivity
             Intent backToHome = new Intent(FloatingWindow.this, MainActivity.class);
 
@@ -150,6 +149,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
             // kill the existing task first and then new activity is started.
             backToHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(backToHome);
+            exit();
         });
 
         btExit.setOnClickListener(v -> exit());

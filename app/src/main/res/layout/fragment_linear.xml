@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".main.toolbox.functions.function.LinearFragment">
+    tools:context=".main.toolbox.functions.equation.LinearFragment">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
         app:cardElevation="8dp">
 
         <LinearLayout
@@ -29,7 +28,7 @@
                 android:paddingVertical="32dp"
                 android:text="A 𝑥 + B = 0"
                 android:textAlignment="center"
-                android:textSize="30sp"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                 tools:ignore="HardcodedText" />
 
             <LinearLayout

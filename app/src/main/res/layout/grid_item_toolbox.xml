@@ -8,9 +8,6 @@
     android:layout_height="120dp"
     android:layout_margin="8dp"
     android:clickable="true"
-    android:orientation="vertical"
-    app:cardBackgroundColor="?colorSurface"
-    app:cardCornerRadius="16dp"
     app:cardElevation="8dp">
 
     <!-- ToolBoxItem -->
@@ -23,10 +20,9 @@
         android:paddingTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -42,8 +38,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="4"
             android:gravity="center"
-            android:textSize="13dp"
-            android:textStyle="normal"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
             tools:ignore="SpUsage" />
 
         <ImageView

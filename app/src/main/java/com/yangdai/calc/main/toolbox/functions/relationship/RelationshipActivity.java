@@ -1,33 +1,27 @@
 package com.yangdai.calc.main.toolbox.functions.relationship;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 import com.yangdai.calc.utils.TouchAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author 30415
  */
-public class RelationshipActivity extends AppCompatActivity implements View.OnClickListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class RelationshipActivity extends BaseFunctionActivity implements View.OnClickListener {
     MaterialRadioButton male, female;
     RadioGroup radioGroup;
     TextView tvInput;
@@ -44,26 +38,11 @@ public class RelationshipActivity extends AppCompatActivity implements View.OnCl
     // 当前运算结果
     private String resultsText = "";
     private Button[] buttonArr;
-    private SharedPreferences settings;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_relationship);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
-        settings.registerOnSharedPreferenceChangeListener(this);
-
-        if (settings.getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         Button[] buttons = {
                 findViewById(R.id.btn_h),
@@ -103,12 +82,17 @@ public class RelationshipActivity extends AppCompatActivity implements View.OnCl
         });
         // 给按钮设置的点击事件
         for (Button button : buttons) {
-            button.setHapticFeedbackEnabled(settings.getBoolean("vib", false));
+            button.setHapticFeedbackEnabled(defaultSp.getBoolean("vib", false));
             button.setOnClickListener(this);
             TouchAnimation touchAnimation = new TouchAnimation(button);
             button.setOnTouchListener(touchAnimation);
         }
         forbiddenButton();
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_relationship);
     }
 
     @Override
@@ -375,14 +359,9 @@ public class RelationshipActivity extends AppCompatActivity implements View.OnCl
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String s) {
         if ("vib".equals(s)) {
             for (Button button : buttonArr) {
-                button.setHapticFeedbackEnabled(settings.getBoolean("vib", false));
+                button.setHapticFeedbackEnabled(defaultSp.getBoolean("vib", false));
             }
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        settings.unregisterOnSharedPreferenceChangeListener(this);
-    }
 }

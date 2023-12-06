@@ -137,7 +137,7 @@ public class MyCrashHandler implements Thread.UncaughtExceptionHandler {
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
-                String versionCode = pi.getLongVersionCode() + "";
+                String versionCode = String.valueOf(pi.getLongVersionCode());
                 stringHashMap.put("versionName", versionName);
                 stringHashMap.put("versionCode", versionCode);
             }

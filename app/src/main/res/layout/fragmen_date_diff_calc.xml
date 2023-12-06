@@ -1,91 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/view_start_date"
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="22dp"
-        android:paddingTop="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="22dp">
+        android:layout_margin="16dp"
+        app:cardElevation="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="@string/startDate" />
-
-        <Button
-            android:id="@+id/btn_start_date"
-            style="@style/Widget.Material3.MaterialTimePicker.Button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/choose" />
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/view_end_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="22dp"
-        android:paddingTop="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="22dp">
+            <LinearLayout
+                android:id="@+id/view_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="@string/endDate" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/startDate"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-        <Button
-            android:id="@+id/btn_end_date"
-            style="@style/Widget.Material3.MaterialTimePicker.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/choose" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btn_start_date"
+                    style="@style/Widget.Material3.MaterialTimePicker.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/choose" />
+            </LinearLayout>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha="0.2" />
+            <LinearLayout
+                android:id="@+id/view_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/view_result_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="22dp"
-        android:paddingTop="22dp"
-        android:paddingEnd="22dp"
-        android:paddingBottom="22dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/endDate"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="10dp"
-            android:gravity="center_vertical|start"
-            android:text="@string/interval"
-            android:textAlignment="gravity" />
+                <Button
+                    android:id="@+id/btn_end_date"
+                    style="@style/Widget.Material3.MaterialTimePicker.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/choose" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_result_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|end"
-            android:text=""
-            android:textAlignment="gravity"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.2" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_result_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_vertical|start"
+                    android:text="@string/interval"
+                    android:textAlignment="gravity"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                <TextView
+                    android:id="@+id/text_result_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:text=""
+                    android:textAlignment="gravity"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</ScrollView>

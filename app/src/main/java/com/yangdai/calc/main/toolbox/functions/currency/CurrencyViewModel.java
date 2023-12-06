@@ -25,6 +25,7 @@ public class CurrencyViewModel extends ViewModel {
     private MutableLiveData<HashMap<String, Double>> exchangeRates;
     private static final String ECB_API_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
     private ExecutorService executorService;
+
     public LiveData<HashMap<String, Double>> getExchangeRates() {
         if (exchangeRates == null) {
             exchangeRates = new MutableLiveData<>();

@@ -3,12 +3,12 @@ package com.yangdai.calc.main.toolbox;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.yangdai.calc.R;
 import com.yangdai.calc.main.ItemClick;
 
@@ -40,7 +40,7 @@ public class ToolBoxAdapter extends RecyclerView.Adapter<ToolBoxAdapter.ViewHold
         ViewHolder viewHolder = new ViewHolder(view);
 
         view.setOnClickListener(v -> {
-            int position1 = viewHolder.getAdapterPosition();
+            int position1 = viewHolder.getBindingAdapterPosition();
             itemClick.onClick(list.get(position1));
         });
 
@@ -61,7 +61,7 @@ public class ToolBoxAdapter extends RecyclerView.Adapter<ToolBoxAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView textView;
-        final ImageView imageView;
+        final ShapeableImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

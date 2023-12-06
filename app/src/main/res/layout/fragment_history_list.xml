@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorSurface"
     tools:context=".main.calculator.HistoryListFragment">
 
     <TextView
@@ -23,6 +24,7 @@
         android:id="@+id/historyList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:stackFromBottom="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomSheetDragHandleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +33,10 @@
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:id="@+id/bottomSheetDragHandleView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+        android:layout_margin="0dp"
+        android:background="@drawable/rounded_corner_fragment"
+        android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

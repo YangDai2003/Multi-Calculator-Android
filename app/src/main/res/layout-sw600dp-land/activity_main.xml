@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_toolbox" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentMain"

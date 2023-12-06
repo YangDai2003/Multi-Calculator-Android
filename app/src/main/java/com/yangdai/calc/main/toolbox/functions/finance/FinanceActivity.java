@@ -1,44 +1,33 @@
 package com.yangdai.calc.main.toolbox.functions.finance;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.WindowManager;
 
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 
-import java.util.Objects;
 
 /**
  * @author 30415
  */
-public class FinanceActivity extends AppCompatActivity {
+public class FinanceActivity extends BaseFunctionActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_finance);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         initView();
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_finance);
     }
 
     private void initView() {
@@ -46,6 +35,7 @@ public class FinanceActivity extends AppCompatActivity {
         TabLayout mTabLayout = findViewById(R.id.tab_view);
 
         final String[] tabs = new String[]{getString(R.string.bankFragment), getString(R.string.roiFragment), getString(R.string.loanFragment), getString(R.string.vat)};
+        final int[] icons = new int[]{R.drawable.bank_icon, R.drawable.invest_icon, R.drawable.loan_icon, R.drawable.tax_icon};
 
         mViewPager.setAdapter(new FragmentStateAdapter(getSupportFragmentManager(), getLifecycle()) {
             @NonNull
@@ -55,7 +45,7 @@ public class FinanceActivity extends AppCompatActivity {
                     return BankFragment.newInstance();
                 } else if (position == 1) {
                     return InvestmentFragment.newInstance();
-                } else if (position == 2){
+                } else if (position == 2) {
                     return LoanFragment.newInstance();
                 } else {
                     return VatFragment.newInstance();
@@ -69,6 +59,9 @@ public class FinanceActivity extends AppCompatActivity {
         });
 
         new TabLayoutMediator(mTabLayout, mViewPager,
-                (tab, position) -> tab.setText(tabs[position])).attach();
+                (tab, position) -> {
+                    tab.setText(tabs[position]);
+                    tab.setIcon(icons[position]);
+                }).attach();
     }
 }

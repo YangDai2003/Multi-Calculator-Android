@@ -10,7 +10,7 @@ import android.widget.ListView;
  * @author 30415
  */
 public class MyScrollListView extends ListView {
-    private float preY = 0;
+    private float preY = 0, preX = 0;
 
     public MyScrollListView(Context context) {
         super(context);
@@ -24,19 +24,25 @@ public class MyScrollListView extends ListView {
         super(context, attrs, defStyleAttr);
     }
 
-    public MyScrollListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN -> {
                 preY = ev.getY();
+                preX = ev.getX();
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
             case MotionEvent.ACTION_MOVE ->
+            {
+                float currentY = ev.getY();
+                float deltaY = currentY - preY;
+                float deltaX = ev.getX() - preX;
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                } else {
                     getParent().requestDisallowInterceptTouchEvent(!slideToTheBottom(ev));
+                }
+            }
             case MotionEvent.ACTION_UP -> getParent().requestDisallowInterceptTouchEvent(false);
             default -> {}
         }

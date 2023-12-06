@@ -5,7 +5,7 @@
         </item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- Customize your theme here. -->
+        <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:navigationBarColor">?colorSurface</item>
         <item name="android:hardwareAccelerated">true</item>
@@ -16,11 +16,13 @@
     <style name="AppTheme.noActionBar" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- Customize your theme here. -->
+        <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:navigationBarColor">?colorSurface</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
+
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 </resources>

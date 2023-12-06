@@ -16,9 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
 
 /**
@@ -26,7 +26,7 @@ import com.yangdai.calc.R;
  */
 public class FractorizationFragment extends Fragment implements TextWatcher {
 
-    EditText edEnter;
+    TextInputEditText edEnter;
     TextView tvIsPrim, tvFactors;
 
     public FractorizationFragment() {
@@ -110,7 +110,7 @@ public class FractorizationFragment extends Fragment implements TextWatcher {
                 //判断i是否为质数
                 while (x % i == 0) {
                     //判断质数i是否为y的质因数
-                    sb.append(i).append("x");
+                    sb.append(i).append("⨯");
                     x = x / i;
                     //除以第一个质因数后计算后面的质因数
                     if (prime(x)) {

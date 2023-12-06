@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
         <TextView
             android:id="@+id/text_view_true_heading"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
     </LinearLayout>
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textAlignment="center"
-        android:textSize="42sp"
+        android:textAppearance="@style/TextAppearance.Material3.DisplaySmall"
         app:layout_constraintBottom_toBottomOf="@+id/image_compass"
         app:layout_constraintEnd_toStartOf="@+id/image_compass"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +67,7 @@
         android:layout_marginHorizontal="16dp"
         android:text=""
         android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
         app:layout_constraintBottom_toBottomOf="@+id/image_compass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_compass"

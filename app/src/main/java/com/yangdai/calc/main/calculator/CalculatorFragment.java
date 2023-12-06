@@ -233,10 +233,10 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             } else if (v.getId() == R.id.switchViews) {
                 View view = requireView();
                 if (!switched) {
-                    ((Button) view.findViewById(R.id.sin)).setText("asin");
-                    ((Button) view.findViewById(R.id.cos)).setText("acos");
-                    ((Button) view.findViewById(R.id.tan)).setText("atan");
-                    ((Button) view.findViewById(R.id.cot)).setText("acot");
+                    ((Button) view.findViewById(R.id.sin)).setText("sin⁻¹");
+                    ((Button) view.findViewById(R.id.cos)).setText("cos⁻¹");
+                    ((Button) view.findViewById(R.id.tan)).setText("tan⁻¹");
+                    ((Button) view.findViewById(R.id.cot)).setText("cot⁻¹");
                     ((Button) view.findViewById(R.id.g)).setText("ln");
                     ((Button) view.findViewById(R.id.e)).setText("exp");
                 } else {

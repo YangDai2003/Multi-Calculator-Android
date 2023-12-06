@@ -17,136 +17,184 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="700dp">
 
-            <LinearLayout
-                android:id="@+id/dropdown_menu_layout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginBottom="4dp">
 
-                <LinearLayout
-                    android:id="@+id/layout_one"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="horizontal"
-                    android:padding="6dp">
+                    android:layout_height="100dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/convert_from_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="@string/from_currency"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/convert_to_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="@string/to_currency"
-                        android:textAlignment="viewStart" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="horizontal">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/flag_from"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
 
                     <Spinner
                         android:id="@+id/from_currency_spinner"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
-                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
                         android:padding="0dp"
-                        app:drawableEndCompat="@drawable/arrow_drop_down" />
+                        app:drawableEndCompat="@drawable/arrow_drop_down"
+                        app:layout_constraintBottom_toTopOf="@+id/name_from"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/flag_from"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/name_from"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/from_currency_spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/from_currency_spinner" />
+
+                    <EditText
+                        android:id="@+id/amount_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical|end"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:maxLength="19"
+                        android:maxLines="1"
+                        android:paddingTop="8dp"
+                        android:singleLine="true"
+                        android:textAlignment="gravity"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/guideline12"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="LabelFor" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/flag_to"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
 
                     <Spinner
                         android:id="@+id/to_currency_spinner"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
-                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
                         android:padding="0dp"
-                        app:drawableEndCompat="@drawable/arrow_drop_down" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="horizontal"
-                    android:padding="6dp">
+                        app:drawableEndCompat="@drawable/arrow_drop_down"
+                        app:layout_constraintBottom_toTopOf="@+id/name_to"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/flag_to"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
 
                     <TextView
-                        android:id="@+id/view_amount_to_convert_value"
-                        android:layout_width="0dp"
+                        android:id="@+id/name_to"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="@string/amount_to_convert"
-                        android:textAlignment="viewStart" />
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/to_currency_spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/to_currency_spinner" />
 
-                    <TextView
-                        android:id="@+id/conversion_rate_result"
+
+                    <HorizontalScrollView
                         android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:scrollbars="none"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline13"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/result_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:gravity="end|center_vertical"
+                            android:hint="0"
+                            android:maxLines="1"
+                            android:paddingTop="8dp"
+                            android:textAlignment="gravity"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            tools:ignore="HardcodedText" />
+                    </HorizontalScrollView>
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline13"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:text="@string/conversion_rate"
-                        android:textAlignment="viewStart" />
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/linear_layout_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="horizontal"
-                    android:padding="6dp">
 
-                    <EditText
-                        android:id="@+id/amount_edit_text"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:gravity="center_vertical|start"
-                        android:hint="@string/type_in"
-                        android:importantForAutofill="no"
-                        android:inputType="numberDecimal"
-                        android:maxLength="19"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textAlignment="gravity"
-                        android:textSize="18sp" />
+                <ImageView
+                    android:id="@+id/switchCurrency"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/combined_drawable_swap_vert"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-                    <TextView
-                        android:id="@+id/result_text_view"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_weight="1"
-                        android:gravity="start|center_vertical"
-                        android:hint="0"
-                        android:textAlignment="gravity"
-                        android:textSize="18sp"
-                        tools:ignore="HardcodedText" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 

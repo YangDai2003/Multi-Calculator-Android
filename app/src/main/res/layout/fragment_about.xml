@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="always"
+    tools:context=".main.sheets.AboutFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/about_help_us_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="72dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/help_us"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?colorSecondary"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/about_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/rate"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/rate"
+            app:layout_constraintTop_toBottomOf="@+id/about_help_us_category" />
+
+        <TextView
+            android:id="@+id/about_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/share_this_app"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/share"
+            app:layout_constraintTop_toBottomOf="@+id/about_rate" />
+
+        <TextView
+            android:id="@+id/about_donate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/donate"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/donate"
+            app:layout_constraintTop_toBottomOf="@+id/about_share" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/category_help_us_separator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:alpha="0.5"
+            android:backgroundTint="?colorSecondaryContainer"
+            app:layout_constraintTop_toBottomOf="@+id/about_donate" />
+
+        <TextView
+            android:id="@+id/about_social_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="72dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/social"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?colorSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/category_help_us_separator" />
+
+        <TextView
+            android:id="@+id/about_github"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/github"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/github"
+            app:layout_constraintTop_toBottomOf="@+id/about_social_category" />
+
+        <TextView
+            android:id="@+id/about_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/email"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/email"
+            app:layout_constraintTop_toBottomOf="@+id/about_github" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/category_social_separator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:alpha="0.5"
+            android:backgroundTint="?colorSecondaryContainer"
+            app:layout_constraintTop_toBottomOf="@+id/about_email" />
+
+        <TextView
+            android:id="@+id/about_other_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="72dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/other"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?colorSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/category_social_separator" />
+
+        <TextView
+            android:id="@+id/about_privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/privacy_policy"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/privacy"
+            app:layout_constraintTop_toBottomOf="@+id/about_other_category" />
+
+        <TextView
+            android:id="@+id/about_app_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/app_version"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/info"
+            app:layout_constraintTop_toBottomOf="@+id/about_privacy_policy" />
+
+        <TextView
+            android:id="@+id/about_app_osl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/app_osl"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/osl"
+            app:layout_constraintTop_toBottomOf="@+id/about_app_version" />
+
+        <TextView
+            android:id="@+id/about_app_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/check_for_updates"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/update"
+            app:layout_constraintTop_toBottomOf="@+id/about_app_osl" />
+
+        <TextView
+            android:id="@+id/about_app_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="16dp"
+            android:text="@string/get_more_apps"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:drawableStartCompat="@drawable/apps"
+            app:layout_constraintTop_toBottomOf="@+id/about_app_update" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

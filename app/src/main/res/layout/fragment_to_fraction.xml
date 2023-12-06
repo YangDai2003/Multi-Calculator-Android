@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
+            android:animateLayoutChanges="true"
             app:cardElevation="8dp">
 
             <LinearLayout
@@ -34,7 +34,7 @@
                     android:paddingVertical="32dp"
                     android:text="_.__ = A / B"
                     android:textAlignment="center"
-                    android:textSize="30sp"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                     tools:ignore="HardcodedText" />
 
                 <LinearLayout

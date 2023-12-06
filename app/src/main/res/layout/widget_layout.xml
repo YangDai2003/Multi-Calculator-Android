@@ -83,7 +83,7 @@
             android:background="@android:color/transparent"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:importantForAccessibility="no"
-            android:src="@drawable/discount_icon_shortcuts" />
+            android:src="@drawable/shopping_icon_shortcuts" />
 
         <ImageButton
             android:id="@+id/button6"

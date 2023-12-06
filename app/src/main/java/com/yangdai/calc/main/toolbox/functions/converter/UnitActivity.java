@@ -1,13 +1,10 @@
 package com.yangdai.calc.main.toolbox.functions.converter;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ListPopupWindow;
-import androidx.preference.PreferenceManager;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.icu.math.BigDecimal;
 import android.os.Bundle;
 
@@ -15,9 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +21,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.tabs.TabLayout;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 import com.yangdai.calc.utils.TouchAnimation;
 import com.yangdai.calc.utils.Utils;
 
@@ -34,11 +30,10 @@ import java.util.Objects;
 /**
  * @author 30415
  */
-public class UnitActivity extends AppCompatActivity implements View.OnClickListener,
-        TextWatcher, SharedPreferences.OnSharedPreferenceChangeListener {
+public class UnitActivity extends BaseFunctionActivity implements View.OnClickListener, TextWatcher {
     /**
-     * 1：长度换算；2：面积换算；3,5: 进制转换
-     * 4：体积转换 6: 质量 7: 温度 8: 容量 9: 压力 10: 热量 11: 速度 12: 时间 13: 角度 14: 功率
+     * 1：长度换算；2：面积换算；
+     * 3：体积转换 4: 质量 5: 温度 6: 容量 7: 压力 8: 热量 9: 速度 10: 时间 11: 角度 12: 功率
      */
     private int flag = 1;
     private TextView tvInput, tvOutput;
@@ -47,9 +42,7 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
     private Button btInput, btOutput;
     private static final String[] ITEMS_DISTANCE = {"km", "m", "dm", "cm", "mm", "ft", "in", "yd", "mi", "NM"};
     private static final String[] ITEMS_AREA = {"km²", "m²", "dm²", "cm²", "a", "ha", "顷", "亩", "ft²", "in²"};
-    private static final String[] ITEMS_NUMERATION = {"H", "O", "B"};
     private static final String[] ITEMS_VOLUME = {"L", "m³", "dm³", "cm³", "mL"};
-    private static final String[] ITEMS_D = {"D"};
     private static final String[] ITEMS_MASS = {"mg", "g", "kg", "oz", "lb"};
     private static final String[] ITEMS_TEMPE = {"℃", "℉"};
     private static final String[] ITEMS_STORAGE = {"bit", "B", "KB", "KiB", "MB", "MiB", "GB", "GiB", "TB", "TiB"};
@@ -59,8 +52,6 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
     private static final String[] ITEMS_TIME = {"ms", "s", "min", "h", "d", "wk"};
     private static final String[] ITEMS_ANGLE = {"°", "′", "″", "rad"};
     private static final String[] ITEMS_POWER = {"kW", "W", "J/s", "hp", "ps", "kcal/s", "N•m/s", "kg•m/s", "Btu/s", "ft•lb/s"};
-
-    SharedPreferences defaultSp;
     TabLayout mTabLayout;
     private static final int[] BUTTON_IDS = {R.id.seven, R.id.eight,
             R.id.nine, R.id.four, R.id.five, R.id.six, R.id.three, R.id.clean,
@@ -69,19 +60,6 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_unit);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        defaultSp = PreferenceManager.getDefaultSharedPreferences(this);
-        defaultSp.registerOnSharedPreferenceChangeListener(this);
-        if (defaultSp.getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         init();
 
@@ -91,9 +69,13 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_unit);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        defaultSp.unregisterOnSharedPreferenceChangeListener(this);
         tvInput.removeTextChangedListener(this);
         btInput.removeTextChangedListener(this);
         btOutput.removeTextChangedListener(this);
@@ -108,13 +90,16 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.parent).setBackgroundColor(SurfaceColors.SURFACE_0.getColor(this));
         mTabLayout = findViewById(R.id.tab_view);
 
-        final String[] tabs = {getString(R.string.length), getString(R.string.area),
-                getString(R.string.numeration), getString(R.string.volume), getString(R.string.mass),
-                getString(R.string.tempe), getString(R.string.storage), getString(R.string.pressure), getString(R.string.heat), getString(R.string.speed), getString(R.string.time), getString(R.string.angle), getString(R.string.powerUnit)};
+        final String[] tabs = {getString(R.string.length), getString(R.string.area), getString(R.string.volume), getString(R.string.mass), getString(R.string.tempe),
+                getString(R.string.storage), getString(R.string.pressure), getString(R.string.heat), getString(R.string.speed), getString(R.string.time), getString(R.string.angle), getString(R.string.powerUnit)};
 
-        for (String s : tabs) {
+        final int[] icons = {R.drawable.length_icon, R.drawable.area_icon, R.drawable.volume_icon, R.drawable.mass_icon, R.drawable.tempe_icon,
+                R.drawable.data_icon, R.drawable.pressure_icon, R.drawable.heat_icon, R.drawable.speed_icon, R.drawable.time_icon, R.drawable.angle_icon, R.drawable.power_icon};
+
+        for (int i = 0; i < tabs.length; i++) {
             TabLayout.Tab tab = mTabLayout.newTab();
-            tab.setText(s);
+            tab.setText(tabs[i]);
+            tab.setIcon(icons[i]);
             mTabLayout.addTab(tab);
         }
 
@@ -128,28 +113,16 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
                 editor.putInt("selectedTab", tab.getPosition());
                 editor.apply();
 
-                TextView textView = new TextView(UnitActivity.this);
-                textView.setText(tab.getText());
-                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                tab.setCustomView(textView);
-
                 btInput.setText("");
                 btOutput.setText("");
                 tvInput.setText("");
                 input = "";
                 tvOutput.setText("");
-
-                if (tab.getPosition() == 2) {
-                    findViewById(R.id.switchUnit).setEnabled(false);
-                } else {
-                    findViewById(R.id.switchUnit).setEnabled(true);
-                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.setCustomView(null);
+
             }
 
             @Override
@@ -159,7 +132,14 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         new Handler(Looper.getMainLooper()).postDelayed(
-                () -> Objects.requireNonNull(mTabLayout.getTabAt(defaultSp.getInt("selectedTab", 0))).select(),
+                () -> {
+                    int tabNum = defaultSp.getInt("selectedTab", 0);
+                    if (tabNum < tabs.length) {
+                        Objects.requireNonNull(mTabLayout.getTabAt(tabNum)).select();
+                    } else {
+                        Objects.requireNonNull(mTabLayout.getTabAt(0)).select();
+                    }
+                },
                 100);
 
         for (int buttonId : BUTTON_IDS) {
@@ -224,40 +204,27 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showInputOptions(View view) {
-        switch (flag) {
-            case 1 -> showOptions(view, ITEMS_DISTANCE, true);
-            case 2 -> showOptions(view, ITEMS_AREA, true);
-            case 3 -> showOptions(view, ITEMS_D, true);
-            case 4 -> showOptions(view, ITEMS_VOLUME, true);
-            case 5 -> showOptions(view, ITEMS_MASS, true);
-            case 6 -> showOptions(view, ITEMS_TEMPE, true);
-            case 7 -> showOptions(view, ITEMS_STORAGE, true);
-            case 8 -> showOptions(view, ITEMS_PRESSURE, true);
-            case 9 -> showOptions(view, ITEMS_HEAT, true);
-            case 10 -> showOptions(view, ITEMS_SPEED, true);
-            case 11 -> showOptions(view, ITEMS_TIME, true);
-            case 12 -> showOptions(view, ITEMS_ANGLE, true);
-            case 13 -> showOptions(view, ITEMS_POWER, true);
-            default -> {
-            }
-        }
+        switchOption(view, true);
     }
 
     public void showOutputOptions(View view) {
+        switchOption(view, false);
+    }
+
+    private void switchOption(View view, boolean isInput) {
         switch (flag) {
-            case 1 -> showOptions(view, ITEMS_DISTANCE, false);
-            case 2 -> showOptions(view, ITEMS_AREA, false);
-            case 3 -> showOptions(view, ITEMS_NUMERATION, false);
-            case 4 -> showOptions(view, ITEMS_VOLUME, false);
-            case 5 -> showOptions(view, ITEMS_MASS, false);
-            case 6 -> showOptions(view, ITEMS_TEMPE, false);
-            case 7 -> showOptions(view, ITEMS_STORAGE, false);
-            case 8 -> showOptions(view, ITEMS_PRESSURE, false);
-            case 9 -> showOptions(view, ITEMS_HEAT, false);
-            case 10 -> showOptions(view, ITEMS_SPEED, false);
-            case 11 -> showOptions(view, ITEMS_TIME, false);
-            case 12 -> showOptions(view, ITEMS_ANGLE, false);
-            case 13 -> showOptions(view, ITEMS_POWER, false);
+            case 1 -> showOptions(view, ITEMS_DISTANCE, isInput);
+            case 2 -> showOptions(view, ITEMS_AREA, isInput);
+            case 3 -> showOptions(view, ITEMS_VOLUME, isInput);
+            case 4 -> showOptions(view, ITEMS_MASS, isInput);
+            case 5 -> showOptions(view, ITEMS_TEMPE, isInput);
+            case 6 -> showOptions(view, ITEMS_STORAGE, isInput);
+            case 7 -> showOptions(view, ITEMS_PRESSURE, isInput);
+            case 8 -> showOptions(view, ITEMS_HEAT, isInput);
+            case 9 -> showOptions(view, ITEMS_SPEED, isInput);
+            case 10 -> showOptions(view, ITEMS_TIME, isInput);
+            case 11 -> showOptions(view, ITEMS_ANGLE, isInput);
+            case 12 -> showOptions(view, ITEMS_POWER, isInput);
             default -> {
             }
         }
@@ -279,20 +246,16 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         switch (flag) {
             case 1 -> unitValue = convertUnit("a", inputStr, outputStr, num, scale);
             case 2 -> unitValue = convertUnit("b", inputStr, outputStr, num, scale);
-            case 3 -> {
-                tvOutput.setText(convertBinaryUnit(x, outputStr));
-                return;
-            }
-            case 4 -> unitValue = convertUnit("c", inputStr, outputStr, num, scale);
-            case 5 -> unitValue = convertUnit("e", inputStr, outputStr, num, scale);
-            case 6 -> unitValue = convertTemperature(inputStr, outputStr, num, scale);
-            case 7 -> unitValue = convertUnit("f", inputStr, outputStr, num, scale);
-            case 8 -> unitValue = convertUnit("g", inputStr, outputStr, num, scale);
-            case 9 -> unitValue = convertUnit("h", inputStr, outputStr, num, scale);
-            case 10 -> unitValue = convertUnit("i", inputStr, outputStr, num, scale);
-            case 11 -> unitValue = convertUnit("j", inputStr, outputStr, num, scale);
-            case 12 -> unitValue = convertUnit("k", inputStr, outputStr, num, scale);
-            case 13 -> unitValue = convertUnit("p", inputStr, outputStr, num, scale);
+            case 3 -> unitValue = convertUnit("c", inputStr, outputStr, num, scale);
+            case 4 -> unitValue = convertUnit("e", inputStr, outputStr, num, scale);
+            case 5 -> unitValue = convertTemperature(inputStr, outputStr, num, scale);
+            case 6 -> unitValue = convertUnit("f", inputStr, outputStr, num, scale);
+            case 7 -> unitValue = convertUnit("g", inputStr, outputStr, num, scale);
+            case 8 -> unitValue = convertUnit("h", inputStr, outputStr, num, scale);
+            case 9 -> unitValue = convertUnit("i", inputStr, outputStr, num, scale);
+            case 10 -> unitValue = convertUnit("j", inputStr, outputStr, num, scale);
+            case 11 -> unitValue = convertUnit("k", inputStr, outputStr, num, scale);
+            case 12 -> unitValue = convertUnit("p", inputStr, outputStr, num, scale);
             default -> unitValue = null;
         }
 
@@ -310,29 +273,6 @@ public class UnitActivity extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
             return null;
         }
-    }
-
-    private String convertBinaryUnit(String x, String outputStr) {
-        if (x.contains(".")) {
-            long bits = Double.doubleToRawLongBits(Double.parseDouble(x));
-            switch (outputStr) {
-                case "B" -> x = Long.toBinaryString(bits);
-                case "O" -> x = Long.toOctalString(bits);
-                case "H" -> x = Long.toHexString(bits);
-                default -> {
-                }
-            }
-        } else {
-            int n = Integer.parseInt(x);
-            switch (outputStr) {
-                case "B" -> x = Integer.toBinaryString(n);
-                case "O" -> x = Integer.toOctalString(n);
-                case "H" -> x = Integer.toHexString(n);
-                default -> {
-                }
-            }
-        }
-        return x;
     }
 
     private UnitValue convertTemperature(String inputStr, String outputStr, BigDecimal num, int scale) {

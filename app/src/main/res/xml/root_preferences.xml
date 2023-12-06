@@ -23,6 +23,17 @@
             app:title="@string/trigonometric"
             app:widgetLayout="@drawable/material_switch" />
 
+        <SeekBarPreference
+            android:defaultValue="100"
+            android:icon="@drawable/history"
+            android:max="100"
+            app:adjustable="true"
+            app:key="historyNum"
+            app:min="20"
+            app:showSeekBarValue="true"
+            app:title="@string/historyNum"
+            app:useSimpleSummaryProvider="true" />
+
         <Preference
             android:icon="@drawable/delete_outline"
             app:key="clean"

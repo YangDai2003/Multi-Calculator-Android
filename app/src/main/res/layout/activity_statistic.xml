@@ -18,6 +18,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="@string/result"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             app:layout_constraintBottom_toTopOf="@+id/materialCardView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/gcd" />
+                        android:text="@string/gcd"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/gcd"
@@ -73,7 +74,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/lcm" />
+                        android:text="@string/lcm"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/lcm"
@@ -93,7 +95,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/avg0" />
+                        android:text="@string/avg0"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/avg0"
@@ -113,7 +116,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/avg1" />
+                        android:text="@string/avg1"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/avg1"
@@ -133,7 +137,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/avg2" />
+                        android:text="@string/avg2"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/avg2"
@@ -153,7 +158,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/avg3" />
+                        android:text="@string/avg3"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/avg3"
@@ -173,7 +179,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/diff0" />
+                        android:text="@string/diff0"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/diff0"
@@ -193,7 +200,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/diff1" />
+                        android:text="@string/diff1"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/diff1"
@@ -213,7 +221,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="@string/sum" />
+                        android:text="@string/sum"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
 
                     <TextView
                         android:id="@+id/sum"
@@ -232,6 +241,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:text="@string/numbers"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 

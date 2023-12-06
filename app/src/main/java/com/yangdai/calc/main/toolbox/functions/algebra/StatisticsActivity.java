@@ -1,36 +1,32 @@
 package com.yangdai.calc.main.toolbox.functions.algebra;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.icu.math.BigDecimal;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.google.android.material.elevation.SurfaceColors;
+
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
+import com.yangdai.calc.utils.TouchAnimation;
 import com.yangdai.calc.utils.Utils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * @author 30415
  */
-public class StatisticsActivity extends AppCompatActivity {
+public class StatisticsActivity extends BaseFunctionActivity {
 
     private Adapter adapter;
     private TextView tvGcd, tvLcm, tvAvg0, tvAvg1, tvAvg2, tvAvg3, tvSum, tvDiff0, tvDiff1;
@@ -39,19 +35,6 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_statistic);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (settings.getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         tvGcd = findViewById(R.id.gcd);
@@ -64,6 +47,8 @@ public class StatisticsActivity extends AppCompatActivity {
         tvDiff1 = findViewById(R.id.diff1);
         tvSum = findViewById(R.id.sum);
         findViewById(R.id.bt_add).setOnClickListener(v -> adapter.add());
+        TouchAnimation touchAnimation = new TouchAnimation(findViewById(R.id.bt_add));
+        findViewById(R.id.bt_add).setOnTouchListener(touchAnimation);
 
         List<Item> dataList = new ArrayList<>();
         dataList.add(new Item(""));
@@ -75,10 +60,15 @@ public class StatisticsActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_statistic);
+    }
+
     private final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
         @Override
         public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder.getAdapterPosition() == 0 || viewHolder.getAdapterPosition() == 1) {
+            if (viewHolder.getBindingAdapterPosition() == 0 || viewHolder.getBindingAdapterPosition() == 1) {
                 return 0;
             }
             int swiped = ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT;
@@ -94,7 +84,7 @@ public class StatisticsActivity extends AppCompatActivity {
         @SuppressLint("NotifyDataSetChanged")
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
+            int position = viewHolder.getBindingAdapterPosition();
             adapter.remove(position);
             inputStringList = adapter.getAllInput();
             calculate(inputStringList);

@@ -5,7 +5,7 @@
         </item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- Customize your theme here. -->
+        <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:navigationBarColor">?colorSurface</item>
         <item name="android:hardwareAccelerated">true</item>
@@ -31,11 +31,28 @@
     <style name="AppTheme.noActionBar" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- Customize your theme here. -->
+        <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:navigationBarColor">?colorSurface</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
+
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/transparent
+        </item>
+    </style>
+
+    <style name="MyChip" parent="@style/Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/chip_color</item>
+        <item name="chipStrokeColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

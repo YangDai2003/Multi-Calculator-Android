@@ -11,21 +11,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.yangdai.calc.R;
+
 
 /**
  * @author 30415
  */
 public class DiscountFragment extends Fragment implements TextWatcher {
-    private EditText etOriginalPrice, etDiscountPercentage;
+    private TextInputEditText etOriginalPrice, etDiscountPercentage;
     private TextView tvDiscountedPrice, tvSavedAmount;
 
     public DiscountFragment() {
@@ -71,9 +73,10 @@ public class DiscountFragment extends Fragment implements TextWatcher {
 
     @SuppressLint("DefaultLocale")
     private void calculateDiscount() {
-        String originalPriceStr = etOriginalPrice.getText().toString();
-        String discountPercentageStr = etDiscountPercentage.getText().toString();
-        if (!originalPriceStr.isEmpty() && !discountPercentageStr.isEmpty()) {
+        if (!TextUtils.isEmpty(etOriginalPrice.getText()) && !TextUtils.isEmpty(etDiscountPercentage.getText())) {
+            String originalPriceStr = etOriginalPrice.getText().toString();
+            String discountPercentageStr = etDiscountPercentage.getText().toString();
+
             double originalPrice = Double.parseDouble(originalPriceStr);
             double discountPercentage = Double.parseDouble(discountPercentageStr);
 

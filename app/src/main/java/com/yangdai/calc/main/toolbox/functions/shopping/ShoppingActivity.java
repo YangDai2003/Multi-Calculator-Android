@@ -1,44 +1,33 @@
 package com.yangdai.calc.main.toolbox.functions.shopping;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 
-import java.util.Objects;
 
 /**
  * @author 30415
  */
-public class ShoppingActivity extends AppCompatActivity {
+public class ShoppingActivity extends BaseFunctionActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.activity_discount);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         initView();
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.activity_discount);
     }
 
     private void initView() {
@@ -46,6 +35,7 @@ public class ShoppingActivity extends AppCompatActivity {
         TabLayout mTabLayout = findViewById(R.id.tab_view);
 
         final String[] tabs = new String[]{getString(R.string.discount_fragment), getString(R.string.unit_price_fragment)};
+        final int[] icons = new int[]{R.drawable.discount_icon, R.drawable.unit_price_icon};
 
         mViewPager.setAdapter(new FragmentStateAdapter(getSupportFragmentManager(), getLifecycle()) {
             @NonNull
@@ -65,6 +55,9 @@ public class ShoppingActivity extends AppCompatActivity {
         });
 
         new TabLayoutMediator(mTabLayout, mViewPager,
-                (tab, position) -> tab.setText(tabs[position])).attach();
+                (tab, position) -> {
+                    tab.setText(tabs[position]);
+                    tab.setIcon(icons[position]);
+                }).attach();
     }
 }

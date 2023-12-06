@@ -2,8 +2,6 @@ package com.yangdai.calc.main;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -18,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -30,9 +29,9 @@ import com.google.android.material.elevation.SurfaceColors;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 import com.yangdai.calc.R;
 import com.yangdai.calc.features.FloatingWindow;
-import com.yangdai.calc.other.AboutActivity;
-import com.yangdai.calc.other.SettingsActivity;
+import com.yangdai.calc.main.sheets.BottomSheetFragment;
 import com.yangdai.calc.main.toolbox.ToolBoxFragment;
+import com.yangdai.calc.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -42,11 +41,12 @@ import java.util.Objects;
 /**
  * @author 30415
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private Menu menu;
     private ViewPager2 viewPager;
     private int currentPosition = 0;
     private ImageView pageIcon;
+    private SharedPreferences defaultSharedPrefs;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.historys).setVisible(true);
             menu.findItem(R.id.view_layout).setVisible(false);
         }
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isGrid = settings.getBoolean("GridLayout", true);
+        boolean isGrid = defaultSharedPrefs.getBoolean("GridLayout", true);
         if (isGrid) {
             menu.findItem(R.id.view_layout).setIcon(getDrawable(R.drawable.grid_on));
         } else {
@@ -87,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         } else if (item.getItemId() == R.id.resize) {
-            if (isMyServiceRunning()) {
-                // 调用 FloatingWindow 中 onDestroy()方法
-                stopService(new Intent(MainActivity.this, FloatingWindow.class));
-            }
             if (!Settings.canDrawOverlays(this)) {
                 requestOverlayDisplayPermission();
             } else {
@@ -98,13 +93,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         } else if (item.getItemId() == R.id.setting) {
-            startActivity(new Intent(this, SettingsActivity.class));
-        } else if (item.getItemId() == R.id.about) {
-            startActivity(new Intent(this, AboutActivity.class));
+            BottomSheetFragment.newInstance().show(getSupportFragmentManager(), "dialog");
         } else if (item.getItemId() == R.id.view_layout) {
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean isGrid = settings.getBoolean("GridLayout", true);
-            SharedPreferences.Editor editor = settings.edit();
+            boolean isGrid = defaultSharedPrefs.getBoolean("GridLayout", true);
+            SharedPreferences.Editor editor = defaultSharedPrefs.edit();
             editor.putBoolean("GridLayout", !isGrid);
             editor.apply();
             if (!isGrid) {
@@ -146,32 +138,22 @@ public class MainActivity extends AppCompatActivity {
             }
     );
 
-    private boolean isMyServiceRunning() {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-
-        // 需要使用循环来获取当前正在运行的服务的信息。
-        // 使用 ActivityManager.RunningServiceInfo 来检索特定服务的信息，这里是指当前的服务。
-        // getRunningServices() 方法返回一个当前正在运行的服务列表，
-        // Integer.MAX_VALUE 是 2147483647，所以最多可以返回这么多个服务。
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-
-            // 如果找到了这个服务正在运行，就返回 true，否则返回 false。
-            if (FloatingWindow.class.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
         setContentView(R.layout.activity_main);
 
+        defaultSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        defaultSharedPrefs.registerOnSharedPreferenceChangeListener(this);
+
+        if (defaultSharedPrefs.getBoolean("screen", false)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
         setupToolbar();
-        setupSharedPreferences();
         setupViewPager();
         pageIcon.setOnClickListener(v -> {
             if (currentPosition == 0) {
@@ -191,15 +173,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
         getSupportActionBar().setElevation(0f);
         pageIcon = findViewById(R.id.view_pager_icon);
-    }
-
-    private void setupSharedPreferences() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if (settings.getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
     }
 
     private void setupViewPager() {
@@ -267,5 +240,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, @Nullable String key) {
+        if (defaultSharedPrefs.getBoolean("vib", false)) {
+            Utils.vibrate(this);
+        }
+        if ("split".equals(key)) {
+            Toast.makeText(this, getString(R.string.restart), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        defaultSharedPrefs.unregisterOnSharedPreferenceChangeListener(this);
     }
 }

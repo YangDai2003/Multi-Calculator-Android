@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_sheet">#CCFFFFFF</color>
     <color name="background">#FEFEFE</color>
     <color name="Very_Severely_underweight">#FF4081</color>
     <color name="Severely_underweight">#FF5722</color>

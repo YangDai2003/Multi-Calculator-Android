@@ -33,29 +33,29 @@ import java.util.regex.Pattern;
  */
 public class CalculatorViewModel extends ViewModel {
 
-    private final MutableLiveData<String> inputText = new MutableLiveData<>();
-    private final MutableLiveData<String> outputText = new MutableLiveData<>();
+    private final MutableLiveData<String> expression = new MutableLiveData<>();
+    private final MutableLiveData<String> result = new MutableLiveData<>();
     private int left = 0, right = 0;
 
     public LiveData<String> getInputTextState() {
-        return inputText;
+        return expression;
     }
 
     public LiveData<String> getOutputTextState() {
-        return outputText;
+        return result;
     }
 
     @SuppressLint("SetTextI18n")
     public void handleFactorial(String inputStr, boolean canSpeak, TTS tts, String fac, String doubleFac) {
         if (!inputStr.isEmpty()) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
-            if (isNumber(lastChar + "") && lastChar != 'e' && lastChar != 'g' && lastChar != 'π') {
+            if (isNumber(String.valueOf(lastChar)) && lastChar != 'e' && lastChar != 'g' && lastChar != 'π') {
                 for (int i = inputStr.length() - 1; i >= 0; i--) {
                     if (inputStr.charAt(i) == '.') {
                         return;
                     }
-                    if (isSymbol(inputStr.charAt(i) + "")) {
-                        inputText.setValue(inputStr + "!");
+                    if (isSymbol(String.valueOf(inputStr.charAt(i)))) {
+                        expression.setValue(inputStr + "!");
                         if (canSpeak) {
                             tts.ttsSpeak(fac);
                         }
@@ -65,11 +65,11 @@ public class CalculatorViewModel extends ViewModel {
                 if (canSpeak) {
                     tts.ttsSpeak(fac);
                 }
-                inputText.setValue(inputStr + "!");
+                expression.setValue(inputStr + "!");
             } else if (lastChar == '!') {
                 char secondLastChar = inputStr.charAt(inputStr.length() - 2);
                 if (secondLastChar != '!') {
-                    inputText.setValue(inputStr + "!");
+                    expression.setValue(inputStr + "!");
                     if (canSpeak) {
                         tts.ttsSpeak(doubleFac);
                     }
@@ -79,18 +79,18 @@ public class CalculatorViewModel extends ViewModel {
     }
 
     @SuppressLint("SetTextI18n")
-    public void handleEqualButton(String inputStr, Calculator formulaUtil, SharedPreferences settings, SharedPreferences history, boolean fromUser, String bigNum, String error) {
+    public void handleEqualButton(String inputStr, Calculator formulaUtil, SharedPreferences defaultSp, SharedPreferences history, boolean fromUser, String bigNum, String error) {
         // 处理常量情况
         if ("e".equals(inputStr) || "π".equals(inputStr)) {
             inputStr = inputStr.replace("e", String.valueOf(Math.E))
                     .replace("π", String.valueOf(Math.PI));
-            outputText.setValue(inputStr);
+            result.setValue(inputStr);
             return;
         }
 
         // 忽略特殊情况
         if (inputStr.isEmpty() || isNumeric(inputStr)) {
-            outputText.setValue("");
+            result.setValue("");
             return;
         }
 
@@ -118,7 +118,7 @@ public class CalculatorViewModel extends ViewModel {
                 // 优化！阶乘和！！双阶乘
                 inputStr = calculateAllFactorial(inputStr);
                 if ("数值过大".equals(inputStr)) {
-                    outputText.setValue(bigNum);
+                    result.setValue(bigNum);
                     return;
                 }
             }
@@ -134,10 +134,10 @@ public class CalculatorViewModel extends ViewModel {
                     .replace("%", "÷100");
             BigDecimal bigDecimal = formulaUtil.calc(inputStr);
             if (null == bigDecimal) {
-                outputText.setValue(bigNum);
+                result.setValue(bigNum);
                 return;
             }
-            bigDecimal = bigDecimal.setScale(settings.getInt("scale", 10), BigDecimal.ROUND_HALF_UP);
+            bigDecimal = bigDecimal.setScale(defaultSp.getInt("scale", 10), BigDecimal.ROUND_HALF_UP);
             String res = bigDecimal.toBigDecimal().toPlainString();
             res = removeZeros(res);
 
@@ -145,38 +145,39 @@ public class CalculatorViewModel extends ViewModel {
                 String historys = history.getString("newHistory", "");
                 List<String> savedStringList = new ArrayList<>(Arrays.asList(historys.split("//")));
 
-                if (savedStringList.size() > 100) {
-                    savedStringList.remove(0);
+                if (savedStringList.size() >= defaultSp.getInt("historyNum", 100)) {
+                    int removeCount = savedStringList.size() - defaultSp.getInt("historyNum", 100) + 1;
+                    savedStringList.removeAll(savedStringList.subList(0, removeCount));
                 }
                 savedStringList.add(inputStr + "\n" + "=" + res);
                 String listString = TextUtils.join("//", savedStringList);
                 SharedPreferences.Editor editor = history.edit();
                 editor.putString("newHistory", listString);
                 editor.apply();
-                inputText.setValue(res);
-                outputText.setValue("");
+                expression.setValue(res);
+                result.setValue("");
             } else {
-                outputText.setValue(formatNumber(res));
+                result.setValue(formatNumber(res));
             }
         } catch (Exception e) {
             if (fromUser) {
-                outputText.setValue(error);
+                result.setValue(error);
             }
         }
     }
 
     public void handleCleanButton() {
-        inputText.setValue("");
-        outputText.setValue("");
+        expression.setValue("");
+        result.setValue("");
         left = 0;
         right = 0;
     }
 
     public void handleDeleteButton(String inputStr) {
         if (inputStr.length() > 0) {
-            if (inputStr.endsWith("asin(") || inputStr.endsWith("acos(")
-                    || inputStr.endsWith("atan(") || inputStr.endsWith("acot(")) {
-                inputStr = inputStr.substring(0, inputStr.length() - 5);
+            if (inputStr.endsWith("sin⁻¹(") || inputStr.endsWith("cos⁻¹(")
+                    || inputStr.endsWith("tan⁻¹(") || inputStr.endsWith("cot⁻¹(")) {
+                inputStr = inputStr.substring(0, inputStr.length() - 6);
                 left--;
             } else if (inputStr.endsWith("sin(") || inputStr.endsWith("cos(") || inputStr.endsWith("exp(")
                     || inputStr.endsWith("tan(") || inputStr.endsWith("cot(") || inputStr.endsWith("log(")) {
@@ -195,10 +196,10 @@ public class CalculatorViewModel extends ViewModel {
                 }
                 inputStr = inputStr.substring(0, inputStr.length() - 1);
             }
-            inputText.setValue(inputStr);
+            expression.setValue(inputStr);
         }
         if (inputStr.isEmpty()) {
-            outputText.setValue("");
+            result.setValue("");
         }
     }
 
@@ -206,18 +207,18 @@ public class CalculatorViewModel extends ViewModel {
     public void handleBracketsButton(String inputStr) {
         if (inputStr.length() > 0) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
-            if (left > right && isNumber(String.valueOf(lastChar))
-                    || left > right && lastChar == '%' || left > right && lastChar == ')') {
-                inputText.setValue(inputStr + ")");
+            if (left > right && (isNumber(String.valueOf(lastChar))
+                    || lastChar == '!' || lastChar == '%' || lastChar == ')')) {
+                expression.setValue(inputStr + ")");
                 right++;
                 return;
             } else if (lastChar == ')' || isNumber(String.valueOf(lastChar))) {
-                inputText.setValue(inputStr + "×(");
+                expression.setValue(inputStr + "×(");
             } else {
-                inputText.setValue(inputStr + "(");
+                expression.setValue(inputStr + "(");
             }
         } else {
-            inputText.setValue(inputStr + "(");
+            expression.setValue(inputStr + "(");
         }
         left++;
     }
@@ -242,35 +243,35 @@ public class CalculatorViewModel extends ViewModel {
                             if (curr == '-') {
                                 if (i >= 1 && "(-".equals(inputStr.substring(i - 1, i + 1))) {
                                     inputStr = inputStr.substring(0, i - 1);
-                                    inputText.setValue(inputStr + n);
+                                    expression.setValue(inputStr + n);
                                     left--;
                                     return;
                                 }
                             }  // + × ÷ (  ^ 特殊情况 )
                             inputStr = inputStr.substring(0, i + 1);
                             String prefix = (curr == ')') ? "×(-" : "(-";
-                            inputText.setValue(inputStr + prefix + n);
+                            expression.setValue(inputStr + prefix + n);
                             left++;
                             return;
                         }
                     }
                 }
                 //只有数字
-                inputText.setValue("(-" + n);
+                expression.setValue("(-" + n);
                 left++;
                 return;
             } else if (lastChar == '-') {
                 // 最后是 (-， 直接去掉
                 if (inputStr.length() > 1 && (inputStr.charAt(inputStr.length() - 2) == '(')) {
-                    inputText.setValue(inputStr.substring(0, inputStr.length() - 2));
+                    expression.setValue(inputStr.substring(0, inputStr.length() - 2));
                     left--;
                     return;
                 }
             }
             String prefix = (lastChar == ')' || lastChar == '!') ? "×(-" : "(-";
-            inputText.setValue(inputStr + prefix);
+            expression.setValue(inputStr + prefix);
         } else {
-            inputText.setValue("(-");
+            expression.setValue("(-");
         }
         left++;
     }
@@ -284,49 +285,50 @@ public class CalculatorViewModel extends ViewModel {
         }
 
         if (fromUser && Utils.isNumber(append)) {
-            inputText.setValue(append);
+            expression.setValue(append);
 
         } else {
             //长度大于0时
             if (inputStr.length() > 0) {
                 char lastInput = inputStr.charAt(inputStr.length() - 1);
-                // )、e、π 后输入数字默认加上 ×
+                // )、e、π、！、% 后输入数字默认加上 ×
                 if (isNumber(append)) {
-                    if (")".equals(String.valueOf(lastInput))
+                    if (")".equals(String.valueOf(lastInput)) || "!".equals(String.valueOf(lastInput)) || "%".equals(String.valueOf(lastInput))
                             || "e".equals(String.valueOf(lastInput)) || "π".equals(String.valueOf(lastInput))) {
-                        inputText.setValue(inputStr + "×" + append);
+                        expression.setValue(inputStr + "×" + append);
                         return;
                     }
                 }
                 // 最后一位是两数运算符号时，再次输入符号则替换最后一位
                 if (isSymbol(String.valueOf(lastInput)) && isSymbol(append)) {
-                    inputText.setValue(inputStr.substring(0, inputStr.length() - 1) + append);
+                    expression.setValue(inputStr.substring(0, inputStr.length() - 1) + append);
                     return;
                 }
                 // 最后一位是数字时，输入e、π默认加上 ×
                 if (isNumber(String.valueOf(lastInput)) && ("e".equals(append) || "π".equals(append))) {
-                    inputText.setValue(inputStr + "×" + append);
+                    expression.setValue(inputStr + "×" + append);
                     return;
                 }
             }
 
             //三角函数运算符和对数运算符后自动加上括号
             if ("sin".equals(append) || "cos".equals(append) || "tan".equals(append) || "cot".equals(append)
-                    || "asin".equals(append) || "acos".equals(append) || "atan".equals(append) || "acot".equals(append)
+                    || "sin⁻¹".equals(append) || "cos⁻¹".equals(append) || "tan⁻¹".equals(append) || "cot⁻¹".equals(append)
                     || "log".equals(append) || "ln".equals(append) || "exp".equals(append)) {
                 if (inputStr.length() > 0) {
                     char lastInput = inputStr.charAt(inputStr.length() - 1);
-                    if (isNumber(String.valueOf(lastInput)) || ")".equals(String.valueOf(lastInput))) {
-                        inputText.setValue(inputStr + "×" + append + "(");
+                    if (isNumber(String.valueOf(lastInput)) || ")".equals(String.valueOf(lastInput))
+                            || "!".equals(String.valueOf(lastInput)) || "%".equals(String.valueOf(lastInput))) {
+                        expression.setValue(inputStr + "×" + append + "(");
                         left++;
                         return;
                     }
                 }
-                inputText.setValue(inputStr + append + "(");
+                expression.setValue(inputStr + append + "(");
                 left++;
                 return;
             }
-            inputText.setValue(inputStr + append);
+            expression.setValue(inputStr + append);
         }
     }
 }

@@ -8,11 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-    <!--suppress DeprecatedClassUsageInspection -->
-    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 适配android 11无法唤起第三方apk -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
-    
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" /> <!-- 适配android 11无法唤起第三方apk -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.DIAL" />
@@ -41,7 +39,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
-
+        <activity
+            android:name=".main.toolbox.functions.programmer.ProgrammerActivity"
+            android:exported="false"
+            android:label="@string/programmer"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".main.toolbox.functions.fraction.FractionActivity"
             android:exported="true"
@@ -53,9 +55,9 @@
             android:label="@string/statisticActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
-            android:name=".main.toolbox.functions.function.FunctionActivity"
+            android:name=".main.toolbox.functions.equation.EquationActivity"
             android:exported="true"
-            android:label="@string/functionActivity"
+            android:label="@string/EquationActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".main.toolbox.functions.random.RandomNumberActivity"
@@ -63,16 +65,6 @@
             android:label="@string/randomActivity"
             android:parentActivityName=".main.MainActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity
-            android:name=".other.AboutActivity"
-            android:exported="false"
-            android:label="@string/about"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
-            android:name=".other.SettingsActivity"
-            android:exported="false"
-            android:label="@string/settings"
-            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".main.toolbox.functions.finance.FinanceActivity"
             android:exported="true"
@@ -110,7 +102,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.toolbox.functions.ChineseNumberConversionActivity"
+            android:name=".main.toolbox.functions.chinese.ChineseNumberConversionActivity"
             android:exported="true"
             android:label="@string/chineseNumberConverter"
             android:launchMode="singleTask"
@@ -133,7 +125,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.toolbox.functions.BMIActivity"
+            android:name=".main.toolbox.functions.bmi.BMIActivity"
             android:exported="true"
             android:label="@string/bmiActivity"
             android:launchMode="singleTask"
@@ -171,7 +163,7 @@
         <activity
             android:name=".main.toolbox.functions.converter.UnitActivity"
             android:exported="true"
-            android:label="@string/ChangeActivity"
+            android:label="@string/UnitsActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".main.MainActivity">
             <intent-filter>
@@ -184,7 +176,8 @@
             android:name=".main.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.noActionBar">
+            android:theme="@style/AppTheme.noActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -201,8 +194,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/AppTheme" />
-
+            android:theme="@style/AppTheme" /> <!-- -receiver -->
         <receiver
             android:name=".features.MyWidgetProvider"
             android:exported="false"

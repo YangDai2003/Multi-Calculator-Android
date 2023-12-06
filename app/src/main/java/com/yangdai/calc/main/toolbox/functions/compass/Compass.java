@@ -6,9 +6,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,7 +20,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -32,9 +29,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -49,19 +44,18 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.elevation.SurfaceColors;
 import com.yangdai.calc.R;
+import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
  * @author 30415
  */
-public class Compass extends AppCompatActivity implements SensorEventListener {
+public class Compass extends BaseFunctionActivity implements SensorEventListener {
     private SensorManager sensorManager;
     Sensor accelerationSensor, magneticFieldSensor, pressureSensor;
     private final float[] accelerometerValues = new float[3];
@@ -76,7 +70,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     private String addressStr;
     private String pressureStr;
     private Location location;
-    SharedPreferences settings;
     int isGoogleAvailable;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
@@ -91,21 +84,9 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this));
-        setContentView(R.layout.compass);
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(SurfaceColors.SURFACE_0.getColor(this)));
-        getSupportActionBar().setElevation(0f);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         handlerThread.start();
         handler = new Handler(handlerThread.getLooper());
-
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
-        if (settings.getBoolean("screen", false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
 
         tvDegree = findViewById(R.id.degree);
         tvLocation = findViewById(R.id.location);
@@ -151,6 +132,11 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         // 默认值为N/A。如果已检索到位置，则文本将更新为相应的值
         tvTrueHeading.setText(R.string.not_available);
         tvMagneticDeclination.setText(R.string.not_available);
+    }
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.compass);
     }
 
     @SuppressLint("MissingPermission")
