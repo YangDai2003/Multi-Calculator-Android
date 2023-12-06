@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 51
-        versionName '6.0'
+        versionCode 52
+        versionName '6.2'
         resourceConfigurations += ["en", "zh", "de"]
     }
 

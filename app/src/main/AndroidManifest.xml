@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" /> <!-- 适配android 11无法唤起第三方apk -->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <!-- 适配android 11无法唤起第三方apk -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <queries>
