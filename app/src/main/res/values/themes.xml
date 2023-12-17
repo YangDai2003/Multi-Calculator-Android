@@ -7,7 +7,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:navigationBarColor">?colorSurface</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
@@ -33,7 +33,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:navigationBarColor">?colorSurface</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
@@ -42,8 +42,7 @@
     </style>
 
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/transparent
-        </item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="MyChip" parent="@style/Widget.Material3.Chip.Assist">

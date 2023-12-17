@@ -77,14 +77,20 @@ public class DiscountFragment extends Fragment implements TextWatcher {
             String originalPriceStr = etOriginalPrice.getText().toString();
             String discountPercentageStr = etDiscountPercentage.getText().toString();
 
-            double originalPrice = Double.parseDouble(originalPriceStr);
-            double discountPercentage = Double.parseDouble(discountPercentageStr);
+            try {
+                double originalPrice = Double.parseDouble(originalPriceStr);
+                double discountPercentage = Double.parseDouble(discountPercentageStr);
 
-            double discountAmount = originalPrice * (discountPercentage / 100);
-            double discountedPrice = originalPrice - discountAmount;
+                double discountAmount = originalPrice * (discountPercentage / 100);
+                double discountedPrice = originalPrice - discountAmount;
 
-            tvDiscountedPrice.setText(formatNumberFinance(String.valueOf(discountedPrice)));
-            tvSavedAmount.setText(formatNumberFinance(String.valueOf(discountAmount)));
+                tvDiscountedPrice.setText(formatNumberFinance(String.valueOf(discountedPrice)));
+                tvSavedAmount.setText(formatNumberFinance(String.valueOf(discountAmount)));
+            } catch (Exception e) {
+                tvDiscountedPrice.setText("");
+                tvSavedAmount.setText("");
+            }
+
         } else {
             tvDiscountedPrice.setText("");
             tvSavedAmount.setText("");

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
 
     //声明所有组件
     private TextView etText;
-    private EditText et2, et8, et10, et16;
+    private TextView et2, et8, et10, et16;
     private Button bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt0, bta, btb, btc, btd, bte, btf;
     private int select = 16;
     private int digit = 5;
@@ -248,15 +247,10 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
                 et16.setText(sendString(input, 16));
             }
         } catch (Exception e) {
-            Snackbar.make(etText, "数据格式有误或数值过大", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(etText, R.string.formatError, Snackbar.LENGTH_SHORT).show();
         }
     }
 
-    /**
-     * 感谢rtugeek的开源项目的工具类
-     */
-
-    //最重要的一部分
     //向进制转换工具类传值，分别是：需要转换的字符串，需要转换到的进制，当前进制，该方法会返回一个结果值
     private String sendString(String input, int toRadix) {
         String result;
@@ -278,61 +272,43 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.bt_point) {
-            etText.requestFocus();
             etText.setText(etText.getText() + ".");
         } else if (view.getId() == R.id.bt_del) {
-            etText.requestFocus();
             if (!TextUtils.isEmpty(etText.getText().toString())) {
                 String str = etText.getText().toString();
                 etText.setText(str.substring(0, str.length() - 1));
             }
         } else if (view.getId() == R.id.bt_0) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "0");
         } else if (view.getId() == R.id.bt_1) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "1");
         } else if (view.getId() == R.id.bt_2) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "2");
         } else if (view.getId() == R.id.bt_3) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "3");
         } else if (view.getId() == R.id.bt_4) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "4");
         } else if (view.getId() == R.id.bt_5) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "5");
         } else if (view.getId() == R.id.bt_6) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "6");
         } else if (view.getId() == R.id.bt_7) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "7");
         } else if (view.getId() == R.id.bt_8) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "8");
         } else if (view.getId() == R.id.bt_9) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "9");
         } else if (view.getId() == R.id.bt_a) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "A");
         } else if (view.getId() == R.id.bt_b) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "B");
         } else if (view.getId() == R.id.bt_c) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "C");
         } else if (view.getId() == R.id.bt_d) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "D");
         } else if (view.getId() == R.id.bt_e) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "E");
         } else if (view.getId() == R.id.bt_f) {
-            etText.requestFocus();
             etText.setText(etText.getText() + "F");
         } else if (view.getId() == R.id.clean) {
             etText.setText("");

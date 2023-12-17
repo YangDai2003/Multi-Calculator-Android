@@ -73,15 +73,20 @@ public class UnitPriceFragment extends Fragment implements TextWatcher {
             String quantityStr = etQuantity.getText().toString();
             String priceStr = etPrice.getText().toString();
 
-            double quantity = Double.parseDouble(quantityStr);
-            double price = Double.parseDouble(priceStr);
-            if (quantity == 0) {
-                return;
+            try {
+                double quantity = Double.parseDouble(quantityStr);
+                double price = Double.parseDouble(priceStr);
+                if (quantity == 0) {
+                    return;
+                }
+
+                double res = price / quantity;
+
+                tvUnitPrice.setText(formatNumberFinance(String.valueOf(res)));
+            } catch (Exception e) {
+                tvUnitPrice.setText("");
             }
 
-            double res = price / quantity;
-
-            tvUnitPrice.setText(formatNumberFinance(String.valueOf(res)));
         } else {
             tvUnitPrice.setText("");
         }

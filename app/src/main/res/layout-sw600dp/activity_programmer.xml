@@ -66,77 +66,132 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/result"
-                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:focusableInTouchMode="false">
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_16"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/hex"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/hex"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
 
-            <com.google.android.material.textfield.TextInputLayout
+                    <TextView
+                        android:id="@+id/et_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end|center_vertical"
+                        android:textAlignment="gravity" />
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp">
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_10"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/decimal"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/decimal"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
 
-            <com.google.android.material.textfield.TextInputLayout
+                    <TextView
+                        android:id="@+id/et_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end|center_vertical"
+                        android:textAlignment="gravity" />
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp">
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_8"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/octal"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/octal"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
 
-            <com.google.android.material.textfield.TextInputLayout
+                    <TextView
+                        android:id="@+id/et_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end|center_vertical"
+                        android:textAlignment="gravity" />
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp">
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_2"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/binary"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/binary"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <TextView
+                        android:id="@+id/et_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end|center_vertical"
+                        android:textAlignment="gravity" />
+                </HorizontalScrollView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
