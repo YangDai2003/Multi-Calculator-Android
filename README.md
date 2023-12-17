@@ -1,4 +1,5 @@
 -[English](README.md)
+
 -[中文](README_zh.md)
 
 <div align="center">
@@ -32,11 +33,14 @@
 
 ## 📷 Screenshots
 
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/03930fe4-adcd-4978-96e7-abb5f62075d5" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/5c509d38-8041-41a7-85cf-1cfd574095d8" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/d104ca7e-a305-442a-985a-582ec0d1a21c" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/2b4b8322-59d3-4127-855f-34fecd56686f" width="15%"/>
-<img src="https://github.com/YangDai-Github/Multi-Calculator-Android/assets/107718193/93e51a9f-ea9c-4f90-97e6-3e49201068b1" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/1f0cd1a6-e1db-45a5-828e-16c9864d9ab9" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/99810edf-2087-4665-b1aa-8ebd3f8f78bd" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/93cc1cbd-a8ae-4e30-ab79-8b123ea47381" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/f73e1ec3-af02-45f9-be7c-02ed0c5384df" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/357a32b6-66bc-4928-a5e1-61887f101ab7" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/b21cbb6a-2d61-4858-9442-7d8d111c1ee4" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/83d07490-f0a9-49eb-ad74-432e0de35708" width="15%"/>
+<img src="https://github.com/YangDai2003/Multi-Calculator-Android/assets/107718193/ec4cd6ef-e996-4b90-b6b9-e5084c4451c6" width="15%"/>
 
 ## 🌎 Translations
 
