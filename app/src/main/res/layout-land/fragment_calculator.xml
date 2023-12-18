@@ -54,15 +54,13 @@
             android:id="@+id/view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:autoSizeMaxTextSize="36sp"
             android:autoSizeTextType="uniform"
             android:gravity="bottom"
             android:maxLines="1"
-            android:text=""
             android:textAlignment="gravity"
-            android:textIsSelectable="true"
-            tools:ignore="RtlHardcoded" />
+            android:textIsSelectable="true" />
     </HorizontalScrollView>
 
     <com.google.android.material.divider.MaterialDivider

@@ -55,15 +55,12 @@
             android:id="@+id/view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:autoSizeMaxTextSize="36sp"
-            android:autoSizeTextType="uniform"
+            android:layout_gravity="end"
+            android:textSize="32sp"
             android:gravity="bottom"
             android:maxLines="1"
-            android:text=""
             android:textAlignment="gravity"
-            android:textIsSelectable="true"
-            tools:ignore="RtlHardcoded" />
+            android:textIsSelectable="true" />
     </HorizontalScrollView>
 
 

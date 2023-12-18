@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 53
-        versionName '6.3'
+        versionCode 54
+        versionName '6.4'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -65,7 +65,7 @@ dependencies {
     implementation 'androidx.activity:activity:1.8.2'
     implementation 'androidx.window:window:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
