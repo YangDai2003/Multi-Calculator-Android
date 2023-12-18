@@ -65,6 +65,7 @@ dependencies {
     implementation 'androidx.activity:activity:1.8.2'
     implementation 'androidx.window:window:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    // com.google.android.material:material 1.11.0 has bug with Material 3 Color
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.preference:preference:1.2.1'
