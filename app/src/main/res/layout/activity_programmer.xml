@@ -95,7 +95,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:gravity="end|center_vertical"
-                        android:textAlignment="gravity" />
+                        android:textAlignment="gravity"
+                        android:textIsSelectable="true" />
                 </HorizontalScrollView>
 
             </LinearLayout>
@@ -126,7 +127,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:gravity="end|center_vertical"
-                        android:textAlignment="gravity" />
+                        android:textAlignment="gravity"
+                        android:textIsSelectable="true" />
                 </HorizontalScrollView>
 
             </LinearLayout>
@@ -157,7 +159,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:gravity="end|center_vertical"
-                        android:textAlignment="gravity" />
+                        android:textAlignment="gravity"
+                        android:textIsSelectable="true" />
                 </HorizontalScrollView>
 
             </LinearLayout>
@@ -188,7 +191,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:gravity="end|center_vertical"
-                        android:textAlignment="gravity" />
+                        android:textAlignment="gravity"
+                        android:textIsSelectable="true" />
                 </HorizontalScrollView>
 
             </LinearLayout>

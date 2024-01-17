@@ -166,7 +166,8 @@
                     android:layout_marginHorizontal="16dp"
                     android:autoSizeTextType="uniform"
                     android:gravity="end|center_vertical"
-                    android:textAlignment="gravity" />
+                    android:textAlignment="gravity"
+                    android:textIsSelectable="true" />
 
             </LinearLayout>
 
@@ -192,7 +193,8 @@
                     android:layout_marginHorizontal="16dp"
                     android:autoSizeTextType="uniform"
                     android:gravity="end|center_vertical"
-                    android:textAlignment="gravity" />
+                    android:textAlignment="gravity"
+                    android:textIsSelectable="true" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

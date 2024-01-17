@@ -60,7 +60,8 @@
                         android:id="@+id/gcd"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,7 +82,8 @@
                         android:id="@+id/lcm"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -102,7 +104,8 @@
                         android:id="@+id/avg0"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -123,7 +126,8 @@
                         android:id="@+id/avg1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -144,7 +148,8 @@
                         android:id="@+id/avg2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -165,7 +170,8 @@
                         android:id="@+id/avg3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -186,7 +192,8 @@
                         android:id="@+id/diff0"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -207,7 +214,8 @@
                         android:id="@+id/diff1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -228,7 +236,8 @@
                         android:id="@+id/sum"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="end|center_vertical" />
+                        android:gravity="end|center_vertical"
+                        android:textIsSelectable="true" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.yangdai.calc.R;
 import com.yangdai.calc.main.toolbox.functions.BaseFunctionActivity;
 import com.yangdai.calc.utils.TouchAnimation;
+import com.yangdai.calc.utils.Utils;
 
 /**
  * @author 30415
@@ -116,7 +117,7 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
     }
 
     private void refreshText() {
-        tvInput.setText(showText);
+        tvInput.setText(Utils.formatNumber(showText));
         tvResults.setText(resultsText);
     }
 

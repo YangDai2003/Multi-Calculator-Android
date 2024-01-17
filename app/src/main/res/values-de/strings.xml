@@ -187,7 +187,7 @@
     <string name="repeat">Zahlen können wiederholt werden</string>
     <string name="result">Ergebnis:</string>
     <string name="generate">Generieren</string>
-    <string name="start_end">Start / Stop</string>
+    <string name="start_pause">Start / Stop</string>
     <string name="hasCleaned">Der Verlauf wurde gelöscht</string>
     <string name="EquationActivity">Gleichung</string>
     <string name="linear">Lineargleichung</string>
@@ -232,10 +232,10 @@
     <string name="about_app">Hilfe und Feedback</string>
     <string name="about_app_content">Hier können Sie nach Aktualisierungen suchen, Probleme melden, Vorschläge unterbreiten usw.</string>
     <string name="historyNum">Ergebnisse im Verlauf gespeichert.</string>
-    <string name="hex">Hex</string>
-    <string name="decimal">Dezimal</string>
-    <string name="octal">Oktal</string>
-    <string name="binary">Binär</string>
+    <string name="hex">Hex:</string>
+    <string name="decimal">Dezimal:</string>
+    <string name="octal">Oktal:</string>
+    <string name="binary">Binär:</string>
     <string name="helper_include">*inbegriffen</string>
 
     <string-array name="theme_options">

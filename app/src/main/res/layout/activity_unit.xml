@@ -103,7 +103,8 @@
                     android:autoSizeTextType="uniform"
                     android:gravity="end|bottom"
                     android:maxLines="1"
-                    android:textAlignment="gravity" />
+                    android:textAlignment="gravity"
+                    android:textIsSelectable="true" />
             </LinearLayout>
 
         </LinearLayout>

@@ -201,7 +201,7 @@
     <string name="repeat">Numbers can be repeated</string>
     <string name="result">Result:</string>
     <string name="generate">Generate</string>
-    <string name="start_end">Start / Stop</string>
+    <string name="start_pause">Start / Pause</string>
     <string name="hasCleaned">All history cleared</string>
     <string name="EquationActivity">Equation</string>
     <string name="linear">Linear Equation</string>
@@ -250,10 +250,10 @@
     <string name="about_app">Help And Feedback</string>
     <string name="about_app_content">Check for updates, report issues, provide suggestions, etc.</string>
     <string name="historyNum">Results saved in history</string>
-    <string name="hex">Hex</string>
-    <string name="decimal">Decimal</string>
-    <string name="octal">Octal</string>
-    <string name="binary">Binary</string>
+    <string name="hex">Hex:</string>
+    <string name="decimal">Decimal:</string>
+    <string name="octal">Octal:</string>
+    <string name="binary">Binary:</string>
     <string name="helper_include">*include</string>
 
     <string-array name="theme_options">

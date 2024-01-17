@@ -31,6 +31,7 @@ public class PickerFragment extends Fragment {
     private TextView textView;
     private EditText minValueEditText;
     private EditText maxValueEditText;
+    private Button button;
     private Handler handler;
     private boolean isRolling;
     private final Random random = new Random();
@@ -53,7 +54,7 @@ public class PickerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textView = view.findViewById(R.id.textView);
-        Button startButton = view.findViewById(R.id.startButton);
+        button = view.findViewById(R.id.startButton);
         minValueEditText = view.findViewById(R.id.minValueEditText);
         minValueEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -74,13 +75,18 @@ public class PickerFragment extends Fragment {
         });
         handler = new Handler(Looper.getMainLooper());
 
-        startButton.setOnClickListener(v -> {
+        String startOrStop = getString(R.string.start_pause);
+        button.setText(startOrStop.split("/")[0].trim());
+
+        button.setOnClickListener(v -> {
             closeKeyboard(requireActivity());
             if (isRolling) {
                 stopRolling();
+                button.setText(startOrStop.split("/")[0].trim());
             } else {
                 if (validateInput()) {
                     startRolling();
+                    button.setText(startOrStop.split("/")[1].trim());
                 } else {
                     Toast.makeText(getContext(), getString(R.string.formatError), Toast.LENGTH_SHORT).show();
                 }

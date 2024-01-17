@@ -48,12 +48,10 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
         spScale.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String number;
+                etText.setText("");
                 switch (i) {
                     case 0 -> {
                         select = 16;
-                        number = etText.getText().toString();
-                        initRadix(number);
                         bt0.setEnabled(true);
                         bt1.setEnabled(true);
                         bt2.setEnabled(true);
@@ -73,8 +71,6 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
                     }
                     case 1 -> {
                         select = 10;
-                        number = etText.getText().toString();
-                        initRadix(number);
                         bt0.setEnabled(true);
                         bt1.setEnabled(true);
                         bt2.setEnabled(true);
@@ -94,8 +90,6 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
                     }
                     case 2 -> {
                         select = 8;
-                        number = etText.getText().toString();
-                        initRadix(number);
                         bt0.setEnabled(true);
                         bt1.setEnabled(true);
                         bt2.setEnabled(true);
@@ -115,8 +109,6 @@ public class ProgrammerActivity extends BaseFunctionActivity implements View.OnC
                     }
                     case 3 -> {
                         select = 2;
-                        number = etText.getText().toString();
-                        initRadix(number);
                         bt0.setEnabled(true);
                         bt1.setEnabled(true);
                         bt2.setEnabled(false);

@@ -2,9 +2,6 @@ package com.yangdai.calc.main.toolbox.functions.programmer;
 
 import android.text.TextUtils;
 
-import com.yangdai.calc.R;
-
-import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -97,22 +94,6 @@ public class RadixUtil {
             return "0";
         }
     }
-
-
-    public static int getIdByResourceName(String s) {
-        int resourceId = 0;
-        try {
-            Field field = R.id.class.getField(s);
-            field.setAccessible(true);
-            try {
-                resourceId = field.getInt(null);
-            } catch (IllegalArgumentException | IllegalAccessException ignored) {
-            }
-        } catch (NoSuchFieldException ignored) {
-        }
-        return resourceId;
-    }
-
 
     public static boolean checkData(String data, int radix) {
         data = data.replaceAll(" ", "");

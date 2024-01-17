@@ -115,7 +115,8 @@
                         android:gravity="end"
                         android:maxLines="1"
                         android:textAlignment="gravity"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        android:textIsSelectable="true" />
 
                 </LinearLayout>
 

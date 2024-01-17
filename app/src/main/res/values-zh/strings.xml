@@ -184,7 +184,7 @@
     <string name="repeat">可以重复</string>
     <string name="result">结果：</string>
     <string name="generate">生成随机数</string>
-    <string name="start_end">开始 / 暂停</string>
+    <string name="start_pause">开始 / 暂停</string>
     <string name="hasCleaned">已清除所有历史记录</string>
     <string name="EquationActivity">方程</string>
     <string name="linear">线性方程</string>
@@ -229,10 +229,10 @@
     <string name="about_app">帮助与反馈</string>
     <string name="about_app_content">检查更新、反馈问题、提供建议等</string>
     <string name="historyNum">保留历史记录条数</string>
-    <string name="hex">十六进制</string>
-    <string name="decimal">十进制</string>
-    <string name="octal">八进制</string>
-    <string name="binary">二进制</string>
+    <string name="hex">十六进制：</string>
+    <string name="decimal">十进制：</string>
+    <string name="octal">八进制：</string>
+    <string name="binary">二进制：</string>
     <string name="helper_include">*包含</string>
 
     <string-array name="theme_options">
