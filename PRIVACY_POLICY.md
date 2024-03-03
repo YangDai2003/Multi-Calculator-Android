@@ -13,7 +13,7 @@ Third-party SDKs will be explained in the following table:
 |:--------:|------------------------------------------------|-----------------------------------------------------------------|
 | Firebase | Analyze application crashes and ANR situations | Device model, OS version, code crash location and error message |
 
-Firebase Terms of Service(https://firebase.google.com/terms)
+[Firebase Terms of Service](https://firebase.google.com/terms)
 
 ### Permissions requested in the app
 
