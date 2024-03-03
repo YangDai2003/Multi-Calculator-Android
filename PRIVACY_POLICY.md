@@ -8,6 +8,7 @@ Multi-Calculator itself does not collect user confidential data and personal inf
 
 Third-party SDKs will be explained in the following table:
 
+
 | SDK name | Purpose of using SDK                           | Data collected by SDK                                           |
 |:--------:|------------------------------------------------|-----------------------------------------------------------------|
 | Firebase | Analyze application crashes and ANR situations | Device model, OS version, code crash location and error message |
@@ -16,8 +17,9 @@ Third-party SDKs will be explained in the following table:
 
 The list of permissions required by the app can be found in the `AndroidManifest.xml` file:
 
-https://github.com/YangDai2003/Multi-Calculator-Android/blob/master/app/src/main/AndroidManifest.xml#L6-L13
+https://github.com/YangDai2003/Multi-Calculator-Android/blob/master/app/src/main/AndroidManifest.xml#L6-L11
 <br/>
+
 
 |                                       Permission                                        | Purpose                                                   |
 |:---------------------------------------------------------------------------------------:|-----------------------------------------------------------|
