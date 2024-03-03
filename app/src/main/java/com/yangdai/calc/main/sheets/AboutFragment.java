@@ -138,7 +138,7 @@ public class AboutFragment extends Fragment {
             startActivity(Intent.createChooser(email, "Feedback (E-mail)"));
         });
         view.findViewById(R.id.about_privacy_policy).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://note.youdao.com/s/G2D1lqzp");
+            Uri uri = Uri.parse("https://github.com/YangDai2003/Multi-Calculator-Android/blob/master/PRIVACY_POLICY.md");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
