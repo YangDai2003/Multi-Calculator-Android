@@ -174,7 +174,7 @@ public class CalculatorViewModel extends ViewModel {
     }
 
     public void handleDeleteButton(String inputStr) {
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             if (inputStr.endsWith("sin⁻¹(") || inputStr.endsWith("cos⁻¹(")
                     || inputStr.endsWith("tan⁻¹(") || inputStr.endsWith("cot⁻¹(")) {
                 inputStr = inputStr.substring(0, inputStr.length() - 6);
@@ -205,7 +205,7 @@ public class CalculatorViewModel extends ViewModel {
 
     @SuppressLint("SetTextI18n")
     public void handleBracketsButton(String inputStr) {
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
             if (left > right && (isNumber(String.valueOf(lastChar))
                     || lastChar == '!' || lastChar == '%' || lastChar == ')')) {
@@ -226,7 +226,7 @@ public class CalculatorViewModel extends ViewModel {
     @SuppressLint("SetTextI18n")
     public void handleInverseButton(String inputStr) {
         // 取反
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
             //最后一位是数字
             if (isNumber(String.valueOf(lastChar))) {
@@ -289,7 +289,7 @@ public class CalculatorViewModel extends ViewModel {
 
         } else {
             //长度大于0时
-            if (inputStr.length() > 0) {
+            if (!inputStr.isEmpty()) {
                 char lastInput = inputStr.charAt(inputStr.length() - 1);
                 // )、e、π、！、% 后输入数字默认加上 ×
                 if (isNumber(append)) {
@@ -315,7 +315,7 @@ public class CalculatorViewModel extends ViewModel {
             if ("sin".equals(append) || "cos".equals(append) || "tan".equals(append) || "cot".equals(append)
                     || "sin⁻¹".equals(append) || "cos⁻¹".equals(append) || "tan⁻¹".equals(append) || "cot⁻¹".equals(append)
                     || "log".equals(append) || "ln".equals(append) || "exp".equals(append)) {
-                if (inputStr.length() > 0) {
+                if (!inputStr.isEmpty()) {
                     char lastInput = inputStr.charAt(inputStr.length() - 1);
                     if (isNumber(String.valueOf(lastInput)) || ")".equals(String.valueOf(lastInput))
                             || "!".equals(String.valueOf(lastInput)) || "%".equals(String.valueOf(lastInput))) {

@@ -122,9 +122,9 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
     }
 
     private void delete() {
-        if (showText.length() != 0) {
+        if (!showText.isEmpty()) {
             showText = showText.substring(0, showText.length() - 1);
-            if (showText.length() == 0) {
+            if (showText.isEmpty()) {
                 showText = "0";
             }
             operation();

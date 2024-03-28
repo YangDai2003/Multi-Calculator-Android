@@ -154,7 +154,7 @@ public class UnitActivity extends BaseFunctionActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.delete) {
-            if (input.length() > 0) {
+            if (!input.isEmpty()) {
                 input = input.substring(0, input.length() - 1);
                 tvInput.setText(Utils.formatNumber(input));
             }
@@ -174,7 +174,7 @@ public class UnitActivity extends BaseFunctionActivity implements View.OnClickLi
             if (input.length() < 9) {
                 String append = ((MaterialButton) v).getText().toString();
                 if (".".equals(append)) {
-                    if (input.length() == 0 || input.contains(".")) {
+                    if (input.isEmpty() || input.contains(".")) {
                         return;
                     }
                 }

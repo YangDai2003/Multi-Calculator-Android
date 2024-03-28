@@ -238,7 +238,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
         Calculator formulaUtil = new Calculator(false);
 
         try {
-            if (v.getId() == R.id.equal && inputStr.length() > 0) {
+            if (v.getId() == R.id.equal && !inputStr.isEmpty()) {
                 handleEqualButton(inputStr, formulaUtil, true);
             } else if (v.getId() == R.id.Clean) {
                 handleCleanButton();
@@ -254,7 +254,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
             String inputStr1 = inputView.getText().toString();
             highlightSpecialSymbols(inputView);
             //自动运算
-            if (inputStr1.length() > 0) {
+            if (!inputStr1.isEmpty()) {
                 Calculator formulaUtil1 = new Calculator(false);
                 handleEqualButton(inputStr1, formulaUtil1, false);
             }
@@ -319,7 +319,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
     }
 
     private void handleDeleteButton(String inputStr) {
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             if (inputStr.endsWith("asin(") || inputStr.endsWith("acos(")
                     || inputStr.endsWith("atan(") || inputStr.endsWith("acot(")) {
                 inputStr = inputStr.substring(0, inputStr.length() - 5);
@@ -350,7 +350,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     private void handleBracketsButton(String inputStr) {
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
             if (left > right && isNumber(String.valueOf(lastChar))
                     || left > right && lastChar == '%' || left > right && lastChar == ')') {
@@ -371,7 +371,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private void handleInverseButton(String inputStr) {
         // 取反
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             char lastChar = inputStr.charAt(inputStr.length() - 1);
             //最后一位是数字
             if (isNumber(String.valueOf(lastChar))) {
@@ -426,7 +426,7 @@ public class FloatingWindow extends Service implements View.OnClickListener {
         String append = ((MaterialButton) v).getText().toString();
 
         //长度大于0时
-        if (inputStr.length() > 0) {
+        if (!inputStr.isEmpty()) {
             char lastInput = inputStr.charAt(inputStr.length() - 1);
             // )、e、π 后输入数字默认加上 ×
             if (isNumber(append)) {

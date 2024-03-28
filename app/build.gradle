@@ -13,8 +13,8 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 34
-        versionCode 56
-        versionName '6.6'
+        versionCode 57
+        versionName '6.7'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -48,15 +48,15 @@ android {
 }
 
 dependencies {
-    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.22'))
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.23'))
     implementation 'com.tbuonomo:dotsindicator:5.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
-    implementation 'com.google.android.gms:play-services-location:21.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.2.0'
 
-    implementation platform('com.google.firebase:firebase-bom:32.7.3')
+    implementation platform('com.google.firebase:firebase-bom:32.8.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-inappmessaging-display'

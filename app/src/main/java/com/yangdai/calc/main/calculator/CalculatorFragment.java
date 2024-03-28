@@ -166,7 +166,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             String inputStr1 = inputView.getText().toString();
             //自动运算
             boolean useDeg = defaultSp.getBoolean("mode", false);
-            if (inputStr1.length() > 0) {
+            if (!inputStr1.isEmpty()) {
                 Calculator formulaUtil1 = new Calculator(useDeg);
                 fromUser = false;
                 viewModel.handleEqualButton(inputStr1, formulaUtil1, defaultSp, historySp, false, getString(R.string.bigNum), getString(R.string.formatError));
@@ -203,7 +203,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
         Calculator formulaUtil = new Calculator(useDeg);
 
         try {
-            if (v.getId() == R.id.equal && inputStr.length() > 0) {
+            if (v.getId() == R.id.equal && !inputStr.isEmpty()) {
                 if (canSpeak) {
                     tts.ttsSpeak(getString(R.string.equal));
                 }
@@ -255,7 +255,7 @@ public class CalculatorFragment extends Fragment implements SharedPreferences.On
             highlightSpecialSymbols(inputView);
             if (v.getId() != R.id.equal) {
                 //自动运算
-                if (inputStr1.length() > 0) {
+                if (!inputStr1.isEmpty()) {
                     Calculator formulaUtil1 = new Calculator(useDeg);
                     fromUser = false;
                     viewModel.handleEqualButton(inputStr1, formulaUtil1, defaultSp, historySp, false, getString(R.string.bigNum), getString(R.string.formatError));
