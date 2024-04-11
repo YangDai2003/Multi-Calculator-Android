@@ -16,6 +16,8 @@ import android.os.VibratorManager;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
+
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
@@ -75,11 +77,15 @@ public class Utils {
         try {
             BigDecimal bigDecimal = new BigDecimal(number);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                return NumberFormatter.withLocale(Locale.getDefault())
+                return NumberFormatter
+                        .with()
+                        .locale(Locale.getDefault())
+                        .precision(Precision.maxFraction(10))
                         .format(bigDecimal)
                         .toString();
             } else {
                 NumberFormat numberFormat = NumberFormat.getNumberInstance();
+                numberFormat.setMaximumFractionDigits(10);
                 return numberFormat.format(bigDecimal);
             }
         } catch (Exception e) {
@@ -220,6 +226,14 @@ public class Utils {
         sb.append('.');
 
         // 小数部分
+        StringBuilder fractionPart = getFractionPart(numeratorLong, denominatorLong);
+
+        sb.append(fractionPart);
+        return sb.toString();
+    }
+
+    @NonNull
+    private static StringBuilder getFractionPart(long numeratorLong, long denominatorLong) {
         StringBuilder fractionPart = new StringBuilder();
         Map<Long, Integer> remainderIndexMap = new HashMap<>();
         long remainder = numeratorLong % denominatorLong;
@@ -240,9 +254,7 @@ public class Utils {
                 fractionPart.append(')');
             }
         }
-
-        sb.append(fractionPart);
-        return sb.toString();
+        return fractionPart;
     }
 
     /**

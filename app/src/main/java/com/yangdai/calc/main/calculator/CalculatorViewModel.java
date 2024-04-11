@@ -156,6 +156,8 @@ public class CalculatorViewModel extends ViewModel {
                 editor.apply();
                 expression.setValue(res);
                 result.setValue("");
+                left = 0;
+                right = 0;
             } else {
                 result.setValue(formatNumber(res));
             }
