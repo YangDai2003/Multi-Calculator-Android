@@ -2,8 +2,6 @@
 
 -[English](README.md)
 
-<div align="center">
-
 # 多功能计算器
 
 ### 一款计算器解决生活中所有计算问题
@@ -14,13 +12,11 @@
       <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="100">
 </a>
 
-<a href="https://github.com/YangDai2003/Multi-Calculator-Android/releases/tag/v6.8">
+<a href="https://github.com/YangDai2003/Multi-Calculator-Android/releases/tag/v6.9">
       <img alt="Get it on GitHub" src="https://raw.githubusercontent.com/deckerst/common/main/assets/get-it-on-github.png" height="100">
 </a>
 
 <br>
-
-<div align="left"/>
 
 ## 📖 特点
 
@@ -93,17 +89,17 @@
     - 将数据以图表形式呈现，实现数据可视化，更加直观。
 
 10. 随机数字功能：
-- 可以生成指定个数指定范围的随机数。
-- 可以抽取指定范围内的随机数。
+    - 可以生成指定个数指定范围的随机数。
+    - 可以抽取指定范围内的随机数。
 
 11. 解方程功能：
-- 轻松求解线性方程和一元二次方程。
+    - 轻松求解线性方程和一元二次方程。
 
 12. 购物助手：
--   快速计算折扣和单价。
+    -   快速计算折扣和单价。
 
 13. 数学统计：
-- 根据输入的多个数值，给出最大公约数、最小公倍数、算术平均数、几何平均数、调和平均数、平方平均数、方差、标准差和总和。
+    - 根据输入的多个数值，给出最大公约数、最小公倍数、算术平均数、几何平均数、调和平均数、平方平均数、方差、标准差和总和。
 
 *** 还提供多种桌面小部件，无需打开软件即可进行简单运算。
 
