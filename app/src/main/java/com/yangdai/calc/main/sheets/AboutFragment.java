@@ -104,11 +104,7 @@ public class AboutFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     private void init(View view) {
-        view.findViewById(R.id.about_rate).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.yangdai.calc");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
+        view.findViewById(R.id.about_rate).setOnClickListener(v -> webIntent.launchUrl(requireContext(), Uri.parse("https://play.google.com/store/apps/details?id=com.yangdai.calc")));
         view.findViewById(R.id.about_share).setOnClickListener(v -> {
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");
