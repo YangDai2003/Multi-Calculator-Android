@@ -226,8 +226,6 @@
     <string name="embedding">平行窗口</string>
     <string name="embedding_content">在大屏设备上显示平行窗口</string>
     <string name="restart">重启应用以生效</string>
-    <string name="about_app">帮助与反馈</string>
-    <string name="about_app_content">检查更新、反馈问题、提供建议等</string>
     <string name="historyNum">保留历史记录条数</string>
     <string name="hex">十六进制：</string>
     <string name="decimal">十进制：</string>

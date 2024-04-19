@@ -229,8 +229,6 @@
     <string name="embedding">Aktivitätseinbettung</string>
     <string name="embedding_content">Zeigen Sie Aktivitäten parallel auf Großbildgeräten an.</string>
     <string name="restart">Bitte starten Sie die App neu</string>
-    <string name="about_app">Hilfe und Feedback</string>
-    <string name="about_app_content">Hier können Sie nach Aktualisierungen suchen, Probleme melden, Vorschläge unterbreiten usw.</string>
     <string name="historyNum">Ergebnisse im Verlauf gespeichert.</string>
     <string name="hex">Hex:</string>
     <string name="decimal">Dezimal:</string>

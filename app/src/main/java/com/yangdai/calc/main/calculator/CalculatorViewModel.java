@@ -287,8 +287,8 @@ public class CalculatorViewModel extends ViewModel {
         }
 
         if (fromUser && Utils.isNumber(append)) {
+            // 点击等号后，再次输入数字时清空结果
             expression.setValue(append);
-
         } else {
             //长度大于0时
             if (!inputStr.isEmpty()) {

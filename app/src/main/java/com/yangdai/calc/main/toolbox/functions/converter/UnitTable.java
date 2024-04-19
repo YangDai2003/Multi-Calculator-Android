@@ -52,6 +52,7 @@ public class UnitTable {
         AREA_UNIT_MAP.put("ha", 10000.0); // Hectare
         AREA_UNIT_MAP.put("顷", 66666.6667); // Acre
         AREA_UNIT_MAP.put("亩", 666.6667); // Mu
+        AREA_UNIT_MAP.put("坪", 3.30578512397); // Ping
         AREA_UNIT_MAP.put("ft²", 0.092903); // Square foot
         AREA_UNIT_MAP.put("in²", 0.00064516); // Square inch
 

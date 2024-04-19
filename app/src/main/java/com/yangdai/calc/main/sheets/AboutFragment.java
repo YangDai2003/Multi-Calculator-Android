@@ -21,6 +21,7 @@ import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.Task;
@@ -41,6 +42,7 @@ public class AboutFragment extends Fragment {
     private AppUpdateManager appUpdateManager = null;
     private Task<AppUpdateInfo> appUpdateInfoTask = null;
     private final ActivityResultLauncher<IntentSenderRequest> activityResultLauncher;
+    private final CustomTabsIntent webIntent = new CustomTabsIntent.Builder().setShowTitle(true).build();
 
     public AboutFragment() {
         activityResultLauncher = registerForActivityResult(
@@ -126,22 +128,14 @@ public class AboutFragment extends Fragment {
             }
 
         });
-        view.findViewById(R.id.about_github).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://github.com/YangDai-Github/Multi-Calculator-Android");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
+        view.findViewById(R.id.about_github).setOnClickListener(v -> webIntent.launchUrl(requireContext(), Uri.parse("https://github.com/YangDai-Github/Multi-Calculator-Android")));
         view.findViewById(R.id.about_email).setOnClickListener(v -> {
             Uri uri = Uri.parse("mailto:dy15800837435@gmail.com");
             Intent email = new Intent(Intent.ACTION_SENDTO, uri);
             email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
             startActivity(Intent.createChooser(email, "Feedback (E-mail)"));
         });
-        view.findViewById(R.id.about_privacy_policy).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://github.com/YangDai2003/Multi-Calculator-Android/blob/master/PRIVACY_POLICY.md");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
+        view.findViewById(R.id.about_privacy_policy).setOnClickListener(v -> webIntent.launchUrl(requireContext(), Uri.parse("https://github.com/YangDai2003/Multi-Calculator-Android/blob/master/PRIVACY_POLICY.md")));
         TextView textView = view.findViewById(R.id.about_app_version);
         textView.setOnLongClickListener(v -> {
             Toast.makeText(requireContext(), getString(R.string.thank), Toast.LENGTH_LONG).show();
@@ -162,11 +156,7 @@ public class AboutFragment extends Fragment {
         } catch (PackageManager.NameNotFoundException e) {
             textView.setText(getString(R.string.app_version) + " ");
         }
-        view.findViewById(R.id.about_app_more).setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://play.google.com/store/apps/dev?id=7281798021912275557");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-        });
+        view.findViewById(R.id.about_app_more).setOnClickListener(v -> webIntent.launchUrl(requireContext(), Uri.parse("https://play.google.com/store/apps/dev?id=7281798021912275557")));
         view.findViewById(R.id.about_app_update).setOnClickListener(view1 -> {
             appUpdateManager = AppUpdateManagerFactory.create(requireContext());
             appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();

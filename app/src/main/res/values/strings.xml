@@ -247,8 +247,6 @@
     <string name="embedding">Activity embedding</string>
     <string name="embedding_content">Display activities in parallel on large-screen devices</string>
     <string name="restart">Restart the app to take effect</string>
-    <string name="about_app">Help And Feedback</string>
-    <string name="about_app_content">Check for updates, report issues, provide suggestions, etc.</string>
     <string name="historyNum">Results saved in history</string>
     <string name="hex">Hex:</string>
     <string name="decimal">Decimal:</string>

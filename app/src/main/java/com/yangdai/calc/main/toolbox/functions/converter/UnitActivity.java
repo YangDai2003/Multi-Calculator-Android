@@ -41,7 +41,7 @@ public class UnitActivity extends BaseFunctionActivity implements View.OnClickLi
     private String input = "";
     private Button btInput, btOutput;
     private static final String[] ITEMS_DISTANCE = {"km", "m", "dm", "cm", "mm", "ft", "in", "yd", "mi", "NM"};
-    private static final String[] ITEMS_AREA = {"km²", "m²", "dm²", "cm²", "a", "ha", "顷", "亩", "ft²", "in²"};
+    private static final String[] ITEMS_AREA = {"km²", "m²", "dm²", "cm²", "a", "ha", "顷", "亩", "坪", "ft²", "in²"};
     private static final String[] ITEMS_VOLUME = {"L", "m³", "dm³", "cm³", "mL"};
     private static final String[] ITEMS_MASS = {"mg", "g", "kg", "oz", "lb"};
     private static final String[] ITEMS_TEMPE = {"℃", "℉"};
