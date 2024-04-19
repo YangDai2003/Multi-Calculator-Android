@@ -2,6 +2,8 @@
 
 -[中文](README_zh.md)
 
+<div align="center">
+
 # Multi-Calculator
 
 ### All in one
@@ -17,6 +19,8 @@
 </a>
 
 <br>
+
+</div>
 
 ## 📖 Features
 
