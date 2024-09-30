@@ -7,14 +7,14 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
     namespace 'com.yangdai.calc'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.yangdai.calc"
         minSdk 28
-        targetSdk 34
-        versionCode 59
-        versionName '6.9'
+        targetSdk 35
+        versionCode 60
+        versionName '7.0'
         resourceConfigurations += ["en", "zh", "de"]
     }
 
@@ -48,24 +48,24 @@ android {
 }
 
 dependencies {
-    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.23'))
-    implementation 'com.tbuonomo:dotsindicator:5.0'
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.0.20'))
+    implementation 'com.tbuonomo:dotsindicator:5.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.google.android.play:app-update:2.1.0'
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
-    implementation 'com.google.android.gms:play-services-location:21.2.0'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
-    implementation platform('com.google.firebase:firebase-bom:32.8.1')
+    implementation platform('com.google.firebase:firebase-bom:33.3.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-inappmessaging-display'
 
     implementation 'androidx.browser:browser:1.8.0'
     implementation 'androidx.core:core-splashscreen:1.0.1'
-    implementation 'androidx.activity:activity:1.8.2'
-    implementation 'androidx.window:window:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity:1.9.2'
+    implementation 'androidx.window:window:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     // com.google.android.material:material 1.11.0 has bug with Material 3 Color
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

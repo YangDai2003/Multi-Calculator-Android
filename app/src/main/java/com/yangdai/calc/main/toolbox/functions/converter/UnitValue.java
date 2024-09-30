@@ -51,7 +51,7 @@ public class UnitValue {
         result = prime * result + ((unit == null) ? 0 : unit.hashCode());
         long temp;
         temp = value.longValue();
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + Long.hashCode(temp);
         return result;
     }
 
