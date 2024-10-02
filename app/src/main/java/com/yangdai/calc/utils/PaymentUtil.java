@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 import java.net.URISyntaxException;
 
@@ -47,7 +48,7 @@ public class PaymentUtil {
             );
             activity.startActivity(intent);
         } catch (URISyntaxException | ActivityNotFoundException e) {
-            e.printStackTrace();
+            Log.e("PaymentUtil", "startIntentUrl: ", e);
         }
     }
 

@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -238,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 touchSlopField.set(recyclerView, touchSlop * 5);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("MainActivity", "Error reducing drag sensitivity", e);
         }
     }
 

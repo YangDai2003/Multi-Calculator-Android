@@ -1,5 +1,6 @@
 package com.yangdai.calc.main.toolbox.functions.currency;
 
+import android.util.Log;
 import android.util.Xml;
 
 import androidx.lifecycle.LiveData;
@@ -59,7 +60,7 @@ public class CurrencyViewModel extends ViewModel {
 
                 exchangeRates.postValue(exchangeRatesMap);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("CurrencyViewModel", "Error loading exchange rates", e);
                 exchangeRates.postValue(null);
             }
         });

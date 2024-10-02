@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.1.0'
     implementation 'com.google.android.gms:play-services-location:21.3.0'
 
-    implementation platform('com.google.firebase:firebase-bom:33.3.0')
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-inappmessaging-display'

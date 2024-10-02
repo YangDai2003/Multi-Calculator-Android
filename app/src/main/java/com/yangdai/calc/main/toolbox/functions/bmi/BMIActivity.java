@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -216,7 +217,7 @@ public class BMIActivity extends BaseFunctionActivity implements TextWatcher {
                     calculateBmi(weight, height);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("TAG", "afterTextChanged: " + e.getMessage());
             }
         }
     }

@@ -11,6 +11,7 @@
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="AppTheme.noActionBar" parent="Theme.Material3.Dark.NoActionBar">
