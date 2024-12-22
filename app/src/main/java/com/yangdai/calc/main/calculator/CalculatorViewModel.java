@@ -6,6 +6,7 @@ import static com.yangdai.calc.utils.Utils.formatNumber;
 import static com.yangdai.calc.utils.Utils.isNumber;
 import static com.yangdai.calc.utils.Utils.isNumeric;
 import static com.yangdai.calc.utils.Utils.isSymbol;
+import static com.yangdai.calc.utils.Utils.isSymbolForDot;
 import static com.yangdai.calc.utils.Utils.removeZeros;
 
 import android.annotation.SuppressLint;
@@ -293,6 +294,25 @@ public class CalculatorViewModel extends ViewModel {
             //长度大于0时
             if (!inputStr.isEmpty()) {
                 char lastInput = inputStr.charAt(inputStr.length() - 1);
+
+                // 检查小数点位置是否合规
+                if (".".equals(append)) {
+                    if (lastInput == 'e' || lastInput == 'π') {
+                        return;
+                    }
+                    int lastSymbolIndex = -1;
+                    for (int i = inputStr.length() - 1; i >= 0; i--) {
+                        if (isSymbolForDot(String.valueOf(inputStr.charAt(i)))) {
+                            lastSymbolIndex = i;
+                            break;
+                        }
+                    }
+                    String currentNumber = inputStr.substring(lastSymbolIndex + 1);
+                    if (currentNumber.isEmpty() || currentNumber.contains(".")) {
+                        return;
+                    }
+                }
+
                 // )、e、π、！、% 后输入数字默认加上 ×
                 if (isNumber(append)) {
                     if (")".equals(String.valueOf(lastInput)) || "!".equals(String.valueOf(lastInput)) || "%".equals(String.valueOf(lastInput))
@@ -301,16 +321,19 @@ public class CalculatorViewModel extends ViewModel {
                         return;
                     }
                 }
+
                 // 最后一位是两数运算符号时，再次输入符号则替换最后一位
                 if (isSymbol(String.valueOf(lastInput)) && isSymbol(append)) {
                     expression.setValue(inputStr.substring(0, inputStr.length() - 1) + append);
                     return;
                 }
+
                 // 最后一位是数字时，输入e、π默认加上 ×
                 if (isNumber(String.valueOf(lastInput)) && ("e".equals(append) || "π".equals(append))) {
                     expression.setValue(inputStr + "×" + append);
                     return;
                 }
+
             }
 
             //三角函数运算符和对数运算符后自动加上括号

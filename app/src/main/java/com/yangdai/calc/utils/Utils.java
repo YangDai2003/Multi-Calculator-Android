@@ -71,6 +71,14 @@ public class Utils {
     }
 
     /**
+     * 判断是否是运算符，用于判断小数点
+     */
+    public static boolean isSymbolForDot(String s) {
+        return s.equals("+") || s.equals("-") || s.equals("×") || s.equals("^")
+                || s.equals("÷") || s.equals("!") || s.equals("(") || s.equals(")") || s.equals("%");
+    }
+
+    /**
      * 格式化数字
      */
     public static String formatNumber(String number) {
