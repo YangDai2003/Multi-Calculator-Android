@@ -253,6 +253,9 @@
     <string name="octal">Octal:</string>
     <string name="binary">Binary:</string>
     <string name="helper_include">*include</string>
+    <string name="ruler">Ruler</string>
+    <string name="cm">cm</string>
+    <string name="in">in</string>
 
     <string-array name="theme_options">
         <item>Light Theme</item>

@@ -1,17 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.Material3.DynamicColors.Light">
+    <style name="AppTheme" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/background
         </item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- 适配沉浸式界面 -->
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
     <style name="Theme.AppWidget.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
@@ -29,16 +24,11 @@
         <item name="android:popupBackground">@drawable/popmenu_background</item>
     </style>
 
-    <style name="AppTheme.noActionBar" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <!-- 适配沉浸式界面 -->
+    <style name="AppTheme.noActionBar" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:hardwareAccelerated">true</item>
         <item name="drawerArrowStyle">@style/DrawerArrow</item>
         <item name="actionOverflowMenuStyle">@style/MyActionMenuOverflow</item>
-
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 

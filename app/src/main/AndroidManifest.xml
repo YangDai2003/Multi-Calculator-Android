@@ -8,8 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-    <!-- 适配android 11无法唤起第三方apk -->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" /> <!-- 适配android 11无法唤起第三方apk -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <queries>
@@ -34,12 +33,16 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:localeConfig="@xml/locales_config"
         android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="tiramisu">
+        <activity
+            android:name=".main.toolbox.functions.ruler.RulerActivity"
+            android:exported="false"
+            android:label="@string/ruler"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".main.toolbox.functions.programmer.ProgrammerActivity"
             android:exported="false"

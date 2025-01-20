@@ -13,9 +13,12 @@ android {
         applicationId "com.yangdai.calc"
         minSdk 28
         targetSdk 35
-        versionCode 62
-        versionName '7.2'
-        resourceConfigurations += ["en", "zh", "de"]
+        versionCode 63
+        versionName '7.3'
+    }
+
+    androidResources {
+        generateLocaleConfig true
     }
 
     buildTypes {

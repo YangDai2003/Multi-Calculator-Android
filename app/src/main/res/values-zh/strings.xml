@@ -232,6 +232,7 @@
     <string name="octal">八进制：</string>
     <string name="binary">二进制：</string>
     <string name="helper_include">*包含</string>
+    <string name="ruler">刻度尺</string>
 
     <string-array name="theme_options">
         <item>浅色主题</item>
@@ -239,4 +240,6 @@
         <item>跟随系统主题</item>
     </string-array>
 
+    <string name="cm">厘米</string>
+    <string name="in">英寸</string>
 </resources>

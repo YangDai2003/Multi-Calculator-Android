@@ -235,6 +235,7 @@
     <string name="octal">Oktal:</string>
     <string name="binary">Binär:</string>
     <string name="helper_include">*inbegriffen</string>
+    <string name="ruler">Lineal</string>
 
     <string-array name="theme_options">
         <item>Helles Design</item>
@@ -242,4 +243,6 @@
         <item>Dem System-Design folgen</item>
     </string-array>
 
+    <string name="cm">cm</string>
+    <string name="in">in</string>
 </resources>

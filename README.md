@@ -105,6 +105,9 @@ It integrates multiple practical functions to provide you with all calculation a
 13. Mathematical statistics:
     - Given multiple values entered, the greatest common divisor, least common multiple, arithmetic mean, geometric mean, harmonic mean, square mean, variance, standard deviation, and sum are given.
 
+14. Ruler：
+    - Measure small objects using on-screen scales, supports both inch and centimeter units.
+
 *** Also provides a variety of widgets for simple calculations without opening the software.
 
 *** Also provides floating window function.
