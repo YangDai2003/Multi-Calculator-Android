@@ -155,9 +155,8 @@ public class Compass extends BaseFunctionActivity implements SensorEventListener
                 SettingsClient client = LocationServices.getSettingsClient(this);
                 Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
                 task.addOnFailureListener(this, e -> {
-                    if (e instanceof ResolvableApiException) {
+                    if (e instanceof ResolvableApiException resolvableApiException) {
                         try {
-                            ResolvableApiException resolvableApiException = (ResolvableApiException) e;
                             resolvableApiException.startResolutionForResult(Compass.this, 2048);
                         } catch (IntentSender.SendIntentException ignored) {
 
