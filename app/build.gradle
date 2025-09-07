@@ -7,14 +7,14 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
     namespace 'com.yangdai.calc'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.yangdai.calc"
         minSdk 28
-        targetSdk 35
-        versionCode 63
-        versionName '7.3'
+        targetSdk 36
+        versionCode 64
+        versionName '7.4'
     }
 
     androidResources {
@@ -51,28 +51,28 @@ android {
 }
 
 dependencies {
-    implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.1.0'))
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:2.2.10'))
     implementation 'com.tbuonomo:dotsindicator:5.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.google.android.play:app-update:2.1.0'
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.1.0'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.2.2'
     implementation 'com.google.android.gms:play-services-location:21.3.0'
 
-    implementation platform('com.google.firebase:firebase-bom:33.8.0')
+    implementation platform('com.google.firebase:firebase-bom:34.2.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-inappmessaging-display'
 
-    implementation 'androidx.browser:browser:1.8.0'
+    implementation 'androidx.browser:browser:1.9.0'
     implementation 'androidx.core:core-splashscreen:1.0.1'
-    implementation 'androidx.activity:activity:1.10.0'
-    implementation 'androidx.window:window:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.activity:activity:1.10.1'
+    implementation 'androidx.window:window:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     // com.google.android.material:material 1.11.0 has bug with Material 3 Color
     //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.10.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
