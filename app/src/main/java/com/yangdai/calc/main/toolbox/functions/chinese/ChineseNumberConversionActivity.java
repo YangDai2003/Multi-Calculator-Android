@@ -132,41 +132,88 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
         }
     }
 
+    /**
+     * 核心转换方法，将数字字符串转换为中文大写金额。
+     */
     private void operation() {
-        BigDecimal numberOfMoney = new BigDecimal(showText);
-        StringBuilder sb = new StringBuilder();
-        String sign = "";
+        BigDecimal numberOfMoney;
+        try {
+            // 处理无效输入，避免程序崩溃
+            if (showText == null || showText.isEmpty() || "-".equals(showText) || ".".equals(showText)) {
+                numberOfMoney = BigDecimal.ZERO;
+            } else {
+                numberOfMoney = new BigDecimal(showText);
+            }
+        } catch (NumberFormatException e) {
+            numberOfMoney = BigDecimal.ZERO;
+        }
 
-        // Handle negative number
+        // 当输入数字为 0 时，直接返回“零元整”
+        if (numberOfMoney.compareTo(BigDecimal.ZERO) == 0) {
+            resultsText = "零元整";
+            return;
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        // 处理负数
         if (numberOfMoney.compareTo(BigDecimal.ZERO) < 0) {
-            sign = CN_NEGATIVE;
+            result.append(CN_NEGATIVE);
             numberOfMoney = numberOfMoney.abs();
         }
-        sb.append(sign);
 
-        // Split into integer and fractional parts and convert to String
-        String numberString = numberOfMoney.toString();
-        String integerPartString;
-        String fractionalPartString;
-        if (!numberString.contains(".")) {
-            numberString += "." + "0".repeat(MONEY_PRECISION);
-        }
+        // 拆分整数和小数部分
+        // 使用 setScale 保证有两位小数，方便处理
+        String numberString = numberOfMoney.setScale(MONEY_PRECISION, BigDecimal.ROUND_HALF_UP).toString();
         String[] parts = numberString.split("\\.");
-        integerPartString = parts[0];
-        fractionalPartString = parts[1];
+        String integerPartString = parts[0];
+        String fractionalPartString = parts[1];
+        boolean hasIntegerPart = Long.parseLong(integerPartString) > 0;
 
-        // Convert integer part
+        // 转换整数部分
+        String integerChinese = convertInteger(integerPartString);
+        if (hasIntegerPart) {
+            result.append(integerChinese).append(CN_MONETARY_UNIT);
+        }
+
+        // 转换小数部分
+        String fractionalChinese = convertFractional(fractionalPartString, hasIntegerPart);
+        result.append(fractionalChinese);
+
+        // 处理结尾的“整”
+        // 如果没有小数部分，并且有整数部分，则添加“整”
+        if (fractionalChinese.isEmpty() && hasIntegerPart) {
+            result.append(CN_FULL);
+        }
+
+        resultsText = result.toString();
+    }
+
+    /**
+     * 转换整数部分。
+     *
+     * @param integerPartString 整数部分的字符串
+     * @return 中文大写整数
+     */
+    private String convertInteger(String integerPartString) {
+        if (Long.parseLong(integerPartString) == 0) {
+            return "";
+        }
+
         StringBuilder resultIntegerPart = new StringBuilder();
         int zeroCount = 0;
         final int integerLength = integerPartString.length();
 
         for (int i = 0; i < integerLength; i++) {
             String digit = integerPartString.substring(i, i + 1);
+            // p: 从右到左的位置 (0-based)
             int p = integerLength - i - 1;
+            // q: 大单位的组索引 (0 for [个-仟], 1 for [万], 2 for [亿], etc.)
             int q = p / 4;
+            // r: 在4位数组中的位置 (0 for 个, 1 for 拾, 2 for 佰, 3 for 仟)
             int r = p % 4;
 
-            if (digit.equals("0")) {
+            if ("0".equals(digit)) {
                 zeroCount++;
             } else {
                 if (zeroCount > 0) {
@@ -177,35 +224,56 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
             }
 
             if (r == 0 && zeroCount < 4) {
+                // 在4位数的末尾（万，亿，兆），添加大单位
+                // 清理末尾的 "零" 再添加大单位，例如 "壹仟零万" 变为 "壹仟万"
+                if (resultIntegerPart.toString().endsWith(CN_UPPER_NUMBER[0])) {
+                    resultIntegerPart.deleteCharAt(resultIntegerPart.length() - 1);
+                }
                 resultIntegerPart.append(CN_UPPER_BIG_UNITS[q]);
             }
         }
-        resultIntegerPart.append(CN_MONETARY_UNIT);
 
-        // Convert fractional part
-        StringBuilder resultFractionalPart = new StringBuilder();
-        final int fractionalLength = fractionalPartString.length();
-        zeroCount = 0;
-        for (int i = 0; i < Math.min(fractionalLength, MONEY_PRECISION); i++) {
-            String digit = fractionalPartString.substring(i, i + 1);
-            if (digit.equals("0")) {
-                zeroCount++;
-            } else {
-                if (zeroCount > 0) {
-                    resultFractionalPart.append(CN_UPPER_NUMBER[0]);
-                }
-                zeroCount = 0;
-                resultFractionalPart.append(CN_UPPER_NUMBER[Integer.parseInt(digit)]).append(CN_FRAC_UNITS[i]);
-            }
+        // 再次清理末尾可能出现的 "零"
+        if (resultIntegerPart.toString().endsWith(CN_UPPER_NUMBER[0])) {
+            resultIntegerPart.deleteCharAt(resultIntegerPart.length() - 1);
         }
 
-        sb.append(resultIntegerPart);
-        if (resultFractionalPart.length() > 0) {
-            sb.append(resultFractionalPart);
-        } else {
-            sb.append(CN_FULL);
+        return resultIntegerPart.toString();
+    }
+
+    /**
+     * 改进后的小数部分转换逻辑。
+     *
+     * @param fractionalPartString 小数部分的字符串 (e.g., "05", "50")
+     * @param hasIntegerPart       整数部分是否大于0
+     * @return 中文大写小数
+     */
+    private String convertFractional(String fractionalPartString, boolean hasIntegerPart) {
+        int jiao = Integer.parseInt(fractionalPartString.substring(0, 1));
+        int fen = Integer.parseInt(fractionalPartString.substring(1, 2));
+
+        // 如果角和分都为0，则返回空
+        if (jiao == 0 && fen == 0) {
+            return "";
         }
-        resultsText = sb.toString();
+
+        StringBuilder result = new StringBuilder();
+
+        // 特殊情况：当整数部分存在且角为0，但分不为0时，需要加 "零"
+        // 例如：1.05 -> "壹元零伍分"
+        if (hasIntegerPart && jiao == 0) {
+            result.append(CN_UPPER_NUMBER[0]);
+        }
+
+        if (jiao > 0) {
+            result.append(CN_UPPER_NUMBER[jiao]).append(CN_FRAC_UNITS[0]);
+        }
+
+        if (fen > 0) {
+            result.append(CN_UPPER_NUMBER[fen]).append(CN_FRAC_UNITS[1]);
+        }
+
+        return result.toString();
     }
 
     @Override
