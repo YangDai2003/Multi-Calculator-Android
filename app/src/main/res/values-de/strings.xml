@@ -245,4 +245,38 @@
 
     <string name="cm">cm</string>
     <string name="in">in</string>
+
+    <!-- Chinese Number Conversion Strings -->
+    <string-array name="cn_upper_number">
+        <item>零</item>
+        <item>壹</item>
+        <item>贰</item>
+        <item>叁</item>
+        <item>肆</item>
+        <item>伍</item>
+        <item>陆</item>
+        <item>柒</item>
+        <item>捌</item>
+        <item>玖</item>
+    </string-array>
+    <string-array name="cn_upper_units">
+        <item />
+        <item>拾</item>
+        <item>佰</item>
+        <item>仟</item>
+    </string-array>
+    <string-array name="cn_upper_big_units">
+        <item />
+        <item>万</item>
+        <item>亿</item>
+        <item>兆</item>
+    </string-array>
+    <string-array name="cn_frac_units">
+        <item>角</item>
+        <item>分</item>
+    </string-array>
+    <string name="cn_monetary_unit">元</string>
+    <string name="cn_full">整</string>
+    <string name="cn_negative">负</string>
+    <string name="cn_initial_result">零元整</string>
 </resources>

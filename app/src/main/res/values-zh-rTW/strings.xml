@@ -242,4 +242,38 @@
 
     <string name="cm">公分</string>
     <string name="in">英吋</string>
+
+    <!-- Chinese Number Conversion Strings -->
+    <string-array name="cn_upper_number">
+        <item>零</item>
+        <item>壹</item>
+        <item>貳</item>
+        <item>參</item>
+        <item>肆</item>
+        <item>伍</item>
+        <item>陸</item>
+        <item>柒</item>
+        <item>捌</item>
+        <item>玖</item>
+    </string-array>
+    <string-array name="cn_upper_units">
+        <item />
+        <item>拾</item>
+        <item>佰</item>
+        <item>仟</item>
+    </string-array>
+    <string-array name="cn_upper_big_units">
+        <item />
+        <item>萬</item>
+        <item>億</item>
+        <item>兆</item>
+    </string-array>
+    <string-array name="cn_frac_units">
+        <item>角</item>
+        <item>分</item>
+    </string-array>
+    <string name="cn_monetary_unit">圓</string>
+    <string name="cn_full">整</string>
+    <string name="cn_negative">負</string>
+    <string name="cn_initial_result">零圓整</string>
 </resources>

@@ -2,6 +2,7 @@ package com.yangdai.calc.main.toolbox.functions.chinese;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.icu.math.BigDecimal;
 import android.os.Bundle;
 import android.view.View;
@@ -18,19 +19,19 @@ import com.yangdai.calc.utils.Utils;
  * @author 30415
  */
 public class ChineseNumberConversionActivity extends BaseFunctionActivity implements View.OnClickListener {
-    private static final String[] CN_UPPER_NUMBER = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
-    private static final String[] CN_UPPER_UNITS = {"", "拾", "佰", "仟"};
-    private static final String[] CN_UPPER_BIG_UNITS = {"", "万", "亿", "兆"};
-    private static final String[] CN_FRAC_UNITS = {"角", "分"};
-    private static final String CN_MONETARY_UNIT = "元";
-    private static final String CN_FULL = "整";
-    private static final String CN_NEGATIVE = "负";
+    private String[] CN_UPPER_NUMBER;
+    private String[] CN_UPPER_UNITS;
+    private String[] CN_UPPER_BIG_UNITS;
+    private String[] CN_FRAC_UNITS;
+    private String CN_MONETARY_UNIT;
+    private String CN_FULL;
+    private String CN_NEGATIVE;
     private static final int MONEY_PRECISION = 2;
     private TextView tvInput;
     private TextView tvResults;
 
     private String showText = "0";
-    private String resultsText = "零元整";
+    private String resultsText;
     private static final int[] BUTTON_IDS = {R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5,
             R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9, R.id.btn_pt, R.id.btn_clr, R.id.btn_negate, R.id.iv_del};
 
@@ -40,8 +41,19 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Resources res = getResources();
+        CN_UPPER_NUMBER = res.getStringArray(R.array.cn_upper_number);
+        CN_UPPER_UNITS = res.getStringArray(R.array.cn_upper_units);
+        CN_UPPER_BIG_UNITS = res.getStringArray(R.array.cn_upper_big_units);
+        CN_FRAC_UNITS = res.getStringArray(R.array.cn_frac_units);
+        CN_MONETARY_UNIT = res.getString(R.string.cn_monetary_unit);
+        CN_FULL = res.getString(R.string.cn_full);
+        CN_NEGATIVE = res.getString(R.string.cn_negative);
+        resultsText = res.getString(R.string.cn_initial_result);
+
         tvInput = findViewById(R.id.input_textview);
         tvResults = findViewById(R.id.output_textview);
+        tvResults.setText(resultsText);
 
         for (int buttonId : BUTTON_IDS) {
             findViewById(buttonId).setHapticFeedbackEnabled(defaultSp.getBoolean("vib", false));
@@ -112,7 +124,7 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
 
     private void clear() {
         showText = "0";
-        resultsText = "零元整";
+        resultsText = getResources().getString(R.string.cn_initial_result);
         refreshText();
     }
 
@@ -150,7 +162,7 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
 
         // 当输入数字为 0 时，直接返回“零元整”
         if (numberOfMoney.compareTo(BigDecimal.ZERO) == 0) {
-            resultsText = "零元整";
+            resultsText = getResources().getString(R.string.cn_initial_result);
             return;
         }
 
