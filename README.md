@@ -44,7 +44,7 @@
 
 ## 🌎 Translations
 
-Currently supports Chinese, English and German.
+Currently supports Simplified Chinese, Traditional Chinese, English and German.
 
 ## 📃 Application introduction
 
