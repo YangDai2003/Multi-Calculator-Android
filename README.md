@@ -112,4 +112,4 @@ It integrates multiple practical functions to provide you with all calculation a
 
 *** Also provides floating window function.
 
-This app has been adapted to the latest API 34 and adopted Material Design 3 to provide you with a smooth and consistent user experience.
+This app has been adapted to the latest API 36 and adopted Material Design 3 to provide you with a smooth and consistent user experience.
