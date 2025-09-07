@@ -32,7 +32,7 @@ public class ToolBoxAdapter extends RecyclerView.Adapter<ToolBoxAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if (isGrid){
+        if (isGrid) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item_toolbox, parent, false);
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_toolbox, parent, false);

@@ -35,7 +35,9 @@ public class UnitValue {
         this.value = value;
     }
 
-    /** @noinspection unused*/
+    /**
+     * @noinspection unused
+     */
     public String getUnit() {
         return unit;
     }

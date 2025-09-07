@@ -5,7 +5,7 @@ package com.yangdai.calc.main.toolbox.functions.relationship;
  */
 public class RelationShipData {
     public String[][] getRelationShipDataByMan() {
-        return new String[][] {
+        return new String[][]{
                 {"我", "爸爸", "妈妈", "哥哥", "弟弟", "姐姐", "妹妹", "儿子", "女儿", "妻子", "丈夫", "未知亲戚"},
                 {"爸爸", "爷爷", "奶奶", "伯父", "叔叔", "姑妈", "姑妈", "我", "妹妹", "妈妈", "", "未知亲戚"},
                 {"妈妈", "外公", "外婆", "大舅", "小舅", "大姨", "小姨", "我", "妹妹", "", "爸爸", "未知亲戚"},
@@ -204,7 +204,7 @@ public class RelationShipData {
     }
 
     public String[][] getRelationShipDataByWoman() {
-        return new String[][] {
+        return new String[][]{
                 {"我", "爸爸", "妈妈", "哥哥", "弟弟", "姐姐", "妹妹", "儿子", "女儿", "妻子", "丈夫", "未知亲戚"},
                 {"爸爸", "爷爷", "奶奶", "伯父", "叔叔", "姑妈", "姑妈", "弟弟", "我", "妈妈", "", "未知亲戚"},
                 {"妈妈", "外公", "外婆", "大舅", "小舅", "大姨", "小姨", "弟弟", "我", "", "爸爸", "未知亲戚"},

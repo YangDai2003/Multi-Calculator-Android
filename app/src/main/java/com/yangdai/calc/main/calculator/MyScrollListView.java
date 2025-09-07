@@ -32,8 +32,7 @@ public class MyScrollListView extends ListView {
                 preX = ev.getX();
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            case MotionEvent.ACTION_MOVE ->
-            {
+            case MotionEvent.ACTION_MOVE -> {
                 float currentY = ev.getY();
                 float deltaY = currentY - preY;
                 float deltaX = ev.getX() - preX;
@@ -44,7 +43,8 @@ public class MyScrollListView extends ListView {
                 }
             }
             case MotionEvent.ACTION_UP -> getParent().requestDisallowInterceptTouchEvent(false);
-            default -> {}
+            default -> {
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
