@@ -18,13 +18,13 @@ import com.yangdai.calc.utils.Utils;
  * @author 30415
  */
 public class ChineseNumberConversionActivity extends BaseFunctionActivity implements View.OnClickListener {
-
     private static final String[] CN_UPPER_NUMBER = {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};
-    private static final String[] CN_UPPER_MONETARY_UNIT = {"分", "角", "元", "拾", "佰", "仟",
-            "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "兆", "拾", "佰", "仟"};
+    private static final String[] CN_UPPER_UNITS = {"", "拾", "佰", "仟"};
+    private static final String[] CN_UPPER_BIG_UNITS = {"", "万", "亿", "兆"};
+    private static final String[] CN_FRAC_UNITS = {"角", "分"};
+    private static final String CN_MONETARY_UNIT = "元";
     private static final String CN_FULL = "整";
     private static final String CN_NEGATIVE = "负";
-    private static final String CN_ZERO_FULL = "零元";
     private static final int MONEY_PRECISION = 2;
     private TextView tvInput;
     private TextView tvResults;
@@ -135,56 +135,74 @@ public class ChineseNumberConversionActivity extends BaseFunctionActivity implem
     private void operation() {
         BigDecimal numberOfMoney = new BigDecimal(showText);
         StringBuilder sb = new StringBuilder();
-        int signum = numberOfMoney.signum();
-        if (signum == 0) {
-            resultsText = CN_ZERO_FULL + CN_FULL;
-            return;
+        String sign = "";
+
+        // Handle negative number
+        if (numberOfMoney.compareTo(BigDecimal.ZERO) < 0) {
+            sign = CN_NEGATIVE;
+            numberOfMoney = numberOfMoney.abs();
         }
+        sb.append(sign);
 
-        BigDecimal scaledMoney = numberOfMoney.movePointRight(MONEY_PRECISION).setScale(0, 4).abs();
-        long number = scaledMoney.longValue();
-        int numUnit;
-        int numIndex = 0;
-        boolean getZero = false;
-        int zeroSize = 0;
+        // Split into integer and fractional parts and convert to String
+        String numberString = numberOfMoney.toString();
+        String integerPartString;
+        String fractionalPartString;
+        if (!numberString.contains(".")) {
+            numberString += "." + "0".repeat(MONEY_PRECISION);
+        }
+        String[] parts = numberString.split("\\.");
+        integerPartString = parts[0];
+        fractionalPartString = parts[1];
 
-        while (number > 0) {
-            numUnit = (int) (number % 10);
-            if (numUnit > 0) {
-                if (numIndex == 9 || numIndex == 13 || numIndex == 17) {
-                    if (zeroSize >= 3) {
-                        sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
-                    }
-                }
-                sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
-                sb.insert(0, CN_UPPER_NUMBER[numUnit]);
-                getZero = false;
-                zeroSize = 0;
+        // Convert integer part
+        StringBuilder resultIntegerPart = new StringBuilder();
+        int zeroCount = 0;
+        final int integerLength = integerPartString.length();
+
+        for (int i = 0; i < integerLength; i++) {
+            String digit = integerPartString.substring(i, i + 1);
+            int p = integerLength - i - 1;
+            int q = p / 4;
+            int r = p % 4;
+
+            if (digit.equals("0")) {
+                zeroCount++;
             } else {
-                ++zeroSize;
-                if (numIndex != 0 && numIndex != 1 && numIndex != 2 &&
-                        numIndex != 6 && numIndex != 10 && numIndex != 14) {
-                    if (!getZero) {
-                        sb.insert(0, CN_UPPER_NUMBER[numUnit]);
-                    }
+                if (zeroCount > 0) {
+                    resultIntegerPart.append(CN_UPPER_NUMBER[0]);
                 }
-
-                if (numIndex == 2) {
-                    sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
-                } else if (((numIndex - 2) % 4 == 0) && (number % 1000 > 0)) {
-                    sb.insert(0, CN_UPPER_MONETARY_UNIT[numIndex]);
-                }
-                getZero = true;
+                zeroCount = 0;
+                resultIntegerPart.append(CN_UPPER_NUMBER[Integer.parseInt(digit)]).append(CN_UPPER_UNITS[r]);
             }
 
-            number /= 10;
-            ++numIndex;
+            if (r == 0 && zeroCount < 4) {
+                resultIntegerPart.append(CN_UPPER_BIG_UNITS[q]);
+            }
+        }
+        resultIntegerPart.append(CN_MONETARY_UNIT);
+
+        // Convert fractional part
+        StringBuilder resultFractionalPart = new StringBuilder();
+        final int fractionalLength = fractionalPartString.length();
+        zeroCount = 0;
+        for (int i = 0; i < Math.min(fractionalLength, MONEY_PRECISION); i++) {
+            String digit = fractionalPartString.substring(i, i + 1);
+            if (digit.equals("0")) {
+                zeroCount++;
+            } else {
+                if (zeroCount > 0) {
+                    resultFractionalPart.append(CN_UPPER_NUMBER[0]);
+                }
+                zeroCount = 0;
+                resultFractionalPart.append(CN_UPPER_NUMBER[Integer.parseInt(digit)]).append(CN_FRAC_UNITS[i]);
+            }
         }
 
-        if (signum == -1) {
-            sb.insert(0, CN_NEGATIVE);
-        }
-        if (!sb.toString().contains("分") && !sb.toString().contains("角")) {
+        sb.append(resultIntegerPart);
+        if (resultFractionalPart.length() > 0) {
+            sb.append(resultFractionalPart);
+        } else {
             sb.append(CN_FULL);
         }
         resultsText = sb.toString();
