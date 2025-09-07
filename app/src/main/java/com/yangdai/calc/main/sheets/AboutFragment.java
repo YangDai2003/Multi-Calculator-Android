@@ -32,7 +32,6 @@ import com.google.android.play.core.appupdate.AppUpdateOptions;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.yangdai.calc.R;
-import com.yangdai.calc.utils.PaymentUtil;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 
 /**
@@ -112,17 +111,8 @@ public class AboutFragment extends Fragment {
             startActivity(Intent.createChooser(sendIntent, getString(R.string.app_name)));
         });
         view.findViewById(R.id.about_donate).setOnClickListener(v -> {
-            try {
-                if (PaymentUtil.isInstalledPackage(requireContext())) {
-                    PaymentUtil.startAlipayClient(requireActivity(), "fkx12941hqcc7gpulzphmee"); // 第二步获取到的字符串
-                } else {
-                    Intent donateIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paypal.me/YangDaiDevelpoer?country.x=DE&locale.x=de_DE"));
-                    startActivity(donateIntent);
-                }
-            } catch (Exception e) {
-                Toast.makeText(requireContext(), "Please install Paypal or Alipay.", Toast.LENGTH_SHORT).show();
-            }
-
+            Intent donateIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ko-fi.com/yangs_codehub"));
+            startActivity(donateIntent);
         });
         view.findViewById(R.id.about_github).setOnClickListener(v -> webIntent.launchUrl(requireContext(), Uri.parse("https://github.com/YangDai-Github/Multi-Calculator-Android")));
         view.findViewById(R.id.about_email).setOnClickListener(v -> {
