@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * @author 30415
  */
-public class Calculator {
+public record Calculator(boolean useRad) {
     /**
      * 四个列表
      * 储存运算符（代号）, 包括三角函数指数函数等
@@ -21,12 +21,6 @@ public class Calculator {
     private static final List<Integer> ORDER_LIST = Arrays.asList(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 3, 2, 2, 1, 1);
     private static final List<String> SPECIAL_LIST = Arrays.asList("l", "g", "i", "a", "n", "v", "s", "c", "t", "e", "o");
     private static final List<String> OB_SPECIAL = Arrays.asList("ln", "log", "sin⁻¹", "cos⁻¹", "tan⁻¹", "cot⁻¹", "sin", "cos", "tan", "exp", "cot");
-
-    private final boolean useRad;
-
-    public Calculator(boolean rad) {
-        useRad = rad;
-    }
 
     public BigDecimal calc(String str) {
         String res = calculate(change(str), useRad);
