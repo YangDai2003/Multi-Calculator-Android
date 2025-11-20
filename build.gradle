@@ -1,9 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     dependencies {
-        classpath 'com.google.android.gms:oss-licenses-plugin:0.10.8'
+        classpath 'com.google.android.gms:oss-licenses-plugin:0.10.9'
         // Make sure that you have the Google services Gradle plugin dependency
-        classpath 'com.google.gms:google-services:4.4.3'
+        classpath 'com.google.gms:google-services:4.4.4'
 
         // Add the dependency for the Crashlytics Gradle plugin
         classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.6'
@@ -12,5 +12,5 @@ buildscript {
 plugins {
     id 'com.android.application' version '8.13.0' apply false
     id 'com.android.library' version '8.13.0' apply false
-    id 'com.google.gms.google-services' version '4.4.3' apply false
+    id 'com.google.gms.google-services' version '4.4.4' apply false
 }
